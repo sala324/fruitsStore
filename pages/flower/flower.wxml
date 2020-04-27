@@ -1,0 +1,13 @@
+<view class="flowerWrap">
+  <view class="flowerCard">
+    <view class="title">我的鲜花（个）</view>
+    <view class="num">{{userData.flower}}</view>
+    <view class="rule">规则</view>
+    <view class="about">我的鲜花是参加店家的充值活动得到的，鲜花会在付款的时候自动抵扣，100个鲜花可以抵扣人民币1元</view>
+    <view class="chongzhi">
+      <navigator url="/pages/charge/charge" class="chargeBtn">去充值 ></navigator>
+      <view class="text"></view>
+      <navigator url="/pages/xiaofeiList/xiaofeiList" class="xiaofei">消费记录</navigator>
+    </view>
+  </view>
+</view>

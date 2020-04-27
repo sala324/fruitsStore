@@ -1,0 +1,18 @@
+<scroll-view scroll-y style='height:100vh' class='scroll' bindscrolltolower="loadMore">
+  <view class="xianhuaWrap">
+    <view class="itemWrap" wx:if="{{xianhuaArr.length>0}}" wx:for="{{xianhuaArr}}" wx:key="index">
+      <view class="left">
+        <view class="title">{{item.title}}</view>
+        <view class="date">{{item.gmtCreate}}</view>
+      </view>
+      <view class="right">
+        <view class="num {{item.number>0?'charge':''}}" wx:if="{{item.number>0}}">+{{item.number}}</view>
+        <view class="num {{item.number>0?'charge':''}}" wx:else>{{item.number}}</view>
+        <view class="price" wx:if="{{item.price}}">￥{{item.number/100}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='nodata' wx:if="{{xianhuaArr.length==0}}">
+  <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+  </view>
+</scroll-view>

@@ -1,0 +1,36 @@
+.wrap{
+  padding: 30rpx;
+}
+.title{
+  font-size: 32rpx;
+}
+.money{
+  margin-top: 30rpx;
+  border-bottom: 1rpx solid #eee;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 10rpx;
+}
+input{
+  display: inline-block;
+  width: 500rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  line-height: 60rpx;
+  vertical-align: middle;
+}
+.des{
+  color: #666;
+  font-size: 28rpx;
+  padding:20rpx;
+}
+.paybtn{
+  margin: 60rpx 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #1296db;
+  border-radius: 20rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+}

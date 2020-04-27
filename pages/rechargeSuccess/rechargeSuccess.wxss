@@ -1,0 +1,17 @@
+.icon{
+  text-align: center;
+}
+.icon image{
+  width: 150rpx;
+  height: 150rpx;
+  margin:40rpx 0 20rpx;
+}
+.des{
+  text-align: center;
+  font-size: 40rpx;
+  
+}
+.about{
+  margin: 30rpx;
+  font-size: 30rpx;
+}

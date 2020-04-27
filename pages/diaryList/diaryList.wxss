@@ -1,0 +1,87 @@
+page{
+  background: #F4F4F4;
+}
+.toptitle{
+  font-size: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.diaryWrap{
+  padding: 30rpx;
+  background: #fff;
+  border-bottom: 20rpx solid #F4F4F4;
+}
+.diaryWrap .personwrap{
+  display: flex;
+}
+.diaryWrap .personwrap image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+.diaryWrap .personwrap .otherinfo .name{
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.diaryWrap .personwrap .otherinfo .title{
+  padding: 10rpx 0;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+.diaryWrap .personwrap .otherinfo .address{
+  font-size: 24rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.bottomwrap{
+  height: 200rpx;
+}
+.diaryWrap .bigimg{
+  margin-top: 38rpx;
+  width: 690rpx;
+  height: 386rpx;
+}
+.diaryWrap .infowrap{
+  background: #fff;
+  padding:45rpx 37rpx 45rpx 28rpx;
+  display: flex;
+}
+.diaryWrap .infowrap .wrap{
+  flex:1;
+}
+.diaryWrap .infowrap .right{
+  padding-top: 30rpx;
+  width: 22rpx;
+  color: #D3D3D3;
+  height: 38rpx;
+}
+.diaryWrap .infowrap .info{
+  padding-left: 58rpx;
+  /* height: 36rpx; */
+  margin-bottom: 12rpx;
+}
+.diaryWrap .infowrap .info .name{
+  font-size: 36rpx;
+  color:#333;
+  font-weight: bold; 
+  padding-right: 15rpx;
+}
+.diaryWrap .infowrap .info .tel{
+  font-size: 24rpx;
+  color:#666;
+  font-weight:400; 
+}
+.diaryWrap .infowrap .address{
+  font-size: 24rpx;
+  line-height: 60rpx;
+  height: 46rpx;
+  color:#333;
+  padding-left: 58rpx;
+  font-weight:400; 
+  background: url(https://static.daxahome.com/miniwx/bigman/map2.png)  no-repeat 0 0;
+  background-size: 60rpx 60rpx;
+}

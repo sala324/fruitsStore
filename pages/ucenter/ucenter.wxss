@@ -1,0 +1,107 @@
+.topwrap{
+  height: 240rpx;
+  padding-top: 36rpx;
+  box-sizing: border-box;
+  text-align: center;
+  background: #1296db;
+}
+.otherwrap{
+  text-align: center;
+}
+.otherwrap .name{
+  display: inline-block;
+}
+.otherwrap .name .nameitem{
+  font-size:30rpx;
+  color:#000;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: left;
+  background-color: #fff;
+}
+.topwrap .imagewrap{
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  margin:0 30rpx;
+  border-radius: 50%;
+  overflow:hidden;
+  box-shadow:4px -3px 17px 1px rgba(203,199,199,0.58);
+}
+.hidecontent{
+  height: 0;
+}
+.userinfo{
+  text-align:left;
+  height: 45rpx;
+  line-height: 45rpx;
+}
+.userinfo .logo{
+  height: 45rpx;
+  display: inline-block;
+  border-radius: 10rpx;
+  color: #F69D35;
+  border:1rpx solid #F69D35;
+  font-size: 24rpx;
+  padding:0 12rpx 0 46rpx;
+  margin-right: 24rpx;
+}
+.userinfo .logo.shiming{
+  background: url(https://static.daxahome.com/miniwx/bigman/shiming.png) no-repeat 10rpx center;
+  background-size:26rpx 32rpx; 
+}
+.userinfo .logo.card{
+  background: url(https://static.daxahome.com/miniwx/bigman/card.png) no-repeat 10rpx center;
+  background-size:29rpx 23rpx; 
+}
+.userinfo .logo.password{
+  background: url(https://static.daxahome.com/miniwx/bigman/password.png) no-repeat 10rpx center;
+  background-size:22rpx 27rpx; 
+}
+.userinfo .logo.shiming.grey{
+  background: url(https://static.daxahome.com/miniwx/bigman/uc/smgrey.png) no-repeat 10rpx center;
+  background-size:26rpx 32rpx; 
+  color: #CCCCCC;
+  border:1rpx solid #D9D9D9;
+}
+.userinfo .logo.card.grey{
+  background: url(https://static.daxahome.com/miniwx/bigman/uc/cardgrey.png) no-repeat 10rpx center;
+  background-size:29rpx 23rpx; 
+  color: #CCCCCC;
+  border:1rpx solid #D9D9D9;
+}
+.userinfo .logo.password.grey{
+  background: url(https://static.daxahome.com/miniwx/bigman/uc/pdgrey.png) no-repeat 10rpx center;
+  background-size:22rpx 27rpx; 
+  color: #CCCCCC;
+  border:1rpx solid #D9D9D9;
+}
+.topwrap .imagewrap image{
+  width: 120rpx;
+  height: 120rpx;
+}
+.topwrap .name{
+  font-size: 30rpx;
+  padding-bottom: 20rpx;
+  color: #fff;
+}
+.wrap{
+  padding: 30rpx 0;
+}
+.wrap .item{
+  height: 100rpx;
+  line-height: 100rpx;
+  box-sizing: border-box;
+  margin: 0 30rpx;
+  color: #333;
+  border-bottom: 1rpx solid #ccc;
+  font-size: 30rpx;
+  vertical-align: top;
+  /* border-radius:10rpx; */
+}
+.wrap .item image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}

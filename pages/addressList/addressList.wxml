@@ -1,0 +1,17 @@
+<view class="address">
+  <view class="addAddressWrap">
+    <view class="title">我的收货地址</view>
+    <navigator url="/pages/addAddress/addAddress" class="addAddress">添加收获地址</navigator>
+  </view>
+  
+  <navigator url="/pages/addAddress/addAddress?reset=true&address={{item.address}}&linkMan={{item.linkMan}}&mobile={{item.mobile}}" class="item" wx:for="{{addressList}}" wx:key="index">
+    <view class="title1"><text class="moren" wx:if="{{morenIndex==index}}">默认</text>{{item.address}}</view>
+    <view class="personInfo">
+      <text class="name">{{item.linkMan}}</text>
+      <text class="mobile">{{item.mobile}}</text>
+    </view>
+  </navigator>
+  <view class='nodata' wx:if="{{addressList.length==0}}">
+      <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+  </view>
+</view>

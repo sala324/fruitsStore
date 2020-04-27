@@ -1,0 +1,10 @@
+<view class="cardWrap">
+  <view class="cardItem" wx:for="{{chargeArr}}" wx:key="index" bindtap="chooseItem" data-id="{{item.id}}" data-index="{{index}}">
+    <image src="../../images/icon/check2.png" wx:if="{{navIndex==index}}" class="checked"></image>
+    <view class="money">
+      <text>￥{{item.money}}</text> 变<text>￥{{item.money2}}</text>
+    </view>
+    <view class="num"> <image src="../../images/icon/floower.png"></image> {{item.number}}</view>
+  </view>
+  <navigator url="/pages/rechargeSuccess/rechargeSuccess" open-type="reLaunch" class="btn">充值</navigator>
+</view>

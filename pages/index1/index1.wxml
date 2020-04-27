@@ -1,0 +1,19 @@
+<view class="">
+		<view class="">
+			<view class="box">
+				
+			</view>
+			<view class="tabbar t1">
+				tabbar
+			</view>
+			<view class="box">
+				
+			</view>
+			<view class="tabbar t2">
+				tabbar
+			</view>
+			<view class="item" wx:for="{{40}}" :key='index' >
+				{{item}}
+			</view>
+		</view>
+	</view>

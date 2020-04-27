@@ -1,0 +1,31 @@
+
+  <view class="address">
+    <view class="chooseAddress" bindtap="addAddress" wx:if="{{!addressName}}">选择收货地址 ></view>
+    <view class="addressName" wx:if="{{addressName}}">
+      <view class="addressNameWrap">
+        <view class="houseTitle">{{addressName}}</view>
+        <!-- <view class="houseAddress">{{address}}</view> -->
+      </view>
+      <view class="resetAddress" bindtap="addAddress">修改地址</view>
+    </view>
+    <view class="item">
+      <text class="itemName">门牌号</text>
+      <input value="{{roomNumber}}" bindinput="changeRoomNumber" maxlength="50" placeholder-class="place-holder" placeholder="详细地址，例1栋1单元101室"></input>
+    </view>
+    <view class="item">
+      <text class="itemName">联系人</text>
+      <input value="{{linkMan}}" bindinput="changeLinkMan" maxlength="20" placeholder-class="place-holder" placeholder="请填写收货人姓名"></input>
+    </view>
+    <view class="item">
+      <text class="itemName">手机号</text>
+      <input value="{{mobile}}" bindinput="changeMobile" maxlength="11" placeholder-class="place-holder" placeholder="请填写收货人手机号"></input>
+    </view>
+    <view class="item2">
+      <text class="itemName">设为默认地址</text>
+      <switch bindchange="switch1Change" color="#1296db"></switch>
+      <!-- <switch bindchange="switch1Change"></switch> -->
+      <!-- <image src="{{kaiguanSrc}}" bindtap="danxuan"></image> -->
+    </view>
+    <view class="deletebtn" bindtap="deletebtn" wx:if="{{isReset}}">删除收货地址</view>
+    <view class="saveBtn" bindtap="saveBtn">保存地址</view>
+  </view>

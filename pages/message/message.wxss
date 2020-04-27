@@ -1,0 +1,23 @@
+.message{
+  padding: 30rpx;
+  
+}
+textarea{
+  width: 690rpx;
+  border: 1rpx solid #ccc;
+  padding: 20rpx;
+  font-size: 26rpx;
+  color: #333;
+  box-sizing: border-box;
+  border-radius: 20rpx;
+}
+.messageBtn{
+  margin: 60rpx 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #1296db;
+  border-radius: 20rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+}

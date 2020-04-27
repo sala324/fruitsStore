@@ -1,0 +1,8 @@
+<view class="wrap">
+  <view class="title">请跟店员确认商品金额</view>
+  <view class="money">
+    ￥<input value="{{money}}" bindinput="changeMoney" type="number" placeholder="请输入商品金额"></input>
+  </view>
+  <view class="des">若您有鲜花会优先抵扣鲜花</view>
+  <view bindtap="backBtn" class="paybtn">支付</view>
+</view>

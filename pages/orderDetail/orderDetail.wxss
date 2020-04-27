@@ -1,0 +1,176 @@
+page{
+  background: #eceff5;
+}
+.topBox{
+  background: #1296db;
+  height: 60rpx;
+}
+.addressWrap{
+  position: absolute;
+  margin: -40rpx 30rpx 0;
+  background: #fff;
+  width: 690rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  box-shadow:3rpx 4rpx 9rpx 0rpx rgba(203,199,199,0.58);
+  z-index: 2;
+}
+.addressWrap .state{
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.addressWrap .orderInfo{
+  font-size: 26rpx;
+  text-align: center;
+  color: #999;
+  padding-top: 10rpx;
+}
+.addressWrap .payWrap{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.addressWrap .payWrap view{
+  font-size: 26rpx;
+  border-radius: 60rpx;
+  display: inline-block;
+  width: 160rpx;
+}
+.addressWrap .payWrap .pay{
+  background: red;
+  color: #fff;
+}
+.addressWrap .payWrap .cancel{
+  border: 1rpx solid #ddd;
+  margin-right: 30rpx;
+}
+.addressWrap .personInfo .xingming{
+  padding-right: 20rpx;
+}
+.wrap{
+  margin:130rpx 30rpx 0;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.orderBox{
+  border-radius: 20rpx;
+  
+}
+.showAll{
+  height: auto;
+}
+.orderBox .orderItem{
+  height: 140rpx;
+  display: flex;
+  background: #fff;
+  padding:20rpx;
+  box-sizing: border-box;
+}
+.orderBox .orderItem image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+.orderBox .orderItem .itemInfo{
+  width: 580rpx;
+  background: #fff;
+}
+.orderBox .orderItem .itemInfo .name{
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #333;
+}
+.orderBox .orderItem .itemInfo .priceInfo{
+  font-size: 26rpx;
+  line-height: 70rpx;
+  display: flex;
+}
+.orderBox .orderItem .itemInfo .priceInfo .price{
+  font-size: 26rpx;
+  line-height: 70rpx;
+  color: red;
+  flex: 1;
+}
+.orderBox .orderItem .itemInfo .priceInfo .price2{
+  font-size: 26rpx;
+  line-height: 70rpx;
+  color: #333;
+  font-weight: bold;
+}
+.orderBox .orderItem .itemInfo .priceInfo .price2 text{
+  color: #999;
+  font-weight: normal;
+  text-decoration-line: line-through;
+}
+.allNum{
+  margin:0 30rpx;
+  background: #efefef;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+  border-radius: 40rpx;
+}
+.priceBox{
+  
+}
+.priceBox .priceItem{
+  display: flex;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 30rpx;
+}
+.priceBox .priceItem .itemName{
+  font-size: 26rpx;
+  color: #333;
+  flex: 1;
+}
+.priceBox .priceItem .itemText{
+  color: #000;
+  /* font-weight: bold; */
+}
+.orderWrap{
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.orderTitle{
+  border-bottom: 1rpx solid #eee;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding-left: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.infoItem{
+  display: flex;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #eee;
+  font-size: 26rpx;
+  color: #333;
+}
+.text{
+  width: 500rpx;
+}
+.text text{
+  width: 500rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+.btnwrap .price{
+  color: red;
+  padding:0 20rpx;
+}
+.btnwrap .youhuiPrice{
+  color: #999;
+  flex: 1;
+}
+.unpayBox{
+  height: 36rpx;
+}

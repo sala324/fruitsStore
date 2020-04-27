@@ -1,0 +1,54 @@
+.address{
+  padding: 30rpx;
+}
+.addAddressWrap{
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  background: #fff;
+}
+.addAddressWrap .title{
+  flex: 1;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.addAddressWrap .addAddress{
+  display: inline-block;
+  padding: 0 20rpx;
+  color: #1296db;
+  height: 60rpx;
+  border: 1rpx solid #1296db;
+  font-size: 26rpx;
+  border-radius: 10rpx;
+  line-height: 60rpx;
+}
+.item{
+  border-top: 1rpx solid #eee;
+  padding: 24rpx 0;
+}
+.item:last-child{
+  border-bottom: 1rpx solid #eee;
+}
+.item .title1{
+  font-size: 30rpx;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 690rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.moren{
+  color: #1296db;
+  font-size: 26rpx;
+  font-weight: bold;
+  padding-right: 10rpx;
+}
+.item .personInfo{
+  color: #999;
+  font-size: 30rpx;
+  padding-top: 10rpx;
+}
+.mobile{
+  margin-left: 40rpx;
+}

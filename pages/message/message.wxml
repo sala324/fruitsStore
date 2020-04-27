@@ -1,0 +1,4 @@
+<view class="message">
+  <textarea value="{{message}}" bindinput="changeMessage" placeholder="请输入您的留言信息"></textarea>
+  <view bindtap="backBtn" class="messageBtn">留言</view>
+</view>

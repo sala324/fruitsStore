@@ -1,0 +1,50 @@
+<view class="confirmOrder">
+  <view class="topBox"></view>
+  <navigator url="/pages/addressList2/addressList2" class="addressWrap">
+    <view class="address">{{address}}</view>
+    <view class="personInfo">
+      <text class="xingming">{{linkMan}}</text>
+      <text class="mobile">{{mobile}}</text>
+    </view>
+  </navigator>
+  <view class="wrap">
+    <view class="orderBox {{showAll?'showAll':''}}">
+      <view class="orderItem" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<showItem}}">
+        <image src="{{item.url}}"></image>
+        <view class="itemInfo">
+          <view class="name">{{item.name}}</view>
+          <view class="priceInfo">
+            <text class="price">￥{{item.price}} x {{item.num}}</text>
+            <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2}}</text> ￥{{item.price1}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="allNum" bindtap="showAll" wx:if="{{orderArr.length>3}}">共{{allnum}}件 / {{showText}}</view>
+    <view class="allNum" bindtap="showAll" wx:else>共{{allnum}}件</view>
+    <view class="priceBox">
+      <view class="priceItem">
+        <text class="itemName">包装费</text>
+        <text class="itemText">￥0</text>
+      </view>
+      <view class="priceItem">
+        <text class="itemName">商品金额</text>
+        <text class="itemText">￥{{price}}</text>
+      </view>
+      <view class="priceItem">
+        <text class="itemName">配送费</text>
+        <text class="itemText">￥0</text>
+      </view>
+      <view class="priceItem">
+        <text class="itemName">鲜花</text>
+        <text class="itemText">0</text>
+      </view>
+    </view>
+  </view>
+  <view class="bottomBox"></view>
+  <view class="btnwrap">
+    <text class="price">￥{{hejiMoney}}</text>
+    <text class="youhuiPrice">已优惠￥{{youhuiprice}}</text>
+    <navigator class="btn1" open-type="reLaunch" url="/pages/paySuccess/paySuccess">提交订单</navigator>
+  </view>
+</view>

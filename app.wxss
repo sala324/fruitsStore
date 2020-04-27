@@ -1,0 +1,49 @@
+/**app.wxss**/
+page{font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;background: #FFFFFF;}
+.nodata{
+  height: 80vh;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+  justify-content: center; /*定义body的里的元素水平居中*/
+}
+.nodata image{
+  width: 307rpx;
+  height:428rpx; 
+}
+.btnwrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #fff;
+}
+.btnwrap .btn1{
+  width: 240rpx;
+  background: #1296db;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+}
+.bottomBox{
+  height: 120rpx;
+}
+.btn{
+  position: fixed;
+  bottom: 30rpx;
+  left: 30rpx;
+  right: 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #1296db;
+  border-radius: 20rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+}
+.input-placeholder {
+      color:#999;
+      font-size:28rpx;
+    }

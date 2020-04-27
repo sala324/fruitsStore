@@ -1,0 +1,41 @@
+<scroll-view scroll-y style='height:100vh' class='scroll' bindscrolltolower="loadMore">
+  <view class="orderWrap">
+    <view bindtap="turnDetail" data-state="0" class="itemWrap" wx:if="{{orderArr.length>0}}">
+      <view class="itemWrap2">
+        <view class="imgWrap">
+          <image src="{{item.url}}" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<4}}"></image>
+          <image src="../../images/icon/more.png" class="more" wx:if="{{orderArr.length>4}}"></image>
+        </view>
+        <view class="orderInfo">
+          <view class="price">￥{{hejiMoney}}</view>
+          <view class="num">共{{allnum}}件</view>
+          
+        </view>
+      </view>
+      <view class="payBtnWrap">
+        <view class="payBtn">去支付</view>
+        <!-- <navigator url="/pages/setOrder/setOrder" class="payBtn again">再来一单</navigator> -->
+      </view>
+    </view>
+    <view bindtap="turnDetail" data-state="1" class="itemWrap" wx:if="{{orderArr.length>0}}">
+      <view class="state">已完成</view>
+      <view class="itemWrap2">
+        <view class="imgWrap">
+          <image src="{{item.url}}" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<4}}"></image>
+          <image src="../../images/icon/more.png" class="more" wx:if="{{orderArr.length>4}}"></image>
+        </view>
+        <view class="orderInfo">
+          <view class="price">￥{{hejiMoney}}</view>
+          <view class="num">共{{allnum}}件</view>
+          
+        </view>
+      </view>
+      <view class="payBtnWrap">
+        <view url="/pages/setOrder/setOrder" catchtap="orderAgain" class="payBtn again">再来一单</view>
+      </view>
+    </view>
+  </view>
+  <view class='nodata' wx:if="{{orderArr.length==0}}">
+  <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+  </view>
+</scroll-view>

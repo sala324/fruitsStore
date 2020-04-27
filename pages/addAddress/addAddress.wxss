@@ -1,0 +1,88 @@
+page{
+  background: #eceff5;
+}
+.address{
+  margin: 30rpx;
+  padding: 50rpx 30rpx;
+  border-radius: 20rpx;
+  background: #fff;
+}
+.chooseAddress{
+  border: 1rpx solid #1296db;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #1296db;
+  border-radius: 10rpx;
+}
+.addressName{
+  font-size: 26rpx;
+  color: #333;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+}
+.addressName .addressNameWrap{
+  flex: 1;
+  
+}
+.addressName .addressNameWrap .houseAddress{
+  color: #666;
+  font-size: 24rpx;
+}
+.resetAddress{
+  width: 140rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #1296db;
+  border: 1rpx solid #1296db;
+  border-radius: 8rpx;
+}
+.item{
+  display: flex;
+}
+.item .itemName{
+  font-size: 26rpx;
+  color: #333;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.item input{
+  flex: 1;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1rpx solid #eee;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}
+.saveBtn{
+  margin-top: 60rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1296db;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  font-weight: bold;
+}
+.item2{
+  /* border-top: 2rpx solid #ccc; */
+  height: 100rpx;
+  border-bottom: 2rpx solid #ccc;  
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+}
+.item2 .itemName{
+  flex:1;
+  font-size: 26rpx;
+  color: #333;
+}
+.deletebtn{
+  color: red;
+  font-size: 26rpx;
+  line-height: 90rpx;
+  border-bottom: 2rpx solid #ccc; 
+}

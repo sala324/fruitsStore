@@ -1,0 +1,7 @@
+<view class="paySuccess">
+  <view class="icon">
+    <image src="../../images/icon/success.png"></image>
+  </view>
+  <view class="des">支付成功</view>
+  <view class="about">您也支付成功，请耐心等待，商家正快马加鞭为您配送！</view>
+</view>

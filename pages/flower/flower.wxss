@@ -1,0 +1,43 @@
+.flowerWrap{
+  margin: 30rpx;
+}
+.flowerCard{
+  background: #1296db;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  color: #fff;
+}
+.title{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.num{
+  font-size: 50rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #fff;
+}
+.rule{
+  font-size: 30rpx;
+  padding: 20rpx 0;
+}
+.about{
+  padding-left: 20rpx;
+  font-size: 26rpx;
+  padding-bottom: 26rpx;
+}
+.chongzhi{
+  display: flex;
+}
+.chargeBtn{
+  padding: 20rpx 20rpx 20rpx 0;
+  flex: 0 0 140rpx;
+}
+.text{
+  flex:1;
+}
+.xiaofei{
+  padding: 20rpx 0rpx 20rpx 20rpx;
+  flex: 0 0 160rpx;
+  text-align: right;
+}

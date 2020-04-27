@@ -1,0 +1,26 @@
+.itemWrap{
+  padding:20rpx 30rpx;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+}
+.left{
+  flex: 1;
+}
+.title{
+  color: #333;
+  font-size: 30rpx;
+}
+.charge{
+  color: red;
+}
+.date{
+  font-size: 26rpx;
+  color: #999;
+  padding-top: 10rpx;
+}
+.price{
+  font-size: 26rpx;
+  color: #666;
+  padding-top: 10rpx;
+}

@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/addressList2/addressList2",
+    "pages/addAddress/addAddress",
+    "pages/search/search",
+    "pages/message/message",
+    "pages/offlinePayment/offlinePayment",
+    "pages/charge/charge",
+    "pages/xiaofeiList/xiaofeiList",
+    "pages/orderList/orderList",
+    "pages/flower/flower",
+    "pages/orderDetail/orderDetail",
+    "pages/paySuccess/paySuccess",
+    "pages/setOrder/setOrder",
+    "pages/addressList/addressList",
+    "pages/ucenter/ucenter"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "三好生鲜",
+    "navigationBarTextStyle": "black",
+    "backgroundColorBottom": "#fff"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "fontSize": "20rpx",
+    "list": [
+      {
+        "selectedIconPath": "images/index2.png",
+        "iconPath": "images/index.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/order2.png",
+        "iconPath": "images/order.png",
+        "pagePath": "pages/orderList/orderList",
+        "text": "订单"
+      },
+      {
+        "selectedIconPath": "images/me2.png",
+        "iconPath": "images/me.png",
+        "pagePath": "pages/ucenter/ucenter",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

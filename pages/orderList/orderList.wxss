@@ -1,0 +1,71 @@
+page{
+  background: #eceff5;
+}
+.orderWrap{
+  margin: 30rpx;
+}
+.itemWrap{
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+}
+.state{
+  text-align: right;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 40rpx;
+  padding-bottom: 10rpx;
+}
+.itemWrap2{
+  display: flex;
+  background: #fff;
+}
+.itemWrap .imgWrap{
+  flex: 1;
+}
+.itemWrap .imgWrap image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 8rpx;
+  vertical-align: middle;
+}
+.itemWrap .imgWrap .more{
+  width: 70rpx;
+  height: 70rpx;
+  vertical-align: middle;
+}
+.itemWrap .orderInfo{
+  width: 140rpx;
+  font-size: 30rpx;
+  text-align: right;
+}
+.itemWrap .orderInfo .price{
+  font-size: 36rpx;
+  color: red;
+}
+.itemWrap .orderInfo .num{
+  padding-top: 10rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+.payBtnWrap{
+  text-align: right;
+  margin-top: 20rpx;
+}
+.payBtn{
+  background: #1296db;
+  color: #fff;
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 160rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  display: inline-block;
+}
+.again{
+  background: #fff;
+  color: #999;
+  border: 1rpx solid #999;
+}

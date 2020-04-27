@@ -1,0 +1,322 @@
+/* pages/renthouse/renthouse.wxss */
+page{
+  font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
+  background: #eceff5;
+}
+.index{
+  display: flex;
+  flex-direction: column;
+}
+.navWrap{
+  height: 100rpx;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+  justify-content: center; /*定义body的里的元素水平居中*/
+}
+.nav{
+  flex: 1;
+}
+.nav text{
+  display: block;
+}
+.scrollWrap{
+  margin-top: 20rpx;
+  width: 100%;
+  white-space: nowrap;
+}
+.navItem{
+  display: inline-block;
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-right: 20rpx;
+  text-align: center;
+  background: #1296db;
+  color: #fff;
+  border-radius: 10rpx;
+}
+.navItem:last-child{
+  margin-right:0rpx;
+}
+.productWrap{
+  margin:0 30rpx;
+  width: 690rpx;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 20rpx;
+  font-size: 0;
+}
+.productWrap .productItem{
+  display: inline-block;
+  width: 330rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.productWrap .productItem .productImgWrap,.productWrap .productItem .productImgWrap image{
+  width: 300rpx;
+  height: 300rpx;
+}
+.productWrap .productItem .productImgWrap{
+  padding: 30rpx 0;
+}
+.productName{
+  font-size: 30rpx;
+  color: #333;
+  line-height: 36rpx;
+  height: 76rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.productPrice{
+  height: 86rpx;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+}
+.productPrice .productPriceWrap{
+  flex: 1;
+}
+.productPrice .productPriceWrap text{
+  display: block;
+}
+.productPrice .productPriceWrap .salePrice{
+  color: red;
+  font-size: 40rpx;
+}
+.productPrice .productPriceWrap .originalPrice{
+  color: #aaa;
+  font-size: 30rpx;
+  text-decoration-line: line-through;
+}
+.productPrice .productNumWrap{
+
+}
+.increase{
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #333;
+  font-size: 50rpx; 
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1rpx solid #eceff5;
+}
+.number{
+  height: 50rpx;
+  color: #1296db;
+  font-size: 32rpx;
+  vertical-align: middle;
+  padding: 0 14rpx;
+  display: inline-block;
+}
+.productPrice .productNumWrap .productAdd{
+  background: #1296db;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #fff;
+  font-size: 50rpx; 
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.cartBox{
+  height: 140rpx;
+}
+.cartWrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  display: flex;
+  background: #fff;
+  z-index: 3;
+  border-bottom: 1rpx solid #efefef;
+  font-size: 0;
+}
+.cartWrap.hide{
+  opacity: 0;
+}
+.cartWrap .cart{
+  background: #ccc;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+}
+.cartWrap .cart.active{
+  background: #1296db;
+}
+.cartWrap .cart image{
+  height: 70rpx;
+  width: 70rpx;
+  padding: 15rpx;
+}
+.buyNum{
+  position: absolute;
+  border-radius: 50%;
+  background: red;
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  font-size: 24rpx;
+  display: inline-block;
+  color: #fff;
+  margin-left: -26rpx;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.buyNum{
+  width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+.maxnum{
+  width: 42rpx;
+  height: 42rpx;
+  padding: 9rpx;
+  margin-left: -26rpx;
+}
+.cartWrap .price{
+  color: red;
+  font-size: 40rpx;
+  padding: 54rpx 0 0 24rpx;
+  flex: 1;
+}
+.cartWrap .confrim{
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #1296db;
+  width: 200rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+}
+.cartWrap .confrim.gray{
+  background: #ccc;
+}
+.dialogWrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 120rpx;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.gouwuche{
+  position: fixed;
+  bottom: 120rpx;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 0;
+  max-height: 580rpx;
+  background: #fff;
+  
+}
+.deleteAll{
+  text-align: right;
+  font-size: 26rpx;
+  color: #999;
+  padding: 10rpx;
+}
+.deleteAll .deleteBtn{
+  display: inline-block;
+}
+.itemWrap{
+  max-height: 560rpx;
+  overflow: auto;
+}
+ .gouwuche .gouwucheItem{
+  display: flex;
+  margin: 0 30rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+ .gouwuche .gouwucheItem image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+ .gouwuche .gouwucheItem .itemInfo{
+  flex: 1;
+}
+ .gouwuche .gouwucheItem .itemName{
+  font-size: 30rpx;
+}
+ .gouwuche .gouwucheItem  .itemPrice{
+  display: flex;
+}
+ .gouwuche .gouwucheItem  .itemPrice .salePrice{
+  color: red;
+  font-size: 26rpx;
+  flex: 1;
+}
+ .gouwuche .gouwucheItem  .itemPrice .salePrice text{
+  color: #999;
+  text-decoration-line: line-through;
+}
+ .gouwuche .gouwucheItem  .itemPrice  .itemNumWrap{
+  font-size: 36rpx;
+}
+.itemNumDel,.itemNumAdd{
+  width: 42rpx;
+  height: 42rpx;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+}
+.itemNum{
+  display: inline-block;
+  color: #333;
+  padding: 0 12rpx;
+}
+.itemNumAdd{
+  display: inline-block;
+  background: #1296db;
+  color:#fff;
+}
+.itemNumDel{
+  border: 1rpx solid #eee;
+}
+.searchWrap{
+  background: #fff;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin: 20rpx 30rpx 0;
+  border-radius: 20rpx;
+  text-align: center;
+}
+.searchWrap image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.searchWrap .searchText{
+  color: #707070;
+  font-size: 30rpx;
+  padding-left: 12rpx;
+}
+.navWrap{
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1rpx;
+  margin: 20rpx 30rpx;
+  height: 160rpx;
+  text-align: center;
+  background: #eceff5;
+}
+.navWrap image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
