@@ -63,7 +63,7 @@ page{
 .productName{
   font-size: 30rpx;
   color: #333;
-  line-height: 36rpx;
+  line-height: 38rpx;
   height: 76rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;

@@ -3,36 +3,25 @@ const app = getApp();
 Page({
   data: {
     morenIndex:0,
-    addressList:[]
+    addressList:[],
+    noData:false
   },
   addressList() {
     util.requests('/business/address/getAddressList', {}).then(res => {
       if (res.data.code == 0) {
-        
+        if (res.data.data.length>0){
+          this.setData({
+            noData:false
+          })
+        }
         this.setData({
-          chargeArr: arr
+          addressList: res.data.data
         })
       }
 
     })
   },
   onShow: function () {
-    let arr2 = []
-    let that = this
-    wx.getStorage({
-      key: 'addressList',
-      success: function (res) {
-        for (let i in res.data) {
-          arr2.push(res.data[i])
-          that.setData({
-            addressList: arr2
-          })
-        };
-      }
-    })
-    this.setData({
-      addressList: arr2
-    })
     this.addressList()
   }
 })

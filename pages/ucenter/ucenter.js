@@ -43,7 +43,5 @@ Page({
     })
   },
   onShow: function () {
-    this.getUserDetail()
-    this.getsanyaosu()
   }
 })

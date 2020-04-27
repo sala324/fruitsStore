@@ -37,7 +37,7 @@ Page({
     }).exec()
     wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
       that.setData({
-        gwcHeight: -(rect[0].height - 60) + 'px'
+        gwcHeight: -(rect[0].height) + 'px'
       })
     }).exec()
   },
@@ -81,14 +81,17 @@ Page({
     })
   },
   showCart2() {
+    let showCart = this.data.showCart
+    let that = this
     if (this.data.allnum > 0) {
-      if (showCart) {
-        that.choosebtn()
-      } else {
-        that.choosebtn2()
-      }
+      showCart = !showCart
+      // if (showCart) {
+      //   that.choosebtn()
+      // } else {
+      //   that.choosebtn2()
+      // }
       this.setData({
-        showCart: true
+        showCart: showCart
       })
     }
   },

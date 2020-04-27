@@ -35,7 +35,7 @@
     </view>
   </view>
   <view class="cartBox"></view>
-  <view class="cartWrap {{!showDialog?'pha':''}}">
+  <view class="cartWrap" wx:if="{{!showDialog}}">
     <view class="cart {{allnum>0?'active':''}}">
       <image src="../../images/icon/cart.png" bindtap="showCart2"></image>
       <view class="buyNum {{maxnum==allNum>9?'active':''}}">
@@ -48,23 +48,22 @@
     <view class="dialogWrap" wx:if="{{showCart}}" bindtap="hideCart">
       
     </view>
-    <view class="gouwuche" catchtap="showCart1" style="bottom:{{gwcHeight}}" animation="{{animation}}">
-        <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" wx:if="{{showCart}}">清空购物车</view></view>
-        <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
-          <image src="{{item.url}}"></image>
-          <view class="itemInfo">
-            <view class="itemName">{{item.name}}</view>
-            <view class="itemPrice">
-              <text class="salePrice">￥{{item.price}} <text>￥{{item.originalPrice}}</text> </text>
-              <view class="itemNumWrap">
-                <view class="itemNumDel" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2">-</view>
-                <text class="itemNum">{{item.num}}</text>
-                <view class="itemNumAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2">+</view>
-              </view>
+    <view class="gouwuche" wx:if="{{showCart}}"  catchtap="showCart1" style="bottom:{{gwcHeight}}" animation="{{animation}}">
+      <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" wx:if="{{showCart}}">清空购物车</view></view>
+      <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
+        <image src="{{item.url}}"></image>
+        <view class="itemInfo">
+          <view class="itemName">{{item.name}}</view>
+          <view class="itemPrice">
+            <text class="salePrice">￥{{item.price}} <text>￥{{item.originalPrice}}</text> </text>
+            <view class="itemNumWrap">
+              <view class="itemNumDel" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2">-</view>
+              <text class="itemNum">{{item.num}}</text>
+              <view class="itemNumAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2">+</view>
             </view>
           </view>
         </view>
       </view>
-
+    </view>
   </view>
 </view>

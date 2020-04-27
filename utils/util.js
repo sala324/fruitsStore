@@ -24,6 +24,20 @@ const getToken = n => {
   }
   return hearderToken;
 }
+const dialog = n => {
+  wx.showModal({
+    title: n,
+    content: '',
+    showCancel: false,
+    success: function (res) {
+      if (res.confirm) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    }
+  })
+}
 const isCompanyer = n => {
   let getCompanyer = '';
   try {
@@ -162,7 +176,6 @@ const setorderFormid = (formId) => {
   }
   
 }
-const aa='abc'
 module.exports = {
   formatTime: formatTime,
   request: request,
@@ -176,7 +189,7 @@ module.exports = {
   errorimage: errorimage,
   isCompanyer: isCompanyer,
   userInfo: userInfo,
-  aa:aa
+  dialog: dialog
 }
 
 

@@ -32,6 +32,12 @@ Page({
       showAll: !showAll
     })
   },
+  showCart1() {
+    this.setData({
+      showCart: true
+    })
+
+  },
   gouwuche() {
     let jsons = {}
     try {

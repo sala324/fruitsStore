@@ -4,7 +4,7 @@ Page({
   data: {
     storageArr:[],//判断用户本地有无购物车数据
     cartData: true,//判断用户有无添加购物车
-    typeId:1,
+    id:3,
     price: 0,//购物车总价
     allnum: 0,//购物车总数
     showCart:false,
@@ -31,104 +31,6 @@ Page({
         num: 0,
         des: '去哪个拉开你喇叭能看清离开',
         url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '西瓜',
-        price: 2,
-        originalPrice: 2.5,
-        id: 2,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '苹果',
-        price: 6,
-        originalPrice: 7,
-        id: 3,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '榴莲',
-        price: 230,
-        originalPrice: 230,
-        id: 4,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '菠萝',
-        price: 3,
-        originalPrice: 3.5,
-        id: 5,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '葡萄',
-        price: 10,
-        originalPrice: 12,
-        id: 6,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '哈密瓜',
-        price: 5,
-        originalPrice: 5,
-        id: 7,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '桔子',
-        price: 4,
-        originalPrice: 4,
-        id: 8,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '凤梨',
-        price: 6,
-        originalPrice: 7,
-        id: 9,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '香蕉',
-        price: 3,
-        originalPrice: 4,
-        id: 10,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '猕猴桃',
-        price: 5,
-        originalPrice: 6,
-        id: 11,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }
-    ],
-    productArr2:[
-      {
-        name:'西红柿',
-        price:4,
-        originalPrice:5,
-        id:1,
-        num:0,
-        des:'去哪个拉开你喇叭能看清离开',
-        url:'../../images/icon/shangpin.png'
       },
       {
         name: '西瓜',
@@ -447,9 +349,9 @@ Page({
   },
   chooseType(e) {
     this.setData({
-      typeId: e.currentTarget.dataset.id
+      id: e.currentTarget.dataset.id
     })
-    console.log(this.data.typeId)
+    this.productList()
   },
   onLoad(options){
     
@@ -497,8 +399,8 @@ Page({
       let arr5 = []
       let num = 0
       let price = 0
-      // console.log(this.data.productArr2)
-      this.data.productArr2.forEach((val, index) => {
+      console.log(this.data.aproductArr2)
+      this.data.aproductArr2.forEach((val, index) => {
         arrs.forEach((val2, index2) => {
           if (val2.id === val.id) {
             val.num = val2.num
@@ -549,8 +451,30 @@ Page({
     this.animation.height('0%').step()
     this.setData({ animation: this.animation.export() })
   },
+  productList() {
+    util.requests('/business/product/getProductList', { 
+      categoryId:this.data.id,
+      current:1,
+      size: 12
+      // current:this.data.index,
+      // size: this.data.size
+    }).then(res => {
+      if (res.data.code == 0) {
+        if (res.data.data.length > 0) {
+          this.setData({
+            noData: false
+          })
+        }
+        this.setData({
+          productArr: res.data.data.records
+        })
+      }
+
+    })
+  },
   onShow: function () {
     this.cunchu()
     this.getInfoUser()
+    this.productList()
   }
 })

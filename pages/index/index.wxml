@@ -4,36 +4,37 @@
     <text class="searchText">商家商品</text>
   </navigator>
   <view class="navWrap">
-    <view class="nav">
+    <!-- <view class="nav">
       <image src="../../images/icon/2.jpg"></image>
       <text>推荐</text>
+    </view> -->
+    <view class="nav" data-id="3" bindtap="chooseType">
+      <image src="../../images/icon/3.jpg"></image>
+      <text>生鲜</text>
     </view>
-    <view class="nav">
+    <view class="nav" data-id="5" bindtap="chooseType">
       <image src="../../images/icon/4.jpg"></image>
-      <text>蔬菜</text>
+      <text>果蔬</text>
     </view>
-    <view class="nav">
+    <!-- <view class="nav">
       <image src="../../images/icon/1.jpg"></image>
       <text>水果</text>
-    </view>
-    <view class="nav">
+    </view> -->
+    <!-- <view class="nav">
       <image src="../../images/icon/5.jpg"></image>
       <text>肉类</text>
-    </view>
-    <view class="nav">
-      <image src="../../images/icon/3.jpg"></image>
-      <text>海鲜</text>
-    </view>
+    </view> -->
+    
   </view>
-<button open-type="getUserInfo" bindgetuserinfo="setUserInfo">授权登录</button>
+<!-- <button open-type="getUserInfo" bindgetuserinfo="setUserInfo">授权登录</button> -->
 <!-- <button class="btnitem" open-type="getPhoneNumber" bindgetphonenumber="login">一键登录</button> -->
   
   <view class="productWrap">
     <view class="productItem" wx:for="{{productArr}}" wx:key="index">
       <view class="productImgWrap">
-        <image src="../../images/icon/shangpin.png"></image>
+        <image src="{{item.thumbnails}}"></image>
       </view>
-      <view class="productName">{{item.name}} {{item.des}}</view>
+      <view class="productName">{{item.title}} {{item.description}}</view>
       <view class="productPrice">
         <view class="productPriceWrap">
           <view class="salePrice">￥{{item.price}}</view>

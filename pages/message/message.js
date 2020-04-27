@@ -1,9 +1,5 @@
-// pages/message/message.js
+const util = require('../../utils/util');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     message:''
   },
@@ -12,11 +8,17 @@ Page({
       message: e.detail.value
     })
   },
+  sendMessage(val) {
+    util.requests('/business/feedback/post', { content:val},'post').then(res => {
+      if (res.data.code == 0) {
+        util.dialog('您的留言发送成功')
+      }
+    })
+  },
   backBtn() {
     if (this.data.message) {
-      wx.navigateBack({
-        delta: 1
-      })
+      this.sendMessage(this.data.message)
+      
     } else {
       wx.showToast({
         title: '请填写您的留言信息',

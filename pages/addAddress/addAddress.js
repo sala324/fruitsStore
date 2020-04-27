@@ -49,30 +49,28 @@ Page({
     })
   },
   deletebtn(){
+    let that=this
     wx.showModal({
       content: '是否删除该收货地址',
       success: function (res) {
         if (res.confirm) {
-          wx.navigateBack({
-            delta: 1
-          })
+          that.deleteAddress()
         }
       }
     })
   },
   saveBtn(){
     let that=this
-    let jsons={}
+    // let jsons={}
     let arr1 = this.data.addressList
     if (this.data.linkMan && this.data.roomNumber && this.data.mobile.length==11 && this.data.addressName && this.data.address){
-      jsons.address = this.data.allAddress
-      jsons.mobile = this.data.mobile
-      jsons.linkMan = this.data.linkMan
-      arr1.unshift(jsons)
-      wx.setStorageSync('addressList', arr1);
-      wx.navigateBack({
-        delta:1
-      })
+      // jsons.address = this.data.allAddress
+      // jsons.mobile = this.data.mobile
+      // jsons.linkMan = this.data.linkMan
+      // arr1.unshift(jsons)
+      // wx.setStorageSync('addressList', arr1);
+      this.addAddressBtn()
+      
     } else {
       if (!that.data.addressName) {
         util.toasts('请选择收货地址')
@@ -84,6 +82,35 @@ Page({
           util.toasts('请输入正确的手机号')
       } 
     }
+  },
+  addAddressBtn() {
+    util.requests('/business/address/saveAddress', {
+      building: this.data.addressName,
+      detail: this.data.roomNumber,
+      deliveryName: this.data.linkMan,
+      contactNumber: this.data.mobile,
+      defaulted: this.data.checked,
+      id: this.data.id,
+      },'post').then(res => {
+      if (res.data.code == 0) {
+        if (this.data.id){
+          util.dialog('地址修改成功')
+        } else {
+          util.dialog('地址新增成功')
+        }
+      }
+
+    })
+  },
+  deleteAddress() {
+    util.requests('/business/address/removeAddress', {
+      id: this.data.id
+    }, 'post').then(res => {
+      if (res.data.code == 0) {
+        util.dialog('地址删除成功')
+      }
+
+    })
   },
   onShow: function () {
     let arr2 = []
@@ -107,10 +134,11 @@ Page({
       this.setData({
         isReset: true,
         linkMan: options.linkMan,
-        roomNumber: '1-1-1',
+        roomNumber: options.detail,
         mobile: options.mobile,
         addressName: options.address,
         address: options.address,
+        id: options.id,
       })
       wx.setNavigationBarTitle({
         title: '修改收货地址'
