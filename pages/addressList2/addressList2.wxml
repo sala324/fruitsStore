@@ -4,14 +4,14 @@
     <!-- <navigator url="/pages/addAddress/addAddress" class="addAddress">添加收获地址</navigator> -->
   </view>
   
-  <view bindtap="chooseAddress" data-mobile="{{item.mobile}}" data-linkMan="{{item.linkMan}}" data-address="{{item.address}}" class="item" wx:for="{{addressList}}" wx:key="index">
-    <view class="title1"><text class="moren" wx:if="{{morenIndex==index}}">默认</text>{{item.address}}</view>
+  <view bindtap="chooseAddress" data-contactNumber="{{item.contactNumber}}" data-deliveryName="{{item.deliveryName}}" data-building="{{item.building}}" data-detail="{{item.detail}}" data-id="{{item.id}}" data-checked="{{item.defaulted}}" class="item" wx:for="{{addressList}}" wx:key="index">
+    <view class="title1"><text class="moren" wx:if="{{item.defaulted}}">默认</text>{{item.building}} {{item.detail}}</view>
     <view class="personInfo">
-      <text class="name">{{item.linkMan}}</text>
-      <text class="mobile">{{item.mobile}}</text>
+      <text class="name">{{item.deliveryName}}</text>
+      <text class="mobile">{{item.contactNumber}}</text>
     </view>
   </view>
   <view class='nodata' wx:if="{{addressList.length==0}}">
-      <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+      <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
   </view>
 </view>

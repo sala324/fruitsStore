@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/search/search",
+    "pages/login/login",
     "pages/addressList2/addressList2",
     "pages/addAddress/addAddress",
-    "pages/search/search",
     "pages/message/message",
     "pages/offlinePayment/offlinePayment",
     "pages/charge/charge",

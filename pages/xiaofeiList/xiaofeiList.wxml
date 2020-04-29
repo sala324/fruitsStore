@@ -13,6 +13,6 @@
     </view>
   </view>
   <view class='nodata' wx:if="{{xianhuaArr.length==0}}">
-  <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+  <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
   </view>
 </scroll-view>

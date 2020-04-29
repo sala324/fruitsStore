@@ -6,7 +6,7 @@
     
   </view>
   <view class="searchDialog" wx:if="{{showDialog}}">
-    <view class="title">搜索历史 <view class="clear" bindtap="clearAll" wx:if="{{keyWordsArr.length>0}}"><image src="../../images/icon/del1.png"></image>清除搜索历史</view></view>
+    <view class="title">搜索历史 <view class="clear" bindtap="clearAll" wx:if="{{keyWordsArr.length>0}}"><image src="{{thumbnails}}"></image>清除搜索历史</view></view>
     <view class="itemWrap">
       <view class="item" wx:for="{{keyWordsArr}}" wx:key="index" data-words="{{item}}" bindtap="chooseWords">{{item}}</view>
     </view>
@@ -18,9 +18,9 @@
   <view class="productWrap" wx:else>
     <view class="productItem" wx:for="{{productArr}}" wx:key="index">
       <view class="productImgWrap">
-        <image src="../../images/icon/shangpin.png"></image>
+        <image src="{{item.thumbnails}}"></image>
       </view>
-      <view class="productName">{{item.name}} {{item.des}}</view>
+      <view class="productName">{{item.title}} {{item.description}}</view>
       <view class="productPrice">
         <view class="productPriceWrap">
           <view class="salePrice">￥{{item.price}}</view>
@@ -50,20 +50,25 @@
     </view>
     <view class="gouwuche" wx:if="{{showCart}}"  catchtap="showCart1" style="bottom:{{gwcHeight}}" animation="{{animation}}">
       <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" wx:if="{{showCart}}">清空购物车</view></view>
-      <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
-        <image src="{{item.url}}"></image>
-        <view class="itemInfo">
-          <view class="itemName">{{item.name}}</view>
-          <view class="itemPrice">
-            <text class="salePrice">￥{{item.price}} <text>￥{{item.originalPrice}}</text> </text>
-            <view class="itemNumWrap">
-              <view class="itemNumDel" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2">-</view>
-              <text class="itemNum">{{item.num}}</text>
-              <view class="itemNumAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2">+</view>
+      <view class="itemWrap">
+        <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
+          <image src="{{item.thumbnails}}"></image>
+          <view class="itemInfo">
+            <view class="itemName">{{item.title}}</view>
+            <view class="itemPrice">
+              <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
+              <view class="itemNumWrap">
+                <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
+                <text class="itemNum">{{item.num}}</text>
+                <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2"></view>
+              </view>
             </view>
           </view>
         </view>
       </view>
     </view>
+  </view>
+  <view class='nodata' wx:if="{{noData}}">
+  <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
   </view>
 </view>

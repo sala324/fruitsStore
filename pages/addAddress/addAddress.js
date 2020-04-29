@@ -130,7 +130,17 @@ Page({
     console.log(arr2)
   },
   onLoad(options){
+    console.log(options)
     if (options.reset){
+      if(options.checked=='true'){
+        this.setData({
+          checked: true
+        })
+      } else {
+        this.setData({
+          checked: false
+        })
+      }
       this.setData({
         isReset: true,
         linkMan: options.linkMan,
@@ -139,6 +149,7 @@ Page({
         addressName: options.address,
         address: options.address,
         id: options.id,
+        
       })
       wx.setNavigationBarTitle({
         title: '修改收货地址'

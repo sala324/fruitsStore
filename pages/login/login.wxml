@@ -1,0 +1,3 @@
+<view class="login">
+  <button open-type="getUserInfo" class="denglu" bindgetuserinfo="resgister">授权登录</button>
+</view>

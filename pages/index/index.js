@@ -2,12 +2,15 @@ const util = require('../../utils/util');
 const app = getApp();
 Page({
   data: {
+    isLogin: true,
     storageArr:[],//判断用户本地有无购物车数据
     cartData: true,//判断用户有无添加购物车
-    id:3,
+    id:0,
     price: 0,//购物车总价
     allnum: 0,//购物车总数
     showCart:false,
+    index:1,
+    size:10,
     typeArr:[
       {
         val: '水果',
@@ -22,118 +25,8 @@ Page({
         id: '3'
       },
     ],
-    productArr: [
-      {
-        name: '西红柿',
-        price: 4,
-        originalPrice: 5,
-        id: 1,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '西瓜',
-        price: 2,
-        originalPrice: 2.5,
-        id: 2,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '苹果',
-        price: 6,
-        originalPrice: 7,
-        id: 3,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '榴莲',
-        price: 230,
-        originalPrice: 230,
-        id: 4,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '菠萝',
-        price: 3,
-        originalPrice: 3.5,
-        id: 5,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '葡萄',
-        price: 10,
-        originalPrice: 12,
-        id: 6,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '哈密瓜',
-        price: 5,
-        originalPrice: 5,
-        id: 7,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '桔子',
-        price: 4,
-        originalPrice: 4,
-        id: 8,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }, {
-        name: '凤梨',
-        price: 6,
-        originalPrice: 7,
-        id: 9,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '香蕉',
-        price: 3,
-        originalPrice: 4,
-        id: 10,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      },
-      {
-        name: '猕猴桃',
-        price: 5,
-        originalPrice: 6,
-        id: 11,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }
-    ],
+    productArr: [],
     canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  getInfoUser() {
-    let that = this
-    wx.login({
-      success(res) {
-        if (res.code) {
-          //发起网络请求
-          console.log(res.code)
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
   },
   onShareAppMessage: function (res) {
     var that = this;
@@ -148,77 +41,50 @@ Page({
       }
     }
   },
-  setUserInfo(e){
+  setToken() {
     wx.login({
       success: res => {
         if (res.code) {
           console.log(res.code)
-          console.log(e.detail.iv)
-          console.log(e.detail.encryptedData)
-          util.request('/business/user/login', {
-            code: res.code,
-            iv: e.detail.iv,
-            encryptedData: e.detail.encryptedData,
+          console.log(123)
+          util.requests('/business/user/login', {
+            code: res.code
           }, 'post').then(res => {
+            console.log(456)
             if (res.data.code == 0) {
               try {
                 wx.setStorageSync('token', res.data.data);
               } catch (e) {
                 console.log('存储失败！')
               }
-              util.requests('/business/user/getCurrentUser', {}).then(res => {
-                if (res.data.code == 0){
-                  try {
-                    wx.setStorageSync('userId', res.data.data.id);
-                  } catch (e) {
-                    console.log('存储失败！')
-                  }
-                }
-              })
-            } else {
-              util.toasts('网络请求失败，点击重试', 2000)
             }
           })
         }
       }
     });
   },
-  login(e) {
-    let me = this;
-    if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
-      wx.showModal({
-        title: '提示',
-        showCancel: false,
-        content: '未授权您将无法登陆',
-        success: function (res) { }
-      })
-    } else {
-      wx.login({
-        success: res => {
-          if (res.code) {
-            console.log(res.code)
-            console.log(e.detail.iv)
-            console.log(e.detail.encryptedData)
-          }
-        }
-      });
-    }
-  },
   increaseItem1(dataArrs,index,dataValue){
     let jsons = {}
     let jsons2 = {}
     let jsons3 = wx.getStorageSync('cartArr')
-    console.log(jsons3)
-
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
+      var index2 = this.data.productArr.findIndex((value, index, arr) => {
+        return value.id == ids
+      })
+      if (index2>=0) {
+        this.data.productArr[index2].num = 0
+      }
+      this.setData({
+        productArr: this.data.productArr
+      })
       delete jsons3[ids]
     } else {
       jsons2.num = dataArrs[index].num
-      jsons2.name = dataArrs[index].name
+      jsons2.title = dataArrs[index].title
       jsons2.price = dataArrs[index].price
-      jsons2.url = dataArrs[index].url
-      jsons2.originalPrice = dataArrs[index].originalPrice
+      jsons2.thumbnails = dataArrs[index].thumbnails
+      jsons2.originPrice = dataArrs[index].originPrice
       jsons[dataArrs[index].id] = jsons2
     }
     let jsons4 = Object.assign(jsons3, jsons)
@@ -243,6 +109,9 @@ Page({
     await this.increaseItem1(dataArrs, index, 'storageArr')
     this.cunchu()
   },
+  move() {
+    console.log('移动')
+  },
   additem1(dataArrs,index,arrValue){
     let jsons = {}
     let jsons2 = {}
@@ -251,10 +120,10 @@ Page({
       jsons3 = wx.getStorageSync('cartArr')
     }
     jsons2.num = dataArrs[index].num
-    jsons2.name = dataArrs[index].name
+    jsons2.title = dataArrs[index].title
     jsons2.price = dataArrs[index].price
-    jsons2.url = dataArrs[index].url
-    jsons2.originalPrice = dataArrs[index].originalPrice
+    jsons2.thumbnails = dataArrs[index].thumbnails
+    jsons2.originPrice = dataArrs[index].originPrice
     jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
     console.log(jsons4)
@@ -349,7 +218,9 @@ Page({
   },
   chooseType(e) {
     this.setData({
-      id: e.currentTarget.dataset.id
+      id: e.currentTarget.dataset.id,
+      index:1,
+      productArr:[]
     })
     this.productList()
   },
@@ -376,6 +247,7 @@ Page({
         num += val2.num
       price += val2.price * val2.num
     })
+    price = price.toFixed(1)
     this.setData({
       price: price,
       allnum: num
@@ -399,8 +271,8 @@ Page({
       let arr5 = []
       let num = 0
       let price = 0
-      console.log(this.data.aproductArr2)
-      this.data.aproductArr2.forEach((val, index) => {
+      console.log(arrs)
+      this.data.productArr.forEach((val, index) => {
         arrs.forEach((val2, index2) => {
           if (val2.id === val.id) {
             val.num = val2.num
@@ -431,17 +303,17 @@ Page({
         cartHeight: rect[0].height
       })
     }).exec() 
-    wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
-      that.setData({
-        gwcHeight: -(rect[0].height-60)+'px'
-      })
-    }).exec() 
+    // wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
+    //   that.setData({
+    //     gwcHeight: -(rect[0].height-60)+'px'
+    //   })
+    // }).exec() 
   },
   choosebtn() {
     console.log(5)
     let num = this.data.cartHeight
     // this.animation.bottom(num).step()
-    this.animation.height('100%').step()
+    this.animation.height('auto').step()
     this.setData({ animation: this.animation.export() })
   },
   choosebtn2() {
@@ -451,13 +323,17 @@ Page({
     this.animation.height('0%').step()
     this.setData({ animation: this.animation.export() })
   },
+  loadMore() {
+    if (this.data.totalPage > this.data.index) {
+      this.data.index++
+      this.productList()
+    }
+  },
   productList() {
-    util.requests('/business/product/getProductList', { 
+    util.request('/business/product/getProductList', { 
       categoryId:this.data.id,
-      current:1,
-      size: 12
-      // current:this.data.index,
-      // size: this.data.size
+      current:this.data.index,
+      size: this.data.size
     }).then(res => {
       if (res.data.code == 0) {
         if (res.data.data.length > 0) {
@@ -465,16 +341,101 @@ Page({
             noData: false
           })
         }
+        res.data.data.records.forEach((val,index)=>{
+          val.num=0
+          val.originPrice=val.originPrice/100
+          val.price = val.price/100
+        })
         this.setData({
-          productArr: res.data.data.records
+          productArr: this.data.productArr.concat(res.data.data.records),
+          totalPage: res.data.data.pages,
+        })
+        this.cunchu()
+      }
+
+    })
+  },
+  useDada() {
+    util.requests('/business/user/getCurrentUser', {}).then(res => {
+      if (res.data.code == 0) {
+      } else {
+        this.setData({
+          isLogin: false
         })
       }
 
     })
   },
+  defaultAddress() {
+    util.requests('/business/address/getDefaultAddress', {}).then(res => {
+      if (res.data.code == 0) {
+        if(res.data.data){
+          this.setData({
+            haveAddress: true
+          })
+        } else {
+          this.setData({
+            haveAddress: false
+          })
+        }
+      }
+    })
+  },
+  jisuan(){
+    if(this.data.haveAddress && this.data.isLogin){
+      wx.navigateTo({
+        url: "/pages/setOrder/setOrder"
+      })
+    } else if (!this.data.isLogin){
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else if (!this.data.haveAddress) {
+      wx.showModal({
+        title: '',
+        content: '您还没默认收货地址，请在"我的—收货地址"里新增收货地址',
+        showCancel: false
+      })
+      
+    }
+    
+  },
+  tabOne() {
+    util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_RECOMMEND_PRODUCT' }).then(res => {
+      if (res.data.code == 0) {
+        this.orderAgain(res.data.data)
+      }
+    })
+  },
+  orderAgain(arr) {
+    util.requests('/business/product/getProductListByIdList', {
+      productIdList: arr.join(',')
+    }).then(res => {
+      if (res.data.code == 0) {
+        res.data.data.forEach((val, index) => {
+          val.num = 0
+          val.originPrice = val.originPrice / 100
+          val.price = val.price / 100
+        })
+        this.setData({
+          productArr: res.data.data
+        })
+        this.cunchu()
+      }
+    })
+    // wx.navigateTo({
+    //   url: '/pages/setOrder/setOrder',
+    // })
+  },
   onShow: function () {
-    this.cunchu()
-    this.getInfoUser()
+    this.setData({
+      index:1,
+      productArr:[]
+    })
     this.productList()
+    this.useDada()
+    this.defaultAddress()
+    this.setToken()
+    this.tabOne()
   }
 })

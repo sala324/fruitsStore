@@ -1,5 +1,5 @@
 <scroll-view scroll-y style='height:100vh' class='scroll' bindscrolltolower="loadmore">
   <view class='nodata'>
-      <image src='https://static.daxahome.com/miniwx/bigman/no-message.png'></image>
+      <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
   </view>
 </scroll-view>

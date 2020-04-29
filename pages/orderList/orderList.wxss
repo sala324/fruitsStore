@@ -63,9 +63,25 @@ page{
   border-radius: 50rpx;
   font-size: 30rpx;
   display: inline-block;
+  margin-left: 20rpx;
 }
 .again{
   background: #fff;
   color: #999;
   border: 1rpx solid #999;
+}
+.loginWrap{
+  height: 100vh;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+  justify-content: center; /*定义body的里的元素水平居中*/
+}
+.denglu{
+  width: 140rpx;
+  background: #1296db;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 60rpx;
 }

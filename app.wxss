@@ -8,7 +8,7 @@ page{font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;background: #FFF
 }
 .nodata image{
   width: 307rpx;
-  height:428rpx; 
+  height:307rpx; 
 }
 .btnwrap{
   position: fixed;

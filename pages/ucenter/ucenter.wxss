@@ -26,7 +26,12 @@
   margin:0 30rpx;
   border-radius: 50%;
   overflow:hidden;
-  box-shadow:4px -3px 17px 1px rgba(203,199,199,0.58);
+  background: #fff;
+  /* box-shadow:4px -3px 17px 1px rgba(203,199,199,0.58); */
+}
+.topwrap .imagewrap image{
+  width: 120rpx;
+  height: 120rpx;
 }
 .hidecontent{
   height: 0;

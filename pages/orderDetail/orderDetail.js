@@ -5,6 +5,7 @@ Page({
     allnum:0,
     hejiMoney:0,
     status:0,
+    orderDelivery:{},
     orderArr:[],
     showAll:false,
     youhuiprice:0,
@@ -30,49 +31,87 @@ Page({
       showAll: !showAll
     })
   },
-  gouwuche() {
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      console(e)
-      return false;
-    }
-    let arrs = []
-    for (var p in jsons) {
-      var json = jsons[p]
-      json.id = Number(p)
-      arrs.push(json)
-    }
-    let num = 0
-    let price = 0
-    let youhui=0
-    arrs.forEach((val2, index2) => {
-      num += val2.num
-      price += val2.price * val2.num
-      val2.price1 = val2.price * val2.num
-      val2.price2 = val2.originalPrice * val2.num
-      youhui += (val2.originalPrice - val2.price) * val2.num
-    })
-    this.setData({
-      price: price,
-      allnum: num,
-      hejiMoney: price,
-      orderArr:arrs,
-      youhuiprice: youhui
+  orderDetail() {
+    let that = this
+    util.requests('/business/order/getOrderById', {
+      id: this.data.id
+    }).then(res => {
+      if (res.data.code == 0) {
+        let num=0
+        if (res.data.data.orderItemList.length>0){
+          res.data.data.orderItemList.forEach((val, index) => {
+            val.price = val.price / 100
+            val.price1 = val.price * val.number
+            val.price2 = (val.originPrice / 100) * val.number
+            num += val.number
+          })
+        } else {
+          let json={}
+          json.number=1
+          json.price1 = res.data.data.totalFee / 100
+          json.price2 = res.data.data.totalFee / 100
+          json.price = res.data.data.totalFee / 100
+          json.thumbnails = '../../images/icon/product.jpg'
+          res.data.data.orderItemList.push(json)
+          console.log(22)
+        }
+        console.log(res.data.data.orderItemList)
+        this.setData({
+          orderInfo: res.data.data,
+          status: res.data.data.status,
+          orderDelivery: res.data.data.orderDelivery,
+          orderArr: res.data.data.orderItemList,
+          totalFee: res.data.data.totalFee/100,
+          allnum: num
+        })
+      }
     })
   },
   onShow: function () {
-    this.gouwuche()
+    this.orderDetail()
+  },
+  deleteBtn() {
+    let that = this
+    util.requests('/business/order/delete', {
+      id: that.data.id
+    }, 'post').then(res => {
+      if (res.data.code == 0) {
+        util.toasts('订单删除成功')
+        wx.navigateBack({
+          belta:1
+        })
+      }
+    })
+  },
+  deleteOrder() {
+    let that = this
+    wx.showModal({
+      content: '是否删除订单',
+      success: function (res) {
+        if (res.confirm) {
+          that.deleteBtn()
+        }
+      }
+    })
+  },
+  cancel() {
+    let that = this
+    util.requests('/business/order/cancel', {
+      id: this.data.id
+    },'post').then(res => {
+      if (res.data.code == 0) {
+        util.toasts('订单取消成功')
+        that.orderDetail()
+      }
+    })
   },
   cancelOrder(){
+    let that=this
     wx.showModal({
       content: '是否取消订单',
       success: function (res) {
         if (res.confirm) {
-          wx.navigateBack({
-            delta: 1
-          })
+          that.cancel()
         }
       }
     })
@@ -85,8 +124,7 @@ Page({
   onLoad(options){
     console.log(options)
     this.setData({
-      status:options.state
+      id:options.id
     })
-    
   }
 })

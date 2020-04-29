@@ -22,7 +22,8 @@
     </view>
     <view class="item2">
       <text class="itemName">设为默认地址</text>
-      <switch bindchange="switch1Change" color="#1296db"></switch>
+      <switch bindchange="switch1Change" checked wx:if="{{checked}}" color="#1296db"></switch>
+      <switch bindchange="switch1Change" wx:else color="#1296db"></switch>
       <!-- <switch bindchange="switch1Change"></switch> -->
       <!-- <image src="{{kaiguanSrc}}" bindtap="danxuan"></image> -->
     </view>

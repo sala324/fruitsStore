@@ -1,23 +1,13 @@
-// pages/search/search.js
+const util = require('../../utils/util');
 Page({
   data: {
     storageArr:[],
     allnum: 0,
     price: 0,
-    productArr: [
-      {
-        name: '西红柿',
-        price: 4,
-        originalPrice: 5,
-        id: 1,
-        num: 0,
-        des: '去哪个拉开你喇叭能看清离开',
-        url: '../../images/icon/shangpin.png'
-      }
-    ],
+    productArr: [],
     showDialog:true,
     keyWords:'',
-    keyWordsArr: ['苹果', '香蕉', '白菜', '土豆'],
+    keyWordsArr: [],
     hotWordsArr: ['苹果', '香蕉', '白菜', '土豆', '苹果', '哈密瓜', '白菜', '牛肉', '带鱼', '花菜', '羊肉', '五花肉', '西瓜', '香蕉', '武昌鱼', '菠萝']
   },
   onLoad: function (options) {
@@ -28,18 +18,6 @@ Page({
       duration: 600,
       timingFunction: 'ease'
     })
-    let that = this
-    wx.createSelectorQuery().selectAll('.cartWrap').boundingClientRect(function (rect) {
-      console.log(rect[0].height)
-      that.setData({
-        cartHeight: rect[0].height
-      })
-    }).exec()
-    wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
-      that.setData({
-        gwcHeight: -(rect[0].height) + 'px'
-      })
-    }).exec()
   },
   choosebtn() {
     console.log(5)
@@ -85,11 +63,6 @@ Page({
     let that = this
     if (this.data.allnum > 0) {
       showCart = !showCart
-      // if (showCart) {
-      //   that.choosebtn()
-      // } else {
-      //   that.choosebtn2()
-      // }
       this.setData({
         showCart: showCart
       })
@@ -121,6 +94,7 @@ Page({
       num += val2.num
       price += val2.price * val2.num
     })
+    price=price.toFixed(1)
     this.setData({
       price: price,
       allnum: num
@@ -137,9 +111,9 @@ Page({
       delete jsons3[ids]
     } else {
       jsons2.num = dataArrs[index].num
-      jsons2.name = dataArrs[index].name
+      jsons2.title = dataArrs[index].title
       jsons2.price = dataArrs[index].price
-      jsons2.url = dataArrs[index].url
+      jsons2.thumbnails = dataArrs[index].thumbnails
       jsons2.originalPrice = dataArrs[index].originalPrice
       jsons[dataArrs[index].id] = jsons2
     }
@@ -174,9 +148,9 @@ Page({
       jsons3 = wx.getStorageSync('cartArr')
     }
     jsons2.num = dataArrs[index].num
-    jsons2.name = dataArrs[index].name
+    jsons2.title = dataArrs[index].title
     jsons2.price = dataArrs[index].price
-    jsons2.url = dataArrs[index].url
+    jsons2.thumbnails = dataArrs[index].thumbnails
     jsons2.originalPrice = dataArrs[index].originalPrice
     jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
@@ -207,6 +181,7 @@ Page({
     this.cunchu()
   },
   cunchu() {
+    console.log(123)
     let jsons = {}
     try {
       jsons = wx.getStorageSync('cartArr')
@@ -230,8 +205,8 @@ Page({
           }
         })
         arr5.push(val)
-        this.gouwuche()
       })
+      this.gouwuche()
       this.setData({
         storageArr: arrs,
         cartData: true,
@@ -256,6 +231,7 @@ Page({
     if (this.data.keyWords){
       await this.keyWords(this.data.keyWords)
       this.cunchu()
+      this.productList()
     } else {
       wx.showToast({
         title: '请输入商品名称',
@@ -283,7 +259,49 @@ Page({
   },
   async chooseWords(e){
     await this.keyWords(e.currentTarget.dataset.words)
+    this.productList()
     this.cunchu()
+  },
+  hotSearch() {
+    util.request('/business/dictionary/getDictionaryListByCode', { code:'BUSINESS_HOT_SEARCH'}).then(res => {
+      if (res.data.code == 0) {
+        this.setData({
+          hotWordsArr: res.data.data
+        })
+      }
+    })
+  },
+  productList() {
+    util.request('/business/product/getProductList', {
+      current: 1,
+      size: 12,
+      categoryId: '',
+      keyword:this.data.keyWords
+      // current:this.data.index,
+      // size: this.data.size
+    }).then(res => {
+      if (res.data.code == 0) {
+        if (res.data.data.records.length > 0) {
+          this.setData({
+            noData: false
+          })
+        } else {
+          this.setData({
+            noData: true
+          })
+        }
+        res.data.data.records.forEach((val, index) => {
+          val.num = 0
+          val.originPrice = val.originPrice / 100
+          val.price = val.price / 100
+        })
+        this.setData({
+          productArr: res.data.data.records
+        })
+        this.cunchu()
+      }
+
+    })
   },
   onShow: function () {
     let arr2 = []
@@ -302,6 +320,7 @@ Page({
     this.setData({
       keyWordsArr: arr2
     })
-    
+    this.cunchu()
+    this.hotSearch()
   }
 })

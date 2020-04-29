@@ -1,33 +1,34 @@
 const util = require('../../utils/util');
 Page({
   data: {
-    navIndex:0,
-    chargeArr:[]
-  },
-  chooseItem(e){
-    this.setData({
-      navIndex: e.currentTarget.dataset.index,
-      id: e.currentTarget.dataset.id,
-    })
-  },
-  quanList() {
-    util.requests('/business/dictionary/getDictionaryListByCode', { code:'BUSINESS_RECHARGE_ACTIVITY'}).then(res => {
-      if (res.data.code == 0) {
-        let arr=[]
-        res.data.data.forEach((val,index)=>{
-          let json={}
-          json.money = val.fee/100
-          json.money2 = val.flower / 100
-          json.id = val.id
-          json.number = val.flower
-          arr.push(json)
-        })
-        this.setData({
-          chargeArr: arr
-        })
-      }
 
-    })
+  },
+  resgister(e) {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          util.request('/business/user/register', {
+            code: res.code,
+            iv: e.detail.iv,
+            encryptedData: e.detail.encryptedData,
+          }, 'post').then(res => {
+            console.log(456)
+            if (res.data.code == 0) {
+              try {
+                wx.setStorageSync('token', res.data.data);
+              } catch (e) {
+                console.log('存储失败！')
+              }
+              wx.navigateBack({
+                delat:1
+              })
+            } else {
+              util.toasts('网络请求失败，点击重试', 2000)
+            }
+          })
+        }
+      }
+    });
   },
   onLoad: function (options) {
 
@@ -44,7 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.quanList()
+
   },
 
   /**

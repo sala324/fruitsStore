@@ -1,11 +1,14 @@
 /* pages/renthouse/renthouse.wxss */
+
 page{
   font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
   background: #eceff5;
+  height: 100%;
+  overflow: hidden;
 }
 .index{
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 .navWrap{
   height: 100rpx;
@@ -15,6 +18,9 @@ page{
 }
 .nav{
   flex: 1;
+}
+.nav.active{
+  color: #1296db;
 }
 .nav text{
   display: block;
@@ -39,32 +45,38 @@ page{
   margin-right:0rpx;
 }
 .productWrap{
-  margin:0 30rpx;
-  width: 690rpx;
+  margin:0 20rpx;
+  width: 710rpx;
   overflow: hidden;
-  background: #fff;
   border-radius: 20rpx;
   font-size: 0;
 }
 .productWrap .productItem{
   display: inline-block;
-  width: 330rpx;
-  padding-left: 30rpx;
+  width: 345rpx;
+  padding: 20rpx;
   box-sizing: border-box;
   vertical-align: top;
+  background: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+}
+.productWrap .productItem:nth-child(2n){
+  margin-left: 20rpx;
 }
 .productWrap .productItem .productImgWrap,.productWrap .productItem .productImgWrap image{
   width: 300rpx;
   height: 300rpx;
 }
 .productWrap .productItem .productImgWrap{
-  padding: 30rpx 0;
+  
 }
 .productName{
   font-size: 30rpx;
   color: #333;
   line-height: 38rpx;
   height: 76rpx;
+  margin-top: 20rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -93,40 +105,67 @@ page{
   font-size: 30rpx;
   text-decoration-line: line-through;
 }
-.productPrice .productNumWrap{
-
-}
-.increase{
-  width: 50rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  color: #333;
-  font-size: 50rpx; 
-  display: inline-block;
-  text-align: center;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 1rpx solid #eceff5;
-}
 .number{
   height: 50rpx;
+  line-height: 50rpx;
   color: #1296db;
   font-size: 32rpx;
-  vertical-align: middle;
+  vertical-align: top;
   padding: 0 14rpx;
   display: inline-block;
 }
-.productPrice .productNumWrap .productAdd{
-  background: #1296db;
+.productAdd {
+  display: inline-block;
   width: 50rpx;
   height: 50rpx;
-  line-height: 50rpx;
+  background: #1296db;
   color: #fff;
-  font-size: 50rpx; 
-  display: inline-block;
-  text-align: center;
+  transition: color .25s;
+  position: relative;
   border-radius: 50%;
-  vertical-align: middle;
+}
+.productAdd::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #fff;
+}
+.productAdd::after {
+ content: '';
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ height: 30rpx;
+ margin-left: -2rpx;
+ margin-top: -15rpx;
+ border-left: 4rpx solid #fff;
+}
+.increase {
+  vertical-align: top;
+  border:1rpx solid #1296db;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  color: #1296db;
+  transition: color .25s;
+  position: relative;
+  border-radius: 50%;
+}
+.increase::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #1296db;
 }
 .cartBox{
   height: 140rpx;
@@ -136,21 +175,24 @@ page{
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120rpx;
+  height: 90rpx;
   display: flex;
   background: #fff;
   z-index: 3;
   border-bottom: 1rpx solid #efefef;
+  border-top: 1rpx solid #efefef;
   font-size: 0;
+  box-sizing: border-box;
 }
 .cartWrap.hide{
   opacity: 0;
 }
 .cartWrap .cart{
   background: #ccc;
-  height: 100rpx;
-  width: 100rpx;
+  height: 90rpx;
+  width: 90rpx;
   border-radius: 50%;
+  margin: -20rpx 0 0 20rpx;
 }
 .cartWrap .cart.active{
   background: #1296db;
@@ -158,7 +200,7 @@ page{
 .cartWrap .cart image{
   height: 70rpx;
   width: 70rpx;
-  padding: 15rpx;
+  padding: 10rpx;
 }
 .buyNum{
   position: absolute;
@@ -189,12 +231,13 @@ page{
 .cartWrap .price{
   color: red;
   font-size: 40rpx;
-  padding: 54rpx 0 0 24rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   flex: 1;
 }
 .cartWrap .confrim{
-  height: 120rpx;
-  line-height: 120rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   background: #1296db;
   width: 200rpx;
   text-align: center;
@@ -209,29 +252,43 @@ page{
   top: 0;
   left: 0;
   right: 0;
-  bottom: 120rpx;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
+  overflow: hide;
 }
 .gouwuche{
   position: fixed;
-  bottom: 120rpx;
+  bottom: 90rpx;
+  /* bottom: 0; */
   left: 0;
   right: 0;
   z-index: 1;
-  height: 0;
-  max-height: 580rpx;
-  background: #fff;
   
 }
+.itemWrap{
+  max-height: 520rpx;
+  background: #fff;
+  overflow: auto;
+}
 .deleteAll{
+  background: #fff;
   text-align: right;
   font-size: 26rpx;
   color: #999;
-  padding: 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  box-sizing: border-box;
 }
 .deleteAll .deleteBtn{
   display: inline-block;
+  padding: 0 30rpx 0 10rpx;
+}
+.deleteAll .deleteBtn image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-top: -2rpx;
 }
 .itemWrap{
   max-height: 560rpx;
@@ -280,6 +337,7 @@ page{
   display: inline-block;
   color: #333;
   padding: 0 12rpx;
+  vertical-align: top;
 }
 .itemNumAdd{
   display: inline-block;
@@ -300,6 +358,8 @@ page{
 .searchWrap image{
   width: 50rpx;
   height: 50rpx;
+  margin-top: 5rpx;
+  vertical-align: top;
 }
 .searchWrap .searchText{
   color: #707070;
@@ -307,10 +367,10 @@ page{
   padding-left: 12rpx;
 }
 .navWrap{
-  position: -webkit-sticky;
-  position: sticky;
+  /* position: -webkit-sticky;
+  position: sticky; */
   top: -1rpx;
-  margin: 20rpx 30rpx;
+  margin: 20rpx;
   height: 160rpx;
   text-align: center;
   background: #eceff5;

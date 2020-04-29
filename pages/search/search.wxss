@@ -1,5 +1,5 @@
 .search{
-  margin: 30rpx;
+  margin: 20rpx;
 }
 .searchWrap{
   height: 70rpx;
@@ -68,7 +68,7 @@ input{
 }
 
 .productWrap{
-  width: 690rpx;
+  width: 710rpx;
   overflow: hidden;
   background: #fff;
   border-radius: 20rpx;
@@ -76,16 +76,23 @@ input{
 }
 .productWrap .productItem{
   display: inline-block;
-  width: 330rpx;
+  width: 345rpx;
   box-sizing: border-box;
   vertical-align: top;
+  padding: 20rpx;
+  border: 1rpx solid #ccc;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+}
+.productWrap .productItem:nth-child(2n){
+  margin-left: 20rpx;
 }
 .productWrap .productItem .productImgWrap,.productWrap .productItem .productImgWrap image{
   width: 300rpx;
   height: 300rpx;
 }
 .productWrap .productItem .productImgWrap{
-  padding: 30rpx 0;
+  /* padding: 30rpx 0; */
 }
 .productName{
   font-size: 30rpx;
@@ -123,39 +130,67 @@ input{
 .productPrice .productNumWrap{
 
 }
-.increase{
-  width: 50rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  color: #333;
-  font-size: 50rpx; 
-  display: inline-block;
-  text-align: center;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 1rpx solid #eceff5;
-}
 .number{
   height: 50rpx;
   color: #1296db;
   font-size: 32rpx;
-  vertical-align: middle;
+  vertical-align: top;
   padding: 0 14rpx;
   display: inline-block;
 }
-.productPrice .productNumWrap .productAdd{
-  background: #1296db;
+.productAdd {
+  display: inline-block;
   width: 50rpx;
   height: 50rpx;
-  line-height: 50rpx;
+  background: #1296db;
   color: #fff;
-  font-size: 50rpx; 
-  display: inline-block;
-  text-align: center;
+  transition: color .25s;
+  position: relative;
   border-radius: 50%;
-  vertical-align: middle;
 }
-
+.productAdd::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #fff;
+}
+.productAdd::after {
+ content: '';
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ height: 30rpx;
+ margin-left: -2rpx;
+ margin-top: -15rpx;
+ border-left: 4rpx solid #fff;
+}
+.increase {
+  vertical-align: top;
+  border:1rpx solid #1296db;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  color: #1296db;
+  transition: color .25s;
+  position: relative;
+  border-radius: 50%;
+}
+.increase::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #1296db;
+}
 .cartBox{
   height: 140rpx;
 }
@@ -164,18 +199,21 @@ input{
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120rpx;
+  height: 90rpx;
   display: flex;
   background: #fff;
   z-index: 2;
   border-bottom: 1rpx solid #efefef;
   font-size: 0;
+  border-top: 1rpx solid #efefef;
+  box-sizing: border-box;
 }
 .cartWrap .cart{
   background: #ccc;
-  height: 100rpx;
-  width: 100rpx;
+  height: 90rpx;
+  width: 90rpx;
   border-radius: 50%;
+  margin: -20rpx 0 0 20rpx;
 }
 .cartWrap .cart.active{
   background: #1296db;
@@ -183,7 +221,7 @@ input{
 .cartWrap .cart image{
   height: 70rpx;
   width: 70rpx;
-  padding: 15rpx;
+  padding: 10rpx;
 }
 .buyNum{
   position: absolute;
@@ -214,12 +252,13 @@ input{
 .cartWrap .price{
   color: red;
   font-size: 40rpx;
-  padding: 54rpx 0 0 24rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   flex: 1;
 }
 .cartWrap .confrim{
-  height: 120rpx;
-  line-height: 120rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   background: #1296db;
   width: 200rpx;
   text-align: center;
@@ -257,6 +296,11 @@ input{
 }
 .deleteAll .deleteBtn{
   display: inline-block;
+}
+.itemWrap{
+  max-height: 520rpx;
+  background: #fff;
+  overflow: auto;
 }
  .gouwuche .gouwucheItem{
   display: flex;
@@ -301,6 +345,7 @@ input{
   display: inline-block;
   color: #333;
   padding: 0 12rpx;
+  vertical-align: top;
 }
 .itemNumAdd{
   display: inline-block;
@@ -309,4 +354,7 @@ input{
 }
 .itemNumDel{
   border: 1rpx solid #eee;
+}
+.nodata{
+  height: 40vh;
 }

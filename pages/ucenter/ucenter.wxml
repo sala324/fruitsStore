@@ -1,29 +1,50 @@
 <view class="topwrap">
   <view class='imagewrap' >
-    <open-data type="userAvatarUrl"></open-data>
+    <image class="image" wx:if="{{userData}}" src="{{userData.avatar}}"></image>
+    <image class="image" wx:else src="../../images/icon/avatar.png"></image>
+    <!-- <open-data type="userAvatarUrl"></open-data> -->
   </view>
   <view class='otherwrap'>
     <view class='name'>
       <!-- <open-data type="userNickName" class="imgurl" wx:if="{{userData.avatar_url}}"></open-data> -->
-      <open-data class='name' type="userNickName"></open-data>
+      <open-data class='name' type="userNickName" wx:if="{{userData}}"></open-data>
+      <navigator url="/pages/login/login" class="name" wx:else>去登录 ></navigator>
     </view>
   </view>
 </view>
-<view class='wrap'>
-    <navigator url="/pages/flower/flower" class='item reset'>
-      <image src="../../images/icon/floower.png"></image>
-      <text class='title'>鲜花</text>
-    </navigator>
-    <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
-      <image src="../../images/icon/pay.png"></image>
-      <text class='title'>线下付款</text>
-    </navigator>
-    <navigator url="/pages/addressList/addressList" class='item'>
-     <image src="../../images/icon/address.png"></image>
-      <text class='title'>收货地址</text>
-    </navigator>
-    <navigator  url="/pages/message/message" class='item wallet'>
-      <image src="../../images/icon/message.png"></image>
-      <text class='title'>意见反馈</text>
-    </navigator>
+<view class='wrap' wx:if="{{userData}}">
+  <navigator url="/pages/flower/flower" class='item reset'>
+    <image src="../../images/icon/floower.png"></image>
+    <text class='title'>鲜花</text>
+  </navigator>
+  <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
+    <image src="../../images/icon/pay.png"></image>
+    <text class='title'>线下付款</text>
+  </navigator>
+  <navigator url="/pages/addressList/addressList" class='item'>
+    <image src="../../images/icon/address.png"></image>
+    <text class='title'>收货地址</text>
+  </navigator>
+  <navigator  url="/pages/message/message" class='item wallet'>
+    <image src="../../images/icon/message.png"></image>
+    <text class='title'>意见反馈</text>
+  </navigator>
+</view>
+<view class='wrap' wx:else>
+  <navigator url="/pages/login/login" class='item reset'>
+    <image src="../../images/icon/floower.png"></image>
+    <text class='title'>鲜花</text>
+  </navigator>
+  <navigator url="/pages/login/login" class='item usersata'>
+    <image src="../../images/icon/pay.png"></image>
+    <text class='title'>线下付款</text>
+  </navigator>
+  <navigator url="/pages/login/login" class='item'>
+    <image src="../../images/icon/address.png"></image>
+    <text class='title'>收货地址</text>
+  </navigator>
+  <navigator  url="/pages/message/message" class='item wallet'>
+    <image src="../../images/icon/message.png"></image>
+    <text class='title'>意见反馈</text>
+  </navigator>
 </view>

@@ -134,7 +134,12 @@ const requests = (url, data, method) => {
         'X-Token': hearderToken // 默认值
       },
       success(res) {
-        resolve(res)
+        if(res.data.code==0){
+          resolve(res)
+        } else {
+          toasts(res.data.msg)
+        }
+        
       },
       fail(res) {
         reject(res);

@@ -1,16 +1,22 @@
-// pages/offlinePayment/offlinePayment.js
+const util = require('../../utils/util');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     money:''
   },
+  payMoney() {
+    util.requests('/business/order/createOffline', {
+      totalPrice:this.data.money*100
+      // current:this.data.index,
+      // size: this.data.size
+    },'post').then(res => {
+      if (res.data.code == 0) {
+        wx.switchTab({
+          url: '/pages/orderList/orderList',
+        })
+      }
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+    })
+  },
   onLoad: function (options) {
 
   },
@@ -21,9 +27,8 @@ Page({
   },
   backBtn(){
     if (this.data.money>0){
-      wx.switchTab({
-        url: '/pages/orderList/orderList',
-      })
+      this.payMoney()
+      
     } else {
       wx.showToast({
         title: '请输入商品金额',

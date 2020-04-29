@@ -1,18 +1,18 @@
-<view class="index">
+<scroll-view class="index" scroll-y="{{!showCart}}" style="height:100vh" bindscrolltolower="loadMore">
   <navigator url="/pages/search/search" class="searchWrap">
     <image src="../../images/icon/search.png"></image>
     <text class="searchText">商家商品</text>
   </navigator>
   <view class="navWrap">
-    <!-- <view class="nav">
+    <view class="nav {{id==0?'active':''}}" bindtap="tabOne" data-id="0">
       <image src="../../images/icon/2.jpg"></image>
       <text>推荐</text>
-    </view> -->
-    <view class="nav" data-id="3" bindtap="chooseType">
+    </view>
+    <view class="nav {{id==3?'active':''}}" data-id="3" bindtap="chooseType">
       <image src="../../images/icon/3.jpg"></image>
       <text>生鲜</text>
     </view>
-    <view class="nav" data-id="5" bindtap="chooseType">
+    <view class="nav {{id==5?'active':''}}" data-id="5" bindtap="chooseType">
       <image src="../../images/icon/4.jpg"></image>
       <text>果蔬</text>
     </view>
@@ -26,9 +26,7 @@
     </view> -->
     
   </view>
-<!-- <button open-type="getUserInfo" bindgetuserinfo="setUserInfo">授权登录</button> -->
-<!-- <button class="btnitem" open-type="getPhoneNumber" bindgetphonenumber="login">一键登录</button> -->
-  
+
   <view class="productWrap">
     <view class="productItem" wx:for="{{productArr}}" wx:key="index">
       <view class="productImgWrap">
@@ -38,12 +36,12 @@
       <view class="productPrice">
         <view class="productPriceWrap">
           <view class="salePrice">￥{{item.price}}</view>
-          <view class="originalPrice" wx:if="{{item.price<item.originalPrice}}">￥{{item.originalPrice}}</view>
+          <view class="originalPrice" wx:if="{{item.price<item.originPrice}}">￥{{item.originPrice}}</view>
         </view>
         <view class="productNumWrap">
-          <view class="increase" bindtap="increaseItem" data-index="{{index}}" data-id="{{item.id}}" wx-if="{{item.num>0}}">-</view>
+          <view class="increase" bindtap="increaseItem" data-index="{{index}}" data-id="{{item.id}}" wx-if="{{item.num>0}}"></view>
           <view class="number" wx-if="{{item.num>0}}">{{item.num}}</view>
-          <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap='addItem'>+</view>
+          <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap='addItem'></view>
         </view>
       </view>
     </view>
@@ -57,33 +55,35 @@
       </view>
     </view>
     <view class="price">￥{{price}}</view>
-    <navigator url="/pages/setOrder/setOrder" wx:if="{{allnum>0}}" class="confrim">去结算</navigator>
+    <!-- <navigator url="/pages/setOrder/setOrder" wx:if="{{allnum>0}}" class="confrim">去结算</navigator> -->
+    <view bindtap="jisuan" wx:if="{{allnum>0}}"  wx:if="{{allnum>0}}" class="confrim">去结算</view>
     <text wx:else class="confrim gray">去结算</text>
     
 
   </view>
-  <view class="dialogWrap" wx:if="{{showCart}}" bindtap="hideCart">
+  <view class="dialogWrap" wx:if="{{showCart}}" bindtap="hideCart" catchtouchmove="true">
       
-    </view>
-    <view class="gouwuche" catchtap="showCart1" animation="{{animation}}">
-        <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" wx:if="{{showCart}}">清空购物车</view></view>
-        <!-- <view class="itemWrap"> -->
-          <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
-            <image src="{{item.url}}"></image>
-            <view class="itemInfo">
-              <view class="itemName">{{item.name}}</view>
-              <view class="itemPrice">
-                <text class="salePrice">￥{{item.price}} <text>￥{{item.originalPrice}}</text> </text>
-                <view class="itemNumWrap">
-                  <view class="itemNumDel" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2">-</view>
-                  <text class="itemNum">{{item.num}}</text>
-                  <view class="itemNumAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2">+</view>
-                </view>
+  </view> 
+    <view class="gouwuche" catchtap="showCart1" wx:if="{{showCart}}" animation="{{animation}}">
+      <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" ><image src="../../images/icon/del1.png"></image> 清空购物车</view></view>
+      <view class="itemWrap">
+        <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}">
+          <image src="{{item.thumbnails}}"></image>
+          <view class="itemInfo">
+            <view class="itemName">{{item.title}}</view>
+            <view class="itemPrice">
+              <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
+              <view class="itemNumWrap">
+                <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
+                <text class="itemNum">{{item.num}}</text>
+                <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2"></view>
               </view>
             </view>
-          <!-- </view> -->
+          </view>
         </view>
       </view>
-</view>
+    </view>
+  
+</scroll-view>
 
 
