@@ -2,20 +2,30 @@ page{
   background: #eceff5;
 }
 .orderWrap{
-  margin: 30rpx;
+  margin: 20rpx;
+  padding-bottom: 1rpx;
 }
 .itemWrap{
   background: #fff;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   padding: 20rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
 }
+/* .itemWrap:last-child{
+  margin-bottom:40rpx;
+} */
 .state{
-  text-align: right;
+  display: flex;
   font-size: 26rpx;
   color: #666;
   line-height: 40rpx;
   padding-bottom: 10rpx;
+  border-bottom: 1rpx solid #eceff5;
+  margin-bottom: 20rpx;
+}
+.date{
+  flex: 1;
+  color: #333;
 }
 .itemWrap2{
   display: flex;
@@ -51,7 +61,9 @@ page{
 }
 .payBtnWrap{
   text-align: right;
+  padding-top: 20rpx;
   margin-top: 20rpx;
+  border-top: 1rpx solid #eceff5;
 }
 .payBtn{
   background: #1296db;
@@ -60,7 +72,7 @@ page{
   line-height: 60rpx;
   width: 160rpx;
   text-align: center;
-  border-radius: 50rpx;
+  border-radius: 10rpx;
   font-size: 30rpx;
   display: inline-block;
   margin-left: 20rpx;

@@ -7,23 +7,34 @@ page{
   overflow: hidden;
 }
 .index{
-  /* display: flex;
-  flex-direction: column; */
+  
 }
+
 .navWrap{
-  height: 100rpx;
-  display: flex;
-  align-items: center; /*定义body的元素垂直居中*/
-  justify-content: center; /*定义body的里的元素水平居中*/
+  /* position: -webkit-sticky;
+  position: sticky;
+  top: -1rpx; */
+  margin:0 20rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #eceff5;
 }
 .nav{
-  flex: 1;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: inline-block;
+  
+}
+.nav text{
+  display: inline-block;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  padding: 0 30rpx;
+  border-right: 1rpx solid #999;
 }
 .nav.active{
   color: #1296db;
-}
-.nav text{
-  display: block;
 }
 .scrollWrap{
   margin-top: 20rpx;
@@ -59,7 +70,7 @@ page{
   vertical-align: top;
   background: #fff;
   margin-bottom: 20rpx;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
 }
 .productWrap .productItem:nth-child(2n){
   margin-left: 20rpx;
@@ -347,13 +358,24 @@ page{
 .itemNumDel{
   border: 1rpx solid #eee;
 }
+.topWrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: #eceff5;
+}
 .searchWrap{
   background: #fff;
   height: 70rpx;
   line-height: 70rpx;
-  margin: 20rpx 30rpx 0;
+  margin: 20rpx 20rpx 0;
   border-radius: 20rpx;
   text-align: center;
+}
+.topBox{
+  height: 206rpx;
 }
 .searchWrap image{
   width: 50rpx;
@@ -365,18 +387,4 @@ page{
   color: #707070;
   font-size: 30rpx;
   padding-left: 12rpx;
-}
-.navWrap{
-  /* position: -webkit-sticky;
-  position: sticky; */
-  top: -1rpx;
-  margin: 20rpx;
-  height: 160rpx;
-  text-align: center;
-  background: #eceff5;
-}
-.navWrap image{
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
 }

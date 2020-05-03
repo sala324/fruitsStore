@@ -4,7 +4,8 @@
     <view class="money">
       <text>￥{{item.money}}</text> 变<text>￥{{item.money2}}</text>
     </view>
-    <view class="num"> <image src="../../images/icon/floower.png"></image> {{item.number}}</view>
+    <view class="num"> <image src="../../images/icon/yue.png"></image></view>
   </view>
-  <navigator url="/pages/rechargeSuccess/rechargeSuccess" open-type="reLaunch" class="btn">充值</navigator>
+  <!-- <navigator url="/pages/rechargeSuccess/rechargeSuccess" open-type="reLaunch" class="btn">充值</navigator> -->
+  <view bindtap="charge" class="btn">充值</view>
 </view>

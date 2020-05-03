@@ -1,16 +1,20 @@
 <view class="search">
   <view class="searchWrap">
-    <input placeholder="搜索商家的商品" bindfocus="showDialog2" bindinput="changeKeyWords" value="{{keyWords}}"></input>
+    <input placeholder="搜索商品" bindfocus="showDialog2" bindinput="changeKeyWords" value="{{keyWords}}"></input>
     <cover-image src="../../images/icon/del2.png" bindtap="clearWords" wx:if="{{keyWords}}"></cover-image>
-    <text class="searchBtn" bindtap="searchBtn">搜索</text>
+    <view class="searchBtn"  wx:if="{{showDialog}}" bindtap="searchBtn">搜索</view>
+    <view class="searchBtn" wx:else bindtap="turnCart">
+      <image src="../../images/icon/cart.png"></image>
+      <text class="num">{{allnum}}</text>
+    </view>
     
   </view>
   <view class="searchDialog" wx:if="{{showDialog}}">
-    <view class="title">搜索历史 <view class="clear" bindtap="clearAll" wx:if="{{keyWordsArr.length>0}}"><image src="{{thumbnails}}"></image>清除搜索历史</view></view>
+    <view class="title" wx:if="{{keyWordsArr.length>0}}">搜索历史 <view class="clear" bindtap="clearAll" wx:if="{{keyWordsArr.length>0}}"><image src="{{thumbnails}}"></image>清除搜索历史</view></view>
     <view class="itemWrap">
       <view class="item" wx:for="{{keyWordsArr}}" wx:key="index" data-words="{{item}}" bindtap="chooseWords">{{item}}</view>
     </view>
-    <view class="title">热门搜索</view>
+    <view class="title" wx:if="{{hotWordsArr.length>0}}">热门搜索</view>
     <view class="itemWrap">
       <view class="item" wx:for="{{hotWordsArr}}" wx:key="index"  data-words="{{item}}" bindtap="chooseWords">{{item}}</view>
     </view>
@@ -30,40 +34,6 @@
           <view class="increase" bindtap="increaseItem" data-index="{{index}}" data-id="{{item.id}}" wx-if="{{item.num>0}}">-</view>
           <view class="number" wx-if="{{item.num>0}}">{{item.num}}</view>
           <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap='addItem'>+</view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="cartBox"></view>
-  <view class="cartWrap" wx:if="{{!showDialog}}">
-    <view class="cart {{allnum>0?'active':''}}">
-      <image src="../../images/icon/cart.png" bindtap="showCart2"></image>
-      <view class="buyNum {{maxnum==allNum>9?'active':''}}">
-      <view>{{allnum}}</view>
-      </view>
-    </view>
-    <view class="price">￥{{price}}</view>
-    <navigator url="/pages/setOrder/setOrder" wx:if="{{allnum>0}}" class="confrim">去结算</navigator>
-    <text wx:else class="confrim gray">去结算</text>
-    <view class="dialogWrap" wx:if="{{showCart}}" bindtap="hideCart">
-      
-    </view>
-    <view class="gouwuche" wx:if="{{showCart}}"  catchtap="showCart1" style="bottom:{{gwcHeight}}" animation="{{animation}}">
-      <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" wx:if="{{showCart}}">清空购物车</view></view>
-      <view class="itemWrap">
-        <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index">
-          <image src="{{item.thumbnails}}"></image>
-          <view class="itemInfo">
-            <view class="itemName">{{item.title}}</view>
-            <view class="itemPrice">
-              <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
-              <view class="itemNumWrap">
-                <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
-                <text class="itemNum">{{item.num}}</text>
-                <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2"></view>
-              </view>
-            </view>
-          </view>
         </view>
       </view>
     </view>

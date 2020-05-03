@@ -29,10 +29,27 @@ input{
   padding: 20rpx;
 }
 .searchBtn{
+  display: inline-block;
   width: 100rpx;
   text-align: center;
   font-size: 26rpx;
   color: #333;
+}
+.searchBtn image{
+  width: 44rpx;
+  height: 44rpx;
+}
+.searchBtn text{
+  position: absolute;
+  vertical-align: top;
+  background: red;
+  color: #fff;
+  height: 26rpx;
+  /* min-width: 26rpx; */
+  line-height: 26rpx;
+  font-size: 26rpx;
+  padding: 0 6rpx;
+  border-radius: 50%;
 }
 .title{
   margin-top: 40rpx;

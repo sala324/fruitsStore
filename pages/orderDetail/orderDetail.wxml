@@ -43,8 +43,8 @@
         <text class="itemText">￥0</text>
       </view>
       <view class="priceItem">
-        <text class="itemName">鲜花</text>
-        <text class="itemText">{{orderInfo.flower}}</text>
+        <text class="itemName">余额抵扣</text>
+        <text class="itemText">{{balance}}</text>
       </view>
     </view>
   </view>

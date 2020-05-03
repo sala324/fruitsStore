@@ -67,6 +67,57 @@ Page({
       this.orderList()
     }
   },
+  cunchu() {
+    console.log(1)
+    let jsons = {}
+    try {
+      jsons = wx.getStorageSync('cartArr')
+    } catch (e) {
+      return false;
+    }
+    if (jsons) {
+      let arrs = []
+      for (var p in jsons) {
+        var json = jsons[p]
+        json.id = Number(p)
+        arrs.push(json)
+      }
+      let num = 0
+      let price = 0
+      arrs.forEach((val, index) => {
+        num += val.num
+        price += val.price * val.num
+      })
+      if (num > 0) {
+        this.setData({
+          noData: false
+        })
+      } else {
+        this.setData({
+          noData: true
+        })
+      }
+      if (num > 0) {
+        wx.setTabBarBadge({
+          index: 1,
+          text: num + ''
+        })
+      } else {
+        wx.removeTabBarBadge({
+          index: 1
+        })
+      }
+
+      this.setData({
+        storageArr: arrs,
+        cartData: true,
+        allnum: num,
+        price: price
+      })
+      // console.log(this.data.productArr)
+    }
+
+  },
   onLoad: function (options) {
     
   },
@@ -212,5 +263,6 @@ Page({
       orderArr:[]
     })
     this.orderList()
+    this.cunchu()
   }
 })

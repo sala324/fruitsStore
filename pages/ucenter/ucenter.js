@@ -6,16 +6,21 @@ Page({
     bindBank: false,
     tradeLogo: false,
     isCompanyer: false,
-    showmask:false
+    showmask:false,
+    balance:''
   },
   onLoad(){
+    
+  },
+  quit(){
     
   },
   useDada() {
     util.requests('/business/user/getCurrentUser', {}).then(res => {
       if (res.data.code == 0) {
         this.setData({
-          userData: res.data.data
+          userData: res.data.data,
+          balance: (res.data.data.balance/100).toFixed(1)
         })
         wx.setStorageSync('userId', res.data.data.id);
       }

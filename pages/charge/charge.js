@@ -17,13 +17,24 @@ Page({
         res.data.data.forEach((val,index)=>{
           let json={}
           json.money = val.fee/100
-          json.money2 = val.flower / 100
+          json.money2 = val.balance / 100
           json.id = val.id
-          json.number = val.flower
+          json.number = val.balance
           arr.push(json)
         })
         this.setData({
-          chargeArr: arr
+          chargeArr: arr,
+          id: res.data.data[0].id
+        })
+      }
+
+    })
+  },
+  charge(){
+    util.requests('/business/balance/recharge?activityId=' + this.data.id, {},'post').then(res => {
+      if (res.data.code == 0) {
+        wx.reLaunch({
+          url: '/pages/rechargeSuccess/rechargeSuccess',
         })
       }
 

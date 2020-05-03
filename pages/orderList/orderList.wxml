@@ -2,7 +2,9 @@
   <view class="orderWrap">
     <view bindtap="turnDetail" data-status="{{item.status}}" data-id="{{item.id}}" class="itemWrap" wx:for="{{orderArr}}" wx:key="index" wx:if="{{orderArr.length>0}}">
       <view class="state">
+        <text class="date">{{item.gmtCreate}}</text>
         <text class="state2" wx:if="{{item.status==-1}}">已取消</text>
+        <text class="state2" wx:if="{{item.status==0}}">待付款</text>
         <text class="state3" wx:if="{{item.status==1}}">已完成</text>
       </view>
       <view class="itemWrap2">

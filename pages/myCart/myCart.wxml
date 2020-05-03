@@ -1,0 +1,34 @@
+<view class="wrap">
+  <view class="gouwuche" wx:if="{{storageArr.length>0}}">
+    <view class="deleteAll"><view class="deleteBtn" catchtap="deleteBtn1" ><image src="../../images/icon/del1.png"></image> 清空购物车</view></view>
+    <view class="itemWrap">
+      <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}">
+        <image src="{{item.thumbnails}}"></image>
+        <view class="itemInfo">
+          <view class="itemName">{{item.title}}</view>
+          <view class="itemPrice">
+            <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
+            <view class="itemNumWrap">
+              <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
+              <text class="itemNum">{{item.num}}</text>
+              <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cartBox"></view>
+  <view class="cartWrap {{hideCart?'hide':''}}">
+    
+    <view class="price">￥{{price}}</view>
+    <view class="num">数量：{{allnum}}件</view>
+    <view bindtap="jisuan" wx:if="{{allnum>0}}"  wx:if="{{allnum>0}}" class="confrim">去结算</view>
+    <text wx:else class="confrim gray">去结算</text>
+    
+
+  </view>
+  <view class='nodata' wx:if="{{noData}}">
+    <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
+  </view>
+  </view>

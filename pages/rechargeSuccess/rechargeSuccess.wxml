@@ -3,6 +3,6 @@
     <image src="../../images/icon/success.png"></image>
   </view>
   <view class="des">充值成功</view>
-  <view class="about">您的鲜花会在付款时自动扣减</view>
-  <navigator class="btn" open-type="redirect" url="/pages/flower/flower">我的鲜花</navigator>
+  <view class="about">您的余额会在付款时自动扣减</view>
+  <navigator class="btn" open-type="redirect" url="/pages/balance/balance">我的余额</navigator>
 </view>

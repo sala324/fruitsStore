@@ -1,0 +1,99 @@
+.yuEWrap{
+  background: #1296db;
+  padding: 30rpx 30rpx 0;
+}
+.yuECard{
+  background: #fff;
+  border-radius: 20rpx 20rpx 0 0;
+  padding: 30rpx;
+  /* color: #fff; */
+}
+.title1{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.num{
+  font-size: 50rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #fff;
+}
+.num1{
+  /* font-size: 30rpx;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  border-bottom: 1rpx solid #fff; */
+}
+.chargeBtn{
+  float: right;
+  font-size: 26rpx;
+  color: #444;
+}
+.about{
+  padding-left: 20rpx;
+  font-size: 26rpx;
+  padding-bottom: 26rpx;
+}
+.chongzhi{
+  display: flex;
+}
+.chargeBtn{
+  padding: 20rpx 20rpx 20rpx 0;
+  flex: 0 0 140rpx;
+}
+.text{
+  flex:1;
+}
+.listPage{
+  text-align: center;
+}
+.xiaofei{
+  display: inline-block;
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 200rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+.yuEList{
+  padding: 20rpx;
+  box-shadow:0rpx -3rpx 0rpx 0rpx rgba(153,153,153,0.2);
+}
+.itemWrap{
+  padding:20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+  align-items: center; /*定义body的元素垂直居中*/
+}
+.left{
+  flex: 1;
+}
+.title{
+  color: #333;
+  font-size: 30rpx;
+}
+.charge{
+  color: red;
+}
+.date{
+  font-size: 26rpx;
+  color: #999;
+  padding-top: 10rpx;
+}
+.price{
+  font-size: 26rpx;
+  color: #666;
+  padding-top: 10rpx;
+}
+.title1 text{
+  color: #777;
+  font-size: 26rpx;
+  font-weight: normal;
+}
+.wushuju{
+  height: 100rpx;
+  line-height:100rpx;
+  text-align: center;
+  font-size:26rpx;
+  color: #666;
+}

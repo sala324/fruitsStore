@@ -23,11 +23,13 @@
   text-align: left;
 }
 .num{
+  height: 40rpx;
   font-size: 40rpx;
-  padding-top: 20rpx;
-  text-align: left;
+  
+  text-align: right;
 }
 .num image{
-  width: 42rpx;
-  height: 42rpx;
+  width: 120rpx;
+  height: 120rpx;
+  margin: -60rpx 40rpx 0 0;
 }

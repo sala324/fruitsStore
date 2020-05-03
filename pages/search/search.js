@@ -31,14 +31,6 @@ Page({
     this.animation.bottom(-num).step()
     this.setData({ animation: this.animation.export() })
   },
-  jisuan1() {
-    let that = this
-    wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
-      that.setData({
-        gwcHeight: -(rect[0].height) + 'px'
-      })
-    }).exec()
-  },
   clearWords(){
     this.setData({
       keyWords: '',
@@ -129,7 +121,6 @@ Page({
     let index = e.currentTarget.dataset.index
     
     this.increaseItem1(dataArrs, index, 'productArr')
-    this.jisuan1()
     this.cunchu()
   },
   increaseItem2(e) {
@@ -137,7 +128,6 @@ Page({
     dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
     let index = e.currentTarget.dataset.index
     this.increaseItem1(dataArrs, index, 'storageArr')
-    this.jisuan1()
     this.cunchu()
   },
   additem1(dataArrs, index, arrValue) {
@@ -170,7 +160,6 @@ Page({
     dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
     let index = e.currentTarget.dataset.index
     this.additem1(dataArrs, index, 'storageArr')
-    this.jisuan1()
     this.cunchu()
   },
   addItem(e) {
@@ -216,11 +205,20 @@ Page({
 
   },
   clearAll(){
-    this.setData({
-      keyWordsArr: [],
-      keyWords: ''
+    let that=this
+    wx.showModal({
+      content: '是否清除搜索历史',
+      success: function (res) {
+        if (res.confirm) {
+          that.setData({
+            keyWordsArr: [],
+            keyWords: ''
+          })
+          wx.setStorageSync('keyWordsArr', [])
+        }
+      }
     })
-    wx.setStorageSync('keyWordsArr', [])
+    
   },
   changeKeyWords(e){
     this.setData({
@@ -301,6 +299,11 @@ Page({
         this.cunchu()
       }
 
+    })
+  },
+  turnCart(){
+    wx.switchTab({
+      url: '/pages/myCart/myCart',
     })
   },
   onShow: function () {

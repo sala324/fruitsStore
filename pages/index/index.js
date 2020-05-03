@@ -97,7 +97,6 @@ Page({
     let dataArrs = this.data.productArr
     dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
     let index = e.currentTarget.dataset.index
-    this.jisuan1()
     this.increaseItem1(dataArrs, index, 'productArr')
     this.cunchu()
   },
@@ -105,12 +104,8 @@ Page({
     let dataArrs = this.data.storageArr
     dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
     let index = e.currentTarget.dataset.index
-    this.jisuan1()
     await this.increaseItem1(dataArrs, index, 'storageArr')
     this.cunchu()
-  },
-  move() {
-    console.log('移动')
   },
   additem1(dataArrs,index,arrValue){
     let jsons = {}
@@ -148,7 +143,6 @@ Page({
     let dataArrs = this.data.productArr
     dataArrs[e.currentTarget.dataset.index].num= dataArrs[e.currentTarget.dataset.index].num+1
     let index = e.currentTarget.dataset.index
-    this.jisuan1()
     this.additem1(dataArrs, index,'productArr')
     this.cunchu()
   },
@@ -156,37 +150,6 @@ Page({
     this.setData({
       showCart: true
     })
-    
-  },
-  showCart2(){
-    let showCart = this.data.showCart
-    let that = this
-    if (this.data.allnum>0){
-      showCart = !showCart
-      if (showCart){
-        that.choosebtn()
-      } else {
-        that.choosebtn2()
-      }
-      this.setData({
-        showCart: showCart
-      })
-    }
-  },
-  jisuan1(){
-    let that=this
-    wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
-      that.setData({
-        gwcHeight: -(rect[0].height) + 'px'
-      })
-    }).exec() 
-  },
-  hideCart() {
-    this.choosebtn2()
-    this.setData({
-      showCart: false
-    })
-    console.log(3)
     
   },
   deleteBtn1(){
@@ -248,6 +211,17 @@ Page({
       price += val2.price * val2.num
     })
     price = price.toFixed(1)
+    if(num>0){
+      wx.setTabBarBadge({
+        index: 1,
+        text: num + ''
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 1
+      })
+    }
+    
     this.setData({
       price: price,
       allnum: num
@@ -269,8 +243,6 @@ Page({
         arrs.push(json)
       }
       let arr5 = []
-      let num = 0
-      let price = 0
       console.log(arrs)
       this.data.productArr.forEach((val, index) => {
         arrs.forEach((val2, index2) => {
@@ -291,37 +263,6 @@ Page({
       // console.log(this.data.productArr)
     }
     
-  },
-  onReady: function () {
-    this.animation = wx.createAnimation({
-      duration: 600,
-      timingFunction: 'ease'
-    })
-    let that=this
-    wx.createSelectorQuery().selectAll('.cartWrap').boundingClientRect(function (rect) {
-      that.setData({
-        cartHeight: rect[0].height
-      })
-    }).exec() 
-    // wx.createSelectorQuery().selectAll('.gouwuche').boundingClientRect(function (rect) {
-    //   that.setData({
-    //     gwcHeight: -(rect[0].height-60)+'px'
-    //   })
-    // }).exec() 
-  },
-  choosebtn() {
-    console.log(5)
-    let num = this.data.cartHeight
-    // this.animation.bottom(num).step()
-    this.animation.height('auto').step()
-    this.setData({ animation: this.animation.export() })
-  },
-  choosebtn2() {
-    console.log(4)
-    let num = this.data.gwcHeight
-    // this.animation.bottom(-num).step()
-    this.animation.height('0%').step()
-    this.setData({ animation: this.animation.export() })
   },
   loadMore() {
     if (this.data.totalPage > this.data.index) {
@@ -403,6 +344,9 @@ Page({
   tabOne() {
     util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_RECOMMEND_PRODUCT' }).then(res => {
       if (res.data.code == 0) {
+        this.setData({
+          id:0
+        })
         this.orderAgain(res.data.data)
       }
     })

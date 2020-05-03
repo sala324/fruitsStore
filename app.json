@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/orderList/orderList",
+    "pages/balance/balance",
+    "pages/myCart/myCart",
     "pages/search/search",
     "pages/login/login",
     "pages/addressList2/addressList2",
@@ -9,8 +12,6 @@
     "pages/offlinePayment/offlinePayment",
     "pages/charge/charge",
     "pages/xiaofeiList/xiaofeiList",
-    "pages/orderList/orderList",
-    "pages/flower/flower",
     "pages/orderDetail/orderDetail",
     "pages/paySuccess/paySuccess",
     "pages/setOrder/setOrder",
@@ -36,6 +37,12 @@
         "iconPath": "images/index.png",
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/cart2.png",
+        "iconPath": "images/cart.png",
+        "pagePath": "pages/myCart/myCart",
+        "text": "购物车"
       },
       {
         "selectedIconPath": "images/order2.png",

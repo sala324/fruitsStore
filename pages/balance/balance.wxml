@@ -1,0 +1,29 @@
+<view class="yuEWrap">
+  <view class="yuECard">
+    <view class="title">
+      <text class="title1">我的余额</text>
+      
+      <navigator url="/pages/charge/charge" class="chargeBtn">去充值 ></navigator></view>
+    <view class="num">￥{{balance}}</view>
+  </view>
+</view>
+<view class="yuEList">
+  <view class="title1">余额明细 <text>展示最近10条余额明细</text></view>
+  <view class="itemWrap" wx:if="{{xianhuaArr.length>0}}" wx:for="{{xianhuaArr}}" wx:key="index">
+    <view class="left">
+      <view class="title">{{item.title}}</view>
+      <view class="date">{{item.gmtCreate}}</view>
+    </view>
+    <view class="right">
+      <view class="num1 {{item.number>0?'charge':''}}" wx:if="{{item.number>0}}">+{{item.number}}</view>
+      <view class="num1 {{item.number>0?'charge':''}}" wx:else>{{item.number}}</view>
+    </view>
+  </view>
+  <view class="listPage" wx:if="{{!noData}}">
+    <navigator url="/pages/xiaofeiList/xiaofeiList" class="xiaofei">查看全部记录 ></navigator>
+  </view>
+  
+  <view class='nodata' wx:if="{{noData}}" style="height:60vh">
+  <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
+  </view>
+</view>

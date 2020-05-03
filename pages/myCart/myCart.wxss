@@ -1,0 +1,197 @@
+page{
+  background: #eceff5;
+}
+.wrap{
+  margin:20rpx;
+}
+.gouwuche{
+  background: #fff;
+  border-radius: 10rpx;
+}
+.itemWrap{
+  
+}
+.deleteAll{
+  /* background: #fff; */
+  text-align: right;
+  font-size: 26rpx;
+  color: #999;
+  height: 60rpx;
+  line-height: 60rpx;
+  /* border-radius: 10rpx 10rpx 0 0; */
+  /* box-sizing: border-box; */
+}
+.deleteAll .deleteBtn{
+  display: inline-block;
+  padding: 0 30rpx 0 10rpx;
+}
+.deleteAll .deleteBtn image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-top: -2rpx;
+}
+.itemWrap{
+  padding: 20rpx;
+}
+ .gouwuche .gouwucheItem{
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+.gouwuche .gouwucheItem:last-child{
+  border-bottom: none;
+}
+ .gouwuche .gouwucheItem image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+}
+ .gouwuche .gouwucheItem .itemInfo{
+  flex: 1;
+}
+ .gouwuche .gouwucheItem .itemName{
+  font-size: 30rpx;
+}
+ .gouwuche .gouwucheItem  .itemPrice{
+   padding-top: 40rpx;
+  display: flex;
+}
+ .gouwuche .gouwucheItem  .itemPrice .salePrice{
+  color: red;
+  font-size: 30rpx;
+  display: inline-block;
+  padding-top: 10rpx;
+  line-height: 30rpx;
+  flex: 1;
+}
+ .gouwuche .gouwucheItem  .itemPrice .salePrice text{
+   display: inline-block;
+  line-height: 30rpx;
+  color: #999;
+  text-decoration-line: line-through;
+}
+ .gouwuche .gouwucheItem  .itemPrice  .itemNumWrap{
+  font-size: 36rpx;
+}
+.itemNumDel,.itemNumAdd{
+  width: 42rpx;
+  height: 42rpx;
+  display: inline-block;
+  border-radius: 50%;
+  text-align: center;
+}
+.itemNum{
+  display: inline-block;
+  color: #333;
+  padding: 0 20rpx;
+  vertical-align: top;
+}
+.itemNumAdd{
+  display: inline-block;
+  background: #1296db;
+  color:#fff;
+}
+.itemNumDel{
+  border: 1rpx solid #eee;
+}
+.productAdd {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  background: #1296db;
+  color: #fff;
+  transition: color .25s;
+  position: relative;
+  border-radius: 50%;
+}
+.productAdd::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #fff;
+}
+.productAdd::after {
+ content: '';
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ height: 30rpx;
+ margin-left: -2rpx;
+ margin-top: -15rpx;
+ border-left: 4rpx solid #fff;
+}
+.increase {
+  vertical-align: top;
+  border:1rpx solid #1296db;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  color: #1296db;
+  transition: color .25s;
+  position: relative;
+  border-radius: 50%;
+}
+.increase::before{
+  vertical-align: top;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30rpx;
+  margin-left: -15rpx;
+  margin-top: -2rpx;
+  border-top: 4rpx solid #1296db;
+}
+.cartBox{
+  height: 140rpx;
+}
+.cartWrap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  display: flex;
+  background: #fff;
+  z-index: 3;
+  border-bottom: 1rpx solid #efefef;
+  border-top: 1rpx solid #efefef;
+  font-size: 0;
+  box-sizing: border-box;
+  padding: 15rpx 30rpx;
+}
+.cartWrap .num{
+  color: #333;
+  display: inline-block;
+  width: 260rpx;
+  font-size: 30rpx;
+  text-align: left;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.cartWrap .price{
+  color: red;
+  font-size: 40rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  flex: 1;
+}
+.cartWrap .confrim{
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1296db;
+  width: 200rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 10rpx;
+}
+.cartWrap .confrim.gray{
+  background: #ccc;
+}

@@ -13,27 +13,37 @@
   </view>
 </view>
 <view class='wrap' wx:if="{{userData}}">
-  <navigator url="/pages/flower/flower" class='item reset'>
-    <image src="../../images/icon/floower.png"></image>
-    <text class='title'>鲜花</text>
+  <navigator url="/pages/balance/balance" class='item reset'>
+    <image src="../../images/icon/yue.png"></image>
+    <text class='title'>我的余额</text>
+    <text wx:if="{{balance>0}}">{{balance}}</text>
+    <text class="go"></text>
   </navigator>
   <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
     <image src="../../images/icon/pay.png"></image>
     <text class='title'>线下付款</text>
+    <text class="go"></text>
   </navigator>
   <navigator url="/pages/addressList/addressList" class='item'>
     <image src="../../images/icon/address.png"></image>
     <text class='title'>收货地址</text>
+    <text class="go"></text>
   </navigator>
   <navigator  url="/pages/message/message" class='item wallet'>
     <image src="../../images/icon/message.png"></image>
     <text class='title'>意见反馈</text>
+    <text class="go"></text>
   </navigator>
+  <!-- <view bindtap="quit" class='item wallet'>
+    <image src="../../images/icon/message.png"></image>
+    <text class='title'>退出登录</text>
+    <text class="go"></text>
+  </view> -->
 </view>
 <view class='wrap' wx:else>
   <navigator url="/pages/login/login" class='item reset'>
     <image src="../../images/icon/floower.png"></image>
-    <text class='title'>鲜花</text>
+    <text class='title'>我的余额</text>
   </navigator>
   <navigator url="/pages/login/login" class='item usersata'>
     <image src="../../images/icon/pay.png"></image>

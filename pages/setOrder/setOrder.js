@@ -88,11 +88,21 @@ Page({
         youhui += (val2.originPrice - val2.price) * val2.num
       }
     })
-    price = price.toFixed(2)
+    price = price.toFixed(1)
+    let price3 = 0
+    let dikou = 0
+    if (this.data.allBalance-price>=0){
+      dikou = price
+    } else {
+      price3 = price - this.data.allBalance
+      dikou = this.data.allBalance
+    }
+
     this.setData({
+      dikou: dikou,
       price: price,
       allnum: num,
-      hejiMoney: price,
+      hejiMoney: price3,
       orderArr: arrs,
       orderArr2:arrs2,
       youhuiprice: youhui
@@ -137,7 +147,17 @@ Page({
   onLoad(){
     this.defaultAddress()
   },
+  useDada() {
+    util.requests('/business/user/getCurrentUser', {}).then(res => {
+      if (res.data.code == 0) {
+        this.setData({
+          allBalance: (res.data.data.balance / 100).toFixed(1)
+        })
+        this.gouwuche()
+      }
+    })
+  },
   onShow: function () {
-    this.gouwuche()
+    this.useDada()
   }
 })

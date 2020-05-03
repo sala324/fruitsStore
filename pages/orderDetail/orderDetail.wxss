@@ -51,7 +51,7 @@ page{
   padding-right: 20rpx;
 }
 .wrap{
-  margin:130rpx 30rpx 0;
+  margin:124rpx 20rpx 0;
   background: #fff;
   border-radius: 10rpx;
 }
@@ -134,7 +134,7 @@ page{
   /* font-weight: bold; */
 }
 .orderWrap{
-  margin: 30rpx;
+  margin: 20rpx;
   background: #fff;
   border-radius: 10rpx;
 }

@@ -97,11 +97,12 @@
   height: 100rpx;
   line-height: 100rpx;
   box-sizing: border-box;
-  margin: 0 30rpx;
+  margin: 0 20rpx;
   color: #333;
   border-bottom: 1rpx solid #ccc;
   font-size: 30rpx;
-  vertical-align: top;
+  /* vertical-align: top; */
+  display: flex;
   /* border-radius:10rpx; */
 }
 .wrap .item image{
@@ -109,4 +110,19 @@
   height: 40rpx;
   vertical-align: middle;
   margin-right: 20rpx;
+  margin-top: 30rpx;
+}
+.title{
+  flex:1;
+  vertical-align: middle;
+}
+.go{
+  width: 24rpx;
+  height: 24rpx;
+  /* position: absolute; */
+  border-left: 1rpx solid #999;
+  border-bottom: 1rpx solid #999;
+  -webkit-transform: translate(0,-50%) rotate(-135deg);
+  transform: translate(0,-50%) rotate(-135deg);
+  margin-top: 50rpx;
 }
