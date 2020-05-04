@@ -190,7 +190,10 @@ Page({
     this.productList()
   },
   onLoad(options){
-    
+    if (options.shareCode){
+      wx.setStorageSync('shareCode', options.shareCode)
+      console.log(options.shareCode)
+    }
   },
   gouwuche(){
     let jsons ={}
@@ -350,6 +353,7 @@ Page({
     //   url: '/pages/setOrder/setOrder',
     // })
   },
+  
   onShow: function () {
     this.setData({
       index:1,

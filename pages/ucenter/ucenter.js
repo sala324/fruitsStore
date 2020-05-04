@@ -20,6 +20,7 @@ Page({
       if (res.data.code == 0) {
         this.setData({
           userData: res.data.data,
+          shareCode: res.data.data.shareCode,
           balance: (res.data.data.balance/100).toFixed(1)
         })
         wx.setStorageSync('userId', res.data.data.id);

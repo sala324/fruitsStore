@@ -9,7 +9,54 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+const cunchu = n =>{
+  let jsons = {}
+  try {
+    jsons = wx.getStorageSync('cartArr')
+  } catch (e) {
+    return false;
+  }
+  if (jsons) {
+    let arrs = []
+    for (var p in jsons) {
+      var json = jsons[p]
+      json.id = Number(p)
+      arrs.push(json)
+    }
+    let num = 0
+    let price = 0
+    let checkedAll= true
+    arrs.forEach((val, index) => {
 
+      if (val.checked) {
+        num += val.num
+        price += val.price * val.num
+      } else {
+        checkedAll= false
+      }
+    })
+    let noData=false
+    if (num > 0) {
+      noData = false
+      wx.setTabBarBadge({
+        index: 1,
+        text: num + ''
+      })
+    } else {
+      noData =true
+      wx.removeTabBarBadge({
+        index: 1
+      })
+    }
+    let json4={}
+    json4.storageArr = arrs
+    json4.cartData = true
+    json4.allnum = num
+    json4.price = price
+    return json4
+  }
+
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -37,24 +84,6 @@ const dialog = n => {
       }
     }
   })
-}
-const isCompanyer = n => {
-  let getCompanyer = '';
-  try {
-    getCompanyer = wx.getStorageSync('isCompanyer');
-  } catch (e) {
-    console.log('获取本地存储失败！')
-  }
-  return getCompanyer;
-}
-const userInfo = n => {
-  let userInfos = '';
-  try {
-    userInfos = wx.getStorageSync('user');
-  } catch (e) {
-    console.log('获取本地存储失败！')
-  }
-  return userInfos;
 }
 //去登陆
 const login = () => {
@@ -150,50 +179,17 @@ const requests = (url, data, method) => {
     });
   });
 }
-const setorderFormid = (formId) => {
-  let apiHost = app.globalData.apiHost;
-  if (formId=='the formId is a mock one'){
-
-  } else {
-    return new Promise((resolve, reject) => {
-      wx.request({
-        url: app.globalData.apiHost + '/addFormId',
-        data: {
-          source: "member",
-          formId: formId
-        },
-        method: 'post',
-        success(res) {
-          if (res.data.code == 0) {
-            console.log('成功')
-          } else {
-            console.log('失败')
-          }
-        },
-        fail(res) {
-          reject(res);
-        },
-        complete: function () {
-
-        }
-      });
-    });
-  }
-  
-}
 module.exports = {
   formatTime: formatTime,
   request: request,
   requests: requests,
   getToken: getToken,
   login: login,
-  setorderFormid: setorderFormid,
   err:err,
   toasts: toasts,
   toasts2: toasts2,
   errorimage: errorimage,
-  isCompanyer: isCompanyer,
-  userInfo: userInfo,
+  cunchu: cunchu,
   dialog: dialog
 }
 

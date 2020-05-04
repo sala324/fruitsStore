@@ -169,7 +169,7 @@ page{
 .cartWrap .num{
   color: #333;
   display: inline-block;
-  /* width: 260rpx; */
+  margin-right: 20rpx;
   font-size: 30rpx;
   text-align: left;
   height: 90rpx;
@@ -202,6 +202,9 @@ page{
   border-radius: 50%;
   border: 1rpx solid #666;
   box-sizing: border-box;
+}
+.circle2{
+  margin: 50rpx 10rpx 0 0;
 }
 .checked {
   width:40rpx;

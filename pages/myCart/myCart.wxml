@@ -6,7 +6,7 @@
     <view class="itemWrap">
       <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="toggleChecked">
         <view class="checked" wx:if="{{item.checked}}"></view>
-        <view class="circle" wx:else></view>
+        <view class="circle circle2" wx:else></view>
         <image src="{{item.thumbnails}}"></image>
         <view class="itemInfo">
           <view class="itemName">{{item.title}}</view>

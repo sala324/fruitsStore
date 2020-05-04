@@ -1,0 +1,12 @@
+<view class="wrap">
+  <view class="title">拓客奖励规则</view>
+  <view class="about">根据用户分享给新用户，新用户注册以后平台会给用户奖励，奖励可以用于平台消费。</view>
+  <view class="title">拓客明细</view>
+  <view class="itemWrap">
+    <view class="item" wx:for="{{5}}" wx:key="index">
+      <text class="name">张三</text>
+      <text class="date">2020-5-2</text>
+    </view>
+  </view>
+  <button open-type="share" class="btn">去分享</button>
+</view>

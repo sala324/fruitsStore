@@ -1,0 +1,36 @@
+/* pages/share/share.wxss */
+page{
+  /* background: #eceff5; */
+}
+.wrap{
+  margin: 20rpx;
+  background: #fff;
+}
+.title{
+  font-size: 32rpx;
+  line-height: 40rpx;
+  padding-bottom: 20rpx;
+}
+.about{
+  font-size: 26rpx;
+  line-height: 40rpx;
+  padding-bottom: 20rpx;
+}
+.itemWrap{
+  border: 1rpx solid #eee;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+.item{
+  height: 70rpx;
+  line-height: 70rpx;
+  display: flex;
+  border-bottom: 1rpx solid #eee;
+}
+.name{
+  flex: 1;
+  color: #333;
+}
+.date{
+  color: #666;
+}

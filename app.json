@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/share/share",
     "pages/orderList/orderList",
     "pages/balance/balance",
     "pages/myCart/myCart",

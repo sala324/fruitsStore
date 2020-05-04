@@ -29,6 +29,11 @@
     <text class='title'>收货地址</text>
     <text class="go"></text>
   </navigator>
+  <navigator  url="/pages/share/share?shareCode={{shareCode}}" class='item wallet'>
+    <image src="../../images/icon/share.png"></image>
+    <text class='title'>分享有礼</text>
+    <text class="go"></text>
+  </navigator>
   <navigator  url="/pages/message/message" class='item wallet'>
     <image src="../../images/icon/message.png"></image>
     <text class='title'>意见反馈</text>
