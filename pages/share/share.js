@@ -8,7 +8,7 @@ Page({
       this.setData({
         msgList: res.data.data
       })
-      wx.setStorageSync('userId', res.data.data.id);
+      
     })
   },
   myList() {
@@ -16,7 +16,7 @@ Page({
       this.setData({
         myList: res.data.data
       })
-      if (res.data.data.length>0){
+      if (res.data.data){
         this.setData({
           noData:false
         })
