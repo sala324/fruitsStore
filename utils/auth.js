@@ -19,10 +19,12 @@ const login = () => {
 const register = (encryptedData, iv, callback) => {
   wx.login({
     success: res => {
+      let shareCode = wx.getStorageSync('shareCode');
       util.requests('/business/user/register', {
         code: res.code,
         encryptedData: encryptedData,
-        iv: iv
+        iv: iv,
+        shareCode: shareCode || null
       }, 'post').then(res => {
         try {
           wx.setStorageSync('token', res.data.data);
