@@ -1,4 +1,5 @@
 const util = require('../../utils/util');
+const auth = require('../../utils/auth');
 Page({
   data: {
     storageArr:[]
@@ -277,8 +278,10 @@ Page({
     this.cunchu()
   },
   onShow: function () {
-    this.defaultAddress()
-    this.useDada()
+    if (auth.isLogin()) {
+      this.defaultAddress()
+      this.useDada()
+    }
     this.cunchu()
     
     console.log(this.data.checkedAll)

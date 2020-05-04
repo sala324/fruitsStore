@@ -16,16 +16,14 @@ Page({
     
   },
   useDada() {
+    if(!wx.getStorageSync('token')) return;
     util.requests('/business/user/getCurrentUser', {}).then(res => {
-      if (res.data.code == 0) {
-        this.setData({
-          userData: res.data.data,
-          shareCode: res.data.data.shareCode,
-          balance: (res.data.data.balance/100).toFixed(1)
-        })
-        wx.setStorageSync('userId', res.data.data.id);
-      }
-
+      this.setData({
+        userData: res.data.data,
+        shareCode: res.data.data.shareCode,
+        balance: (res.data.data.balance/100).toFixed(1)
+      })
+      wx.setStorageSync('userId', res.data.data.id);
     })
   },
   onShow: function () {

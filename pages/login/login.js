@@ -1,34 +1,11 @@
 const util = require('../../utils/util');
+const auth = require('../../utils/auth');
 Page({
   data: {
 
   },
   resgister(e) {
-    wx.login({
-      success: res => {
-        if (res.code) {
-          util.request('/business/user/register', {
-            code: res.code,
-            iv: e.detail.iv,
-            encryptedData: e.detail.encryptedData,
-          }, 'post').then(res => {
-            console.log(456)
-            if (res.data.code == 0) {
-              try {
-                wx.setStorageSync('token', res.data.data);
-              } catch (e) {
-                console.log('存储失败！')
-              }
-              wx.navigateBack({
-                delat:1
-              })
-            } else {
-              util.toasts('网络请求失败，点击重试', 2000)
-            }
-          })
-        }
-      }
-    });
+    auth.register(e.detail.encryptedData, e.detail.iv, () => wx.switchTab({url: '/pages/ucenter/ucenter'}));
   },
   onLoad: function (options) {
 
