@@ -242,7 +242,6 @@ Page({
       index:1,
       productArr:[]
     })
-    this.productList()
     this.setToken()
     this.tabOne()
   }
