@@ -131,7 +131,7 @@ const request = (url, data, method)=>{
     });
   });
 }
-const requests = (url, data, method) => {
+const requests = (url, data, method, hideToast) => {
   let hearderToken = getToken();
   let apiHost = app.globalData.apiHost;
   method = method || 'GET';
@@ -147,7 +147,7 @@ const requests = (url, data, method) => {
         if(res.data.code==0){
           resolve(res)
         } else {
-          toasts(res.data.msg)
+          !hideToast && toasts(res.data.msg)
         }
         
       },

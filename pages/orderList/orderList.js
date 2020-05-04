@@ -1,10 +1,11 @@
 const util = require('../../utils/util');
+const auth = require('../../utils/auth');
 Page({
   data: {
     nodata:false,
     orderArr:[],
     index:1,
-    isLogin: true,
+    isLogin: auth.isLogin(),
     size:8
   },
   orderAgain(e){
@@ -215,7 +216,7 @@ Page({
       index:1,
       orderArr:[]
     })
-    this.orderList()
+    auth.isLogin() && this.orderList()
     util.cunchu()
   }
 })

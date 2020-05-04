@@ -1,4 +1,5 @@
 const util = require('../../utils/util');
+const auth = require('../../utils/auth');
 const app = getApp();
 Page({
   data: {
@@ -27,26 +28,7 @@ Page({
     }
   },
   setToken() {
-    wx.login({
-      success: res => {
-        if (res.code) {
-          console.log(res.code)
-          console.log(123)
-          util.requests('/business/user/login', {
-            code: res.code
-          }, 'post').then(res => {
-            console.log(456)
-            if (res.data.code == 0) {
-              try {
-                wx.setStorageSync('token', res.data.data);
-              } catch (e) {
-                console.log('存储失败！')
-              }
-            }
-          })
-        }
-      }
-    });
+    auth.login();
   },
   increaseItem1(dataArrs,index,dataValue){
     let jsons = {}
