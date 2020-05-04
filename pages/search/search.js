@@ -8,7 +8,7 @@ Page({
     showDialog:true,
     keyWords:'',
     keyWordsArr: [],
-    hotWordsArr: ['苹果', '香蕉', '白菜', '土豆', '苹果', '哈密瓜', '白菜', '牛肉', '带鱼', '花菜', '羊肉', '五花肉', '西瓜', '香蕉', '武昌鱼', '菠萝']
+    hotWordsArr: []
   },
   onLoad: function (options) {
 

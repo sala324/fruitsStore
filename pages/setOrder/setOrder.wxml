@@ -20,7 +20,7 @@
         </view>
       </view>
     </view>
-    <view class="allNum" bindtap="showAll" wx:if="{{orderArr.length>3}}">共{{allnum}}件 / {{showText}}</view>
+    <view class="allNum" bindtap="showAll" wx:if="{{orderArr2.length>3}}">共{{allnum}}件 / {{showText}}</view>
     <view class="allNum" bindtap="showAll" wx:else>共{{allnum}}件</view>
     <view class="priceBox">
       <view class="priceItem">

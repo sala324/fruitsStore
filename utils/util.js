@@ -1,14 +1,4 @@
 const app = getApp();
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
 const cunchu = n =>{
   let jsons = {}
   try {
@@ -26,11 +16,14 @@ const cunchu = n =>{
     let num = 0
     let price = 0
     let checkedAll= true
+    let youhui= 0
     arrs.forEach((val, index) => {
-
       if (val.checked) {
         num += val.num
         price += val.price * val.num
+        if (val.originPrice > val.price) {
+          youhui += (val.originPrice - val.price) * val.num
+        }
       } else {
         checkedAll= false
       }
@@ -52,14 +45,12 @@ const cunchu = n =>{
     json4.storageArr = arrs
     json4.cartData = true
     json4.allnum = num
+    json4.youhui = youhui
+    json4.checkedAll = checkedAll
     json4.price = price
     return json4
   }
 
-}
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
 }
 //获取token
 const getToken = n => {
@@ -110,16 +101,6 @@ const toasts2 = (title, time = 2000) => {
     title: title,
     duration: time
   })
-}
-const errorimage=(arr, title, index)=> {
-  const promise = new Promise(function (resolve, reject) {
-    let that = this
-    let titles = title
-    let houseListTemp = arr;
-    houseListTemp[index].images[0] = 'https://static.daxahome.com/miniwx/bigman/404.jpg';
-    resolve(houseListTemp)
-  })
-  return promise
 }
 const request = (url, data, method)=>{
   wx.showLoading({
@@ -180,7 +161,6 @@ const requests = (url, data, method) => {
   });
 }
 module.exports = {
-  formatTime: formatTime,
   request: request,
   requests: requests,
   getToken: getToken,
@@ -188,7 +168,6 @@ module.exports = {
   err:err,
   toasts: toasts,
   toasts2: toasts2,
-  errorimage: errorimage,
   cunchu: cunchu,
   dialog: dialog
 }

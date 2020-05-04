@@ -2,11 +2,6 @@ const util = require('../../utils/util');
 const app = getApp();
 Page({
   data: {
-    isCertificate:false,
-    bindBank: false,
-    tradeLogo: false,
-    isCompanyer: false,
-    showmask:false,
     balance:''
   },
   onLoad(){

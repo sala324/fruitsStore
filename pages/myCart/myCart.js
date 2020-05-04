@@ -3,21 +3,27 @@ Page({
   data: {
     storageArr:[]
   },
+  newCartArr(dataArrs,index){
+    //格式化存到本地购物车的数据
+    let jsons1 = {}
+    let jsons2 = {}
+    jsons2.num = dataArrs[index].num
+    jsons2.title = dataArrs[index].title
+    jsons2.price = dataArrs[index].price
+    jsons2.checked = dataArrs[index].checked
+    jsons2.thumbnails = dataArrs[index].thumbnails
+    jsons2.originPrice = dataArrs[index].originPrice
+    jsons1[dataArrs[index].id] = jsons2
+    return jsons1
+  },
   increaseItem1(dataArrs, index, dataValue) {
     let jsons = {}
-    let jsons2 = {}
     let jsons3 = wx.getStorageSync('cartArr')
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       delete jsons3[ids]
     } else {
-      jsons2.num = dataArrs[index].num
-      jsons2.title = dataArrs[index].title
-      jsons2.price = dataArrs[index].price
-      jsons2.checked = dataArrs[index].checked
-      jsons2.thumbnails = dataArrs[index].thumbnails
-      jsons2.originPrice = dataArrs[index].originPrice
-      jsons[dataArrs[index].id] = jsons2
+      jsons=this.newCartArr(dataArrs,index)
     }
     let jsons4 = Object.assign(jsons3, jsons)
     wx.setStorageSync('cartArr', jsons4)
@@ -34,18 +40,11 @@ Page({
   },
   additem1(dataArrs, index, arrValue) {
     let jsons = {}
-    let jsons2 = {}
     let jsons3 = {}
     if (this.data.storageArr.length > 0) {
       jsons3 = wx.getStorageSync('cartArr')
     }
-    jsons2.num = dataArrs[index].num
-    jsons2.title = dataArrs[index].title
-    jsons2.price = dataArrs[index].price
-    jsons2.thumbnails = dataArrs[index].thumbnails
-    jsons2.checked = dataArrs[index].checked
-    jsons2.originPrice = dataArrs[index].originPrice
-    jsons[dataArrs[index].id] = jsons2
+    jsons=this.newCartArr(dataArrs,index)
     let jsons4 = Object.assign(jsons3, jsons)
     console.log(jsons4)
     try {
@@ -87,63 +86,14 @@ Page({
     this.cunchu()
   },
   cunchu() {
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      return false;
-    }
-    if (jsons) {
-      let arrs = []
-      for (var p in jsons) {
-        var json = jsons[p]
-        json.id = Number(p)
-        arrs.push(json)
-      }
-      let num = 0
-      let price = 0
-      this.setData({
-        checkedAll: true
-      })
-      arrs.forEach((val,index)=>{
-        
-        if(val.checked){
-          num += val.num
-          price += val.price * val.num
-        } else {
-          this.setData({
-            checkedAll: false
-          })
-        }
-      })
-      if(num>0){
-        this.setData({
-          noData:false
-        })
-      } else {
-        this.setData({
-          noData: true
-        })
-      }
-      if (num>0){
-        wx.setTabBarBadge({
-          index: 1,
-          text: num + ''
-        })
-      } else {
-        wx.removeTabBarBadge({
-          index: 1
-        })
-      }
-      
-      this.setData({
-        storageArr: arrs,
-        cartData: true,
-        allnum:num,
-        price:price
-      })
-      // console.log(this.data.productArr)
-    }
+    let jsons =util.cunchu()
+    console.log(jsons)
+    this.setData({
+      storageArr: jsons.storageArr,
+      allnum:jsons.allnum,
+      checkedAll:jsons.checkedAll,
+      price:jsons.price
+    })
 
   },
   deleteBtn() {
@@ -184,33 +134,6 @@ Page({
           })
         }
       }
-    })
-  },
-  gouwuche() {
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      console(e)
-      return false;
-    }
-    let arrs = []
-    for (var p in jsons) {
-      var json = jsons[p]
-      json.id = Number(p)
-      arrs.push(json)
-    }
-    let num = 0
-    let price = 0
-    arrs.forEach((val2, index2) => {
-      num += val2.num
-      price += val2.price * val2.num
-    })
-    price = price.toFixed(1)
-    
-    this.setData({
-      price: price,
-      allnum: num
     })
   },
   jisuan() {
@@ -280,8 +203,6 @@ Page({
     this.defaultAddress()
     this.useDada()
     this.cunchu()
-    
-    console.log(this.data.checkedAll)
   },
   
 })

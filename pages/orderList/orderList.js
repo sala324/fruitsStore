@@ -18,8 +18,8 @@ Page({
       productIdList: arr.join(',')
     }).then(res => {
       if (res.data.code == 0) {
-        let jsonIn2 = {}
         if (res.data.data.length == arr2.length){
+          let jsonIn2 = {}
           res.data.data.forEach((val, index) => {
             let json = {}
             let json2 = {}
@@ -30,11 +30,12 @@ Page({
                   console.log(val2.number)
                 }
               })
-              json.originPrice = val.originPrice
+              json.originPrice = val.originPrice/100
               json.price = val.price / 100
               json.id = val.id
               json.thumbnails = val.thumbnails
               json.title = val.title
+              json.checked = true
               json.description = val.description
               json2[val.id] = json
               jsonIn2 = Object.assign(json2, jsonIn2)
@@ -51,9 +52,6 @@ Page({
         }
       }
     })
-    // wx.navigateTo({
-    //   url: '/pages/setOrder/setOrder',
-    // })
   },
   turnDetail(e){
     console.log(e)
@@ -66,59 +64,6 @@ Page({
       this.data.index++
       this.orderList()
     }
-  },
-  cunchu() {
-    console.log(1)
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      return false;
-    }
-    if (jsons) {
-      let arrs = []
-      for (var p in jsons) {
-        var json = jsons[p]
-        json.id = Number(p)
-        arrs.push(json)
-      }
-      let num = 0
-      let price = 0
-      arrs.forEach((val, index) => {
-        if(val.checked){
-          num += val.num
-          price += val.price * val.num
-        }
-      })
-      if (num > 0) {
-        this.setData({
-          noData: false
-        })
-      } else {
-        this.setData({
-          noData: true
-        })
-      }
-      if (num > 0) {
-        wx.setTabBarBadge({
-          index: 1,
-          text: num + ''
-        })
-      } else {
-        wx.removeTabBarBadge({
-          index: 1
-        })
-      }
-
-      this.setData({
-        storageArr: arrs,
-        cartData: true,
-        allnum: num,
-        price: price
-      })
-      // console.log(this.data.productArr)
-    }
-
   },
   orderTime() {
     util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_PAY_TIMEOUT' }).then(res => {
@@ -271,6 +216,6 @@ Page({
       orderArr:[]
     })
     this.orderList()
-    this.cunchu()
+    util.cunchu()
   }
 })

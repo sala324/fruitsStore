@@ -72,11 +72,10 @@ Page({
       var json = jsons[p]
       if (json.checked){
         json.id = Number(p)
-
         json2.productId = Number(p),
-          json2.productId = Number(p),
-          json2.number = Number(json.num),
-          arrs.push(json)
+        json2.productId = Number(p),
+        json2.number = Number(json.num),
+        arrs.push(json)
         arrs2.push(json2)
       }
       
