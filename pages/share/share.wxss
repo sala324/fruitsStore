@@ -31,7 +31,7 @@ page{
   border-radius: 10rpx;
   padding: 20rpx;
   background: #fff;
-  height: 440rpx;
+  height: 380rpx;
   overflow: auto;
 }
 .item{
@@ -70,12 +70,12 @@ page{
 }
  
 .swiper_container {
- height: 60rpx;
+ height: 50rpx;
  width: 90%;
 }
  
 .swiper_item {
- height: 60rpx;
+ height: 50rpx;
  width: 90%;
  font-size: 26rpx;
  white-space: nowrap;
