@@ -70,23 +70,31 @@ Page({
     for (var p in jsons) {
       let json2={}
       var json = jsons[p]
-      json.id = Number(p)
-      json2.productId = Number(p),
-      json2.number = Number(json.num),
-      arrs.push(json)
-      arrs2.push(json2)
+      if (json.checked){
+        json.id = Number(p)
+
+        json2.productId = Number(p),
+          json2.productId = Number(p),
+          json2.number = Number(json.num),
+          arrs.push(json)
+        arrs2.push(json2)
+      }
+      
     }
     let num = 0
     let price = 0
     let youhui=0
     arrs.forEach((val2, index2) => {
-      num += val2.num
-      price += val2.price * val2.num
-      val2.price1 = val2.price * val2.num
-      val2.price2 = val2.originPrice * val2.num
-      if (val2.originPrice>val2.price){
-        youhui += (val2.originPrice - val2.price) * val2.num
+      if(val2.checked){
+        num += val2.num
+        price += val2.price * val2.num
+        val2.price1 = val2.price * val2.num
+        val2.price2 = val2.originPrice * val2.num
+        if (val2.originPrice > val2.price) {
+          youhui += (val2.originPrice - val2.price) * val2.num
+        }
       }
+      
     })
     price = price.toFixed(1)
     let price3 = 0

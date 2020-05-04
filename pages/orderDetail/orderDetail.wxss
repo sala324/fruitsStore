@@ -5,6 +5,9 @@ page{
   background: #1296db;
   height: 60rpx;
 }
+.djsWrap{
+  height: 50rpx;
+}
 .addressWrap{
   position: absolute;
   margin: -40rpx 30rpx 0;
@@ -172,5 +175,8 @@ page{
   flex: 1;
 }
 .unpayBox{
-  height: 36rpx;
+  height: 80rpx;
+}
+.quxiaoBox{
+  height: 30rpx;
 }

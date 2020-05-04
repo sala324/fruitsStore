@@ -5,6 +5,8 @@
     <view class="state" wx:if="{{status==0}}">待支付</view>
     <view class="state" wx:if="{{status==-1}}">已取消</view>
     <view class="orderInfo" wx:if="{{status==1}}">订单号：1335654651231215</view>
+    <view class="orderInfo" wx:if="{{status==0}}">剩余支付时间：{{sytime}}</view>
+    
     <view class="payWrap" wx:if="{{status=='0'}}">
       <view class="cancel" bindtap="cancelOrder">取消订单</view>
       <view class="pay" bindtap="payOrder">去支付</view>
@@ -14,6 +16,7 @@
     </view>
   </view>
   <view class="unpayBox" wx:if="{{status==0}}"></view>
+  <view class="quxiaoBox" wx:if="{{status==-1}}"></view>
   <view class="wrap">
     <view class="orderBox {{showAll?'showAll':''}}">
       <view class="orderItem" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<showItem}}">

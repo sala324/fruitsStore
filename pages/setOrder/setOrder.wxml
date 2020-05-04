@@ -9,7 +9,7 @@
   </view>
   <view class="wrap">
     <view class="orderBox {{showAll?'showAll':''}}">
-      <view class="orderItem" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<showItem}}">
+      <view class="orderItem" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<showItem && item.checked}}">
         <image src="{{item.thumbnails}}"></image>
         <view class="itemInfo">
           <view class="name">{{item.title}}</view>

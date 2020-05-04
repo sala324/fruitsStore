@@ -3,17 +3,6 @@ Page({
   data: {
     storageArr:[]
   },
-  
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
   increaseItem1(dataArrs, index, dataValue) {
     let jsons = {}
     let jsons2 = {}
@@ -25,6 +14,7 @@ Page({
       jsons2.num = dataArrs[index].num
       jsons2.title = dataArrs[index].title
       jsons2.price = dataArrs[index].price
+      jsons2.checked = dataArrs[index].checked
       jsons2.thumbnails = dataArrs[index].thumbnails
       jsons2.originPrice = dataArrs[index].originPrice
       jsons[dataArrs[index].id] = jsons2
@@ -53,6 +43,7 @@ Page({
     jsons2.title = dataArrs[index].title
     jsons2.price = dataArrs[index].price
     jsons2.thumbnails = dataArrs[index].thumbnails
+    jsons2.checked = dataArrs[index].checked
     jsons2.originPrice = dataArrs[index].originPrice
     jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
@@ -74,8 +65,28 @@ Page({
     this.additem1(dataArrs, index, 'storageArr')
     this.cunchu()
   },
+  toggleChecked(e){
+    let arr=this.data.storageArr
+    arr[e.currentTarget.dataset.index].checked = !arr[e.currentTarget.dataset.index].checked
+    this.setData({
+      checkedAll: true
+    })
+    arr.forEach((val,index)=>{
+      if(val.checked==false){
+        this.setData({
+          checkedAll: false
+        })
+      }
+    })
+    this.setData({
+      storageArr:arr
+    })
+    let jsons=wx.getStorageSync('cartArr')
+    jsons[e.currentTarget.dataset.id].checked = !jsons[e.currentTarget.dataset.id].checked
+    wx.setStorageSync('cartArr', jsons)
+    this.cunchu()
+  },
   cunchu() {
-    console.log(1)
     let jsons = {}
     try {
       jsons = wx.getStorageSync('cartArr')
@@ -91,9 +102,19 @@ Page({
       }
       let num = 0
       let price = 0
+      this.setData({
+        checkedAll: true
+      })
       arrs.forEach((val,index)=>{
-        num +=val.num
-        price += val.price * val.num
+        
+        if(val.checked){
+          num += val.num
+          price += val.price * val.num
+        } else {
+          this.setData({
+            checkedAll: false
+          })
+        }
       })
       if(num>0){
         this.setData({
@@ -225,44 +246,42 @@ Page({
 
     })
   },
+  checkAll() {
+    this.setData({
+      checkedAll: !this.data.checkedAll
+    })
+    if (this.data.checkedAll){
+      this.data.storageArr.forEach((val,index)=>{
+        val.checked=true
+      })
+    } else {
+      this.data.storageArr.forEach((val, index) => {
+        val.checked = false
+      })
+    }
+    let json={}
+    this.data.storageArr.forEach((val,index)=>{
+      let jsons2={}
+      jsons2.num = val.num
+      jsons2.title = val.title
+      jsons2.price = val.price
+      jsons2.thumbnails = val.thumbnails
+      jsons2.checked = val.checked
+      jsons2.originPrice = val.originPrice
+      json[val.id] = jsons2
+    })
+    wx.setStorageSync('cartArr', json)
+    this.setData({
+      storageArr: this.data.storageArr
+    })
+    this.cunchu()
+  },
   onShow: function () {
     this.defaultAddress()
     this.useDada()
     this.cunchu()
+    
+    console.log(this.data.checkedAll)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

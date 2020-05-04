@@ -85,8 +85,10 @@ Page({
       let num = 0
       let price = 0
       arrs.forEach((val, index) => {
-        num += val.num
-        price += val.price * val.num
+        if(val.checked){
+          num += val.num
+          price += val.price * val.num
+        }
       })
       if (num > 0) {
         this.setData({
@@ -117,6 +119,13 @@ Page({
       // console.log(this.data.productArr)
     }
 
+  },
+  orderTime() {
+    util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_PAY_TIMEOUT' }).then(res => {
+      if (res.data.code == 0) {
+        
+      }
+    })
   },
   onLoad: function (options) {
     
@@ -186,7 +195,6 @@ Page({
           let num = 0
           let price = 0
           let youhui = 0
-          console.log(val)
           if (val.orderItemList){
             val.orderItemList.forEach((val2, index2) => {
               num += val2.number

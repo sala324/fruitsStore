@@ -169,7 +169,7 @@ page{
 .cartWrap .num{
   color: #333;
   display: inline-block;
-  width: 260rpx;
+  /* width: 260rpx; */
   font-size: 30rpx;
   text-align: left;
   height: 90rpx;
@@ -194,4 +194,53 @@ page{
 }
 .cartWrap .confrim.gray{
   background: #ccc;
+}
+.circle{
+  display:inline-block;
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+  border: 1rpx solid #666;
+  box-sizing: border-box;
+}
+.checked {
+  width:40rpx;
+  height:40rpx;
+  margin: 50rpx 10rpx 0 0;
+  border-radius:40rpx ;
+  background:#1296db;
+  display:inline-block;
+  position: relative; 
+}
+    
+.checked:before, .checked::after {
+    content:"";
+    height:28rpx;
+    width:6rpx;
+    border-radius: 10rpx;
+    display:block;
+    background:white;
+    position: absolute;
+    top:6rpx;/*40-6=34*/
+    left:20rpx;/*make the two rects in the middle of the cycle */
+    transform:rotate(45deg);    
+    -ms-transform:rotate(45deg);    
+}
+.checked::before {
+    height:15rpx;
+    transform: rotate(-45deg);
+    -ms-transform:rotate(-45deg);
+    position: absolute;
+    top:18rpx;/*40-18=12  */
+    left:8rpx;       
+}
+.quanxuan{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.quanxuan view{
+  margin: 10rpx 10rpx 0 0;
 }

@@ -83,6 +83,7 @@ Page({
       jsons2.num = dataArrs[index].num
       jsons2.title = dataArrs[index].title
       jsons2.price = dataArrs[index].price
+      jsons2.checked = true
       jsons2.thumbnails = dataArrs[index].thumbnails
       jsons2.originPrice = dataArrs[index].originPrice
       jsons[dataArrs[index].id] = jsons2
@@ -117,6 +118,7 @@ Page({
     jsons2.num = dataArrs[index].num
     jsons2.title = dataArrs[index].title
     jsons2.price = dataArrs[index].price
+    jsons2.checked = true
     jsons2.thumbnails = dataArrs[index].thumbnails
     jsons2.originPrice = dataArrs[index].originPrice
     jsons[dataArrs[index].id] = jsons2
@@ -207,8 +209,11 @@ Page({
     let num = 0
     let price = 0
     arrs.forEach((val2, index2) => {
+      if(val2.checked){
         num += val2.num
-      price += val2.price * val2.num
+        price += val2.price * val2.num
+      }
+        
     })
     price = price.toFixed(1)
     if(num>0){
@@ -296,32 +301,6 @@ Page({
 
     })
   },
-  useDada() {
-    util.requests('/business/user/getCurrentUser', {}).then(res => {
-      if (res.data.code == 0) {
-      } else {
-        this.setData({
-          isLogin: false
-        })
-      }
-
-    })
-  },
-  defaultAddress() {
-    util.requests('/business/address/getDefaultAddress', {}).then(res => {
-      if (res.data.code == 0) {
-        if(res.data.data){
-          this.setData({
-            haveAddress: true
-          })
-        } else {
-          this.setData({
-            haveAddress: false
-          })
-        }
-      }
-    })
-  },
   jisuan(){
     if(this.data.haveAddress && this.data.isLogin){
       wx.navigateTo({
@@ -377,8 +356,6 @@ Page({
       productArr:[]
     })
     this.productList()
-    this.useDada()
-    this.defaultAddress()
     this.setToken()
     this.tabOne()
   }
