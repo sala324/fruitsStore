@@ -11,7 +11,10 @@ const cunchu = n =>{
     for (var p in jsons) {
       var json = jsons[p]
       json.id = Number(p)
-      arrs.push(json)
+      if(p!='NaN'){
+        arrs.push(json)
+      }
+      
     }
     let num = 0
     let price = 0

@@ -373,5 +373,5 @@ input{
   border: 1rpx solid #eee;
 }
 .nodata{
-  height: 40vh;
+  height: 60vh;
 }

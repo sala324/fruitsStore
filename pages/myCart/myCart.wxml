@@ -4,18 +4,20 @@
       <view class="deleteBtn" catchtap="deleteBtn1" ><image src="../../images/icon/del1.png"></image> 清空购物车</view>
     </view>
     <view class="itemWrap">
-      <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="toggleChecked">
-        <view class="checked" wx:if="{{item.checked}}"></view>
-        <view class="circle circle2" wx:else></view>
+      <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}">
+        <view class="checkWrap" data-id="{{item.id}}" data-index="{{index}}" bindtap="toggleChecked">
+          <view class="checked" wx:if="{{item.checked}}"></view>
+          <view class="circle circle2" wx:else></view>
+        </view>
         <image src="{{item.thumbnails}}"></image>
         <view class="itemInfo">
           <view class="itemName">{{item.title}}</view>
           <view class="itemPrice">
             <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
             <view class="itemNumWrap">
-              <view class="increase" data-id="{{item.id}}" data-index="{{index}}" catchtap="increaseItem2"></view>
+              <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
               <text class="itemNum">{{item.num}}</text>
-              <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" catchtap="additem2"></view>
+              <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" bindtap="additem2"></view>
             </view>
           </view>
         </view>
@@ -33,6 +35,6 @@
 
   </view>
   <view class='nodata' wx:if="{{noData}}">
-    <image src='https://caojiantao.site:8080/9240ea23-ebf8-4760-8edc-c433cc78a160.png'></image>
+    <image src='https://caojiantao.site:8080/c0df16ce-c760-40ac-b410-94653210fc37.png'></image>
   </view>
   </view>

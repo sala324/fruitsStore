@@ -47,7 +47,6 @@ Page({
     }
     jsons=this.newCartArr(dataArrs,index)
     let jsons4 = Object.assign(jsons3, jsons)
-    console.log(jsons4)
     try {
       wx.setStorageSync('cartArr', jsons4)
     } catch (e) {
@@ -88,7 +87,6 @@ Page({
   },
   cunchu() {
     let jsons =util.cunchu()
-    console.log(jsons)
     this.setData({
       storageArr: jsons.storageArr,
       allnum:jsons.allnum,

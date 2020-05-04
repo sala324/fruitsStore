@@ -55,32 +55,33 @@ Page({
           json.price = res.data.data.totalFee / 100
           json.thumbnails = '../../images/icon/product.jpg'
           res.data.data.orderItemList.push(json)
-          console.log(22)
         }
         let that=this
         if (res.data.data.status == 0) {
-          this.setData({
-            tt: setInterval(function () {
-              let times = res.data.data.gmtCreate.replace(/-/g, '/')
-              res.data.data.end_date = Date.parse(new Date(times)) / 1000 + 30 * 60
-              restTime = res.data.data.end_date - Date.parse(new Date()) / 1000
+          aa()
+          function aa(){
+            let times = res.data.data.gmtCreate.replace(/-/g, '/')
+            res.data.data.end_date = Date.parse(new Date(times)) / 1000 + 30 * 60
+            restTime = res.data.data.end_date - Date.parse(new Date()) / 1000
 
-              let sytime = ''
-              if (restTime <= 0) {
-                clearInterval(tt);
-              }
-              // let starthours = Math.floor(restTime % 86400 / 3600)
-              let startMinutes = Math.floor(restTime % 86400 % 3600 / 60)
-              let startSec = Math.floor(restTime % 86400 % 3600 % 60 % 60)
-              sytime = startMinutes + '分钟' + startSec + '秒'
-              console.log(sytime)
-              restTime = restTime - 1
-              res.data.data.restTime = restTime
-              res.data.data.sytime = sytime
-              that.setData({
-                sytime: sytime
-              })
-            }, 1000)
+            let sytime = ''
+            if (restTime <= 0) {
+              clearInterval(tt);
+            }
+            // let starthours = Math.floor(restTime % 86400 / 3600)
+            let startMinutes = Math.floor(restTime % 86400 % 3600 / 60)
+            let startSec = Math.floor(restTime % 86400 % 3600 % 60 % 60)
+            sytime = startMinutes + '分钟' + startSec + '秒'
+            console.log(sytime)
+            restTime = restTime - 1
+            res.data.data.restTime = restTime
+            res.data.data.sytime = sytime
+            that.setData({
+              sytime: sytime
+            })
+          }
+          this.setData({
+            tt: setInterval(aa, 1000)
           })
         }
         this.setData({

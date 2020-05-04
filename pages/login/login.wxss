@@ -1,13 +1,18 @@
 page{
-  background: #007AFF;
+  
 }
 .login{
   height: 100vh;
-  display: flex;
-  align-items: center; /*定义body的元素垂直居中*/
-  justify-content: center; /*定义body的里的元素水平居中*/
+  text-align: center;
+}
+image{
+  margin : 20vh 0 5vh;
+  width: 120rpx;
+  height: 120rpx;
 }
 .denglu{
+  margin-top: 10vh;
   width: 660rpx;
-  color: #007AFF;
+  color: #fff;
+  background: #007AFF;
 }

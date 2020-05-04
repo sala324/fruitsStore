@@ -67,34 +67,13 @@ Page({
     })
   },
   gouwuche() {
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      console(e)
-      return false;
-    }
-    let arrs = []
-    for (var p in jsons) {
-      var json = jsons[p]
-      json.id = Number(p)
-      arrs.push(json)
-    }
-    let num = 0
-    let price = 0
-    arrs.forEach((val2, index2) => {
-      num += val2.num
-      price += val2.price * val2.num
-    })
-    price=price.toFixed(1)
+    let json=util.cunchu()
     this.setData({
-      price: price,
-      allnum: num
+      allnum: json.allnum
     })
   },
   increaseItem1(dataArrs, index, dataValue) {
     let jsons = {}
-    let jsons2 = {}
     let jsons3 = wx.getStorageSync('cartArr')
     console.log(jsons3)
 
@@ -102,12 +81,7 @@ Page({
       let ids = dataArrs[index].id
       delete jsons3[ids]
     } else {
-      jsons2.num = dataArrs[index].num
-      jsons2.title = dataArrs[index].title
-      jsons2.price = dataArrs[index].price
-      jsons2.thumbnails = dataArrs[index].thumbnails
-      jsons2.originalPrice = dataArrs[index].originalPrice
-      jsons[dataArrs[index].id] = jsons2
+      jsons = this.newCartArr(dataArrs, index)
     }
     let jsons4 = Object.assign(jsons3, jsons)
     wx.setStorageSync('cartArr', jsons4)
@@ -130,19 +104,34 @@ Page({
     this.increaseItem1(dataArrs, index, 'storageArr')
     this.cunchu()
   },
+  newCartArr(dataArrs, index) {
+    //格式化存到本地购物车的数据
+    let jsons1 = {}
+    let jsons2 = {}
+    jsons2.num = dataArrs[index].num
+    jsons2.title = dataArrs[index].title
+    jsons2.price = dataArrs[index].price
+    jsons2.checked = true
+    jsons2.thumbnails = dataArrs[index].thumbnails
+    jsons2.originPrice = dataArrs[index].originPrice
+    jsons1[dataArrs[index].id] = jsons2
+    return jsons1
+  },
   additem1(dataArrs, index, arrValue) {
-    let jsons = {}
+    // let jsons = {}
     let jsons2 = {}
     let jsons3 = {}
     if (this.data.storageArr.length > 0) {
       jsons3 = wx.getStorageSync('cartArr')
     }
-    jsons2.num = dataArrs[index].num
-    jsons2.title = dataArrs[index].title
-    jsons2.price = dataArrs[index].price
-    jsons2.thumbnails = dataArrs[index].thumbnails
-    jsons2.originalPrice = dataArrs[index].originalPrice
-    jsons[dataArrs[index].id] = jsons2
+    let jsons =this.newCartArr(dataArrs, index)
+    // jsons2.num = dataArrs[index].num
+    // jsons2.title = dataArrs[index].title
+    // jsons2.price = dataArrs[index].price
+    // jsons2.thumbnails = dataArrs[index].thumbnails
+    // jsons2.checked = true
+    // jsons2.originalPrice = dataArrs[index].originalPrice
+    // jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
     console.log(jsons4)
     try {
@@ -155,13 +144,6 @@ Page({
       [arrValue]: dataArrs
     })
   },
-  additem2(e) {
-    let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
-    let index = e.currentTarget.dataset.index
-    this.additem1(dataArrs, index, 'storageArr')
-    this.cunchu()
-  },
   addItem(e) {
     let dataArrs = this.data.productArr
     dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
@@ -170,38 +152,21 @@ Page({
     this.cunchu()
   },
   cunchu() {
-    console.log(123)
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      return false;
-    }
-    if (jsons) {
-      let arrs = []
-      for (var p in jsons) {
-        var json = jsons[p]
-        json.id = Number(p)
-        arrs.push(json)
-      }
-      let arr5 = []
-      let num = 0
-      let price = 0
-      this.data.productArr.forEach((val, index) => {
-        arrs.forEach((val2, index2) => {
-          if (val2.id === val.id) {
-            val.num = val2.num
-          }
-        })
-        arr5.push(val)
+    let jsons = util.cunchu()
+    let arr5=[]
+    this.data.productArr.forEach((val, index) => {
+      jsons.storageArr.forEach((val2, index2) => {
+        if (val2.id === val.id) {
+          val.num = val2.num
+        }
       })
-      this.gouwuche()
-      this.setData({
-        storageArr: arrs,
-        cartData: true,
-        productArr: arr5
-      })
-    }
+      arr5.push(val)
+    })
+    this.setData({
+      storageArr: jsons.storageArr,
+      allnum: jsons.allnum,
+      productArr: arr5
+    })
 
   },
   clearAll(){

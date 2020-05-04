@@ -203,13 +203,13 @@ page{
   border: 1rpx solid #666;
   box-sizing: border-box;
 }
-.circle2{
-  margin: 50rpx 10rpx 0 0;
+.checkWrap{
+  display: inline-block;
+  padding: 50rpx 10rpx;
 }
 .checked {
   width:40rpx;
   height:40rpx;
-  margin: 50rpx 10rpx 0 0;
   border-radius:40rpx ;
   background:#1296db;
   display:inline-block;
