@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "分享有礼"
+  "navigationBarTitleText": "分享有礼",
+  "navigationBarBackgroundColor": "#f74f4f",
+  "navigationBarTextStyle": "white"
 }

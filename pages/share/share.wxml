@@ -1,12 +1,27 @@
 <view class="wrap">
-  <view class="title">拓客奖励规则</view>
+<view class="swiper-view">
+  <image class="laba" src="../../images/icon/laba.png"></image>
+ <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+  <block wx:for="{{msgList}}">
+   <swiper-item>
+    <view class="swiper_item">{{item.inviteName}}刚刚成功邀请了{{item.beInvitedName}}</view>
+   </swiper-item>
+  </block>
+ </swiper>
+</view>
+  <image class="topImg" src="../../images/icon/money.png"></image>
+  <view class="title">分享奖励规则</view>
   <view class="about">根据用户分享给新用户，新用户注册以后平台会给用户奖励，奖励可以用于平台消费。</view>
-  <view class="title">拓客明细</view>
+  <view class="title">分享明细</view>
   <view class="itemWrap">
-    <view class="item" wx:for="{{5}}" wx:key="index">
-      <text class="name">张三</text>
-      <text class="date">2020-5-2</text>
+    <view class="item" wx:for="{{myList}}" wx:key="index">
+      <text class="name">{{item.beInvitedName}}</text>
+      <text class="date">{{item.gmtCreate}}</text>
+    </view>
+    <view class='nodata' wx:if="{{noData}}">
+      <image src='https://caojiantao.site:8080/c0df16ce-c760-40ac-b410-94653210fc37.png'></image>
     </view>
   </view>
+  <view class="bottomBox"></view>
   <button open-type="share" class="btn">去分享</button>
 </view>

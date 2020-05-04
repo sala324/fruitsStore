@@ -1,36 +1,87 @@
 /* pages/share/share.wxss */
 page{
-  /* background: #eceff5; */
+  background: #f74f4f;
 }
 .wrap{
   margin: 20rpx;
-  background: #fff;
+  text-align: center;
+  /* background: #fff; */
+}
+.topImg{
+  margin: 0 auto;
+  width: 300rpx;
+  height: 300rpx
 }
 .title{
   font-size: 32rpx;
   line-height: 40rpx;
-  padding-bottom: 20rpx;
+  padding: 20rpx 0;
+  color: #fff;
+
 }
 .about{
+  text-align: left;
   font-size: 26rpx;
   line-height: 40rpx;
   padding-bottom: 20rpx;
+  color: #fff;
 }
 .itemWrap{
   border: 1rpx solid #eee;
   border-radius: 10rpx;
   padding: 20rpx;
+  background: #fff;
+  height: 440rpx;
+  overflow: auto;
 }
 .item{
-  height: 70rpx;
-  line-height: 70rpx;
+  height: 74rpx;
+  line-height: 74rpx;
   display: flex;
   border-bottom: 1rpx solid #eee;
 }
 .name{
   flex: 1;
+  text-align: left;
   color: #333;
 }
 .date{
   color: #666;
+}
+.btn{
+  background: #fff;
+  color: #f74f4f;
+}
+.nodata{
+  height: 300rpx;
+}
+.laba{
+  width: 40rpx;
+  height: 40rpx;
+}
+.swiper-view{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ border-radius: 5rpx;
+ background: #fff;
+ color: #f74f4f;
+}
+ 
+.swiper_container {
+ height: 60rpx;
+ width: 90%;
+}
+ 
+.swiper_item {
+ height: 60rpx;
+ width: 90%;
+ font-size: 26rpx;
+ white-space: nowrap;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ color: #f74f4f;
 }
