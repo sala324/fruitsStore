@@ -44,7 +44,7 @@ Page({
     return {
       title: '来郭鲜生，新鲜时蔬任您挑。',
       imageUrl: 'https://caojiantao.site:8080/732fe900-4e07-4f12-9f6b-1dd3447f3a4d.png',
-      path: '/pages/index/index?shareCode={{shareCode}}',
+      path: '/pages/index/index?shareCode=' + that.data.shareCode,
       success: function (res) {
         console.log(成功)
       },
