@@ -1,4 +1,6 @@
 const util = require('../../utils/util');
+const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+let mapSdk;
 const app = getApp();
 Page({
   data: {
@@ -7,6 +9,9 @@ Page({
     mobile:'',
     addressName:'',
     address:'',
+    province:'',
+    city:'',
+    district:'',
     checked:false,
     allAddress:'',
     addressList:[],
@@ -23,10 +28,37 @@ Page({
       success: function (res) {
         var address = res.name; // 以这个地址为例
         var address2 = res.address; // 以这个地址为例
-        that.setData({
-          addressName: address,
-          address: address2,
-          roomNumber:''
+        // 正则匹配 省市区
+        let path = address2.match(/.+?(省|市|自治区|自治州|行政区)/g);
+        if (path && path.length === 3) {
+          that.setData({
+            addressName: address,
+            address: address2,
+            province: path[0],
+            city: path[1],
+            district: path[2],
+            roomNumber:''
+          })
+          return;
+        }
+        // 逆编码二次解析省市区
+        mapSdk.reverseGeocoder({
+          location: {latitude: res.latitude,longitude: res.longitude},
+          success: function (res) {
+            let component = res.result.address_component;
+            path = [component.province, component.city, component.district];
+            that.setData({
+              addressName: address,
+              address: address2,
+              province: path[0],
+              city: path[1],
+              district: path[2],
+              roomNumber:''
+            })
+          },
+          fail: function(err){
+            console.log("qqmapsdk-err",err)
+          }
         })
       },
     })
@@ -85,6 +117,9 @@ Page({
   },
   addAddressBtn() {
     util.requests('/business/address/saveAddress', {
+      province: this.data.province,
+      city: this.data.city,
+      district: this.data.district,
       building: this.data.addressName,
       detail: this.data.roomNumber,
       deliveryName: this.data.linkMan,
@@ -130,7 +165,10 @@ Page({
     console.log(arr2)
   },
   onLoad(options){
-    console.log(options)
+    // 实例化地图 sdk
+    mapSdk = new QQMapWX({
+      key: 'GU2BZ-ZCCRG-DHHQQ-ICSQJ-B5FRV-4RFBT'
+    });
     if (options.reset){
       if(options.checked=='true'){
         this.setData({
