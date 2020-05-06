@@ -47,12 +47,7 @@ Page({
       })
       delete jsons3[ids]
     } else {
-      jsons2.num = dataArrs[index].num
-      jsons2.title = dataArrs[index].title
-      jsons2.price = dataArrs[index].price
-      jsons2.checked = true
-      jsons2.thumbnails = dataArrs[index].thumbnails
-      jsons2.originPrice = dataArrs[index].originPrice
+      jsons2=util.jsonBox(dataArrs[index],true)
       jsons[dataArrs[index].id] = jsons2
     }
     let jsons4 = Object.assign(jsons3, jsons)
@@ -77,20 +72,13 @@ Page({
   },
   additem1(dataArrs,index,arrValue){
     let jsons = {}
-    let jsons2 = {}
     let jsons3 = {}
     if (this.data.storageArr.length > 0) {
       jsons3 = wx.getStorageSync('cartArr')
     }
-    jsons2.num = dataArrs[index].num
-    jsons2.title = dataArrs[index].title
-    jsons2.price = dataArrs[index].price
-    jsons2.checked = true
-    jsons2.thumbnails = dataArrs[index].thumbnails
-    jsons2.originPrice = dataArrs[index].originPrice/100
+    let jsons2=util.jsonBox(dataArrs[index],true)
     jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
-    console.log(jsons4)
     try {
       wx.setStorageSync('cartArr', jsons4)
     } catch (e) {
@@ -164,18 +152,21 @@ Page({
   cunchu(){
       let arr5 = []
       let json=util.cunchu()//拿出本地缓存的数据
-      this.data.productArr.forEach((val, index) => {
-        json.storageArr.forEach((val2, index2) => {
-          if (val2.id === val.id) {//展示的当前商品列表跟购物车列表匹配
-            val.num = val2.num
-          }
+      if (json){
+        this.data.productArr.forEach((val, index) => {
+          json.storageArr.forEach((val2, index2) => {
+            if (val2.id === val.id) {//展示的当前商品列表跟购物车列表匹配
+              val.num = val2.num
+            }
+          })
+          arr5.push(val)
         })
-        arr5.push(val)
-      })
-      this.setData({
-        storageArr: json.storageArr,
-        productArr: arr5
-      })
+        this.setData({
+          storageArr: json.storageArr,
+          productArr: arr5
+        })
+      }
+      
   },
   loadMore() {
     if (this.data.totalPage > this.data.index) {

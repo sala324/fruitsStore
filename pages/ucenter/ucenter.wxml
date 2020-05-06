@@ -24,6 +24,11 @@
     <text class='title'>线下付款</text>
     <text class="go"></text>
   </navigator>
+  <navigator url="/pages/coupon/coupon" class='item reset'>
+    <image src="../../images/icon/quan2.png"></image>
+    <text class='title'>优惠券</text>
+    <text class="go"></text>
+  </navigator>
   <navigator url="/pages/addressList/addressList" class='item'>
     <image src="../../images/icon/address.png"></image>
     <text class='title'>收货地址</text>

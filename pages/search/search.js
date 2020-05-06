@@ -52,7 +52,6 @@ Page({
   },
   showCart2() {
     let showCart = this.data.showCart
-    let that = this
     if (this.data.allnum > 0) {
       showCart = !showCart
       this.setData({
@@ -75,8 +74,6 @@ Page({
   increaseItem1(dataArrs, index, dataValue) {
     let jsons = {}
     let jsons3 = wx.getStorageSync('cartArr')
-    console.log(jsons3)
-
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       delete jsons3[ids]
@@ -107,33 +104,17 @@ Page({
   newCartArr(dataArrs, index) {
     //格式化存到本地购物车的数据
     let jsons1 = {}
-    let jsons2 = {}
-    jsons2.num = dataArrs[index].num
-    jsons2.title = dataArrs[index].title
-    jsons2.price = dataArrs[index].price
-    jsons2.checked = true
-    jsons2.thumbnails = dataArrs[index].thumbnails
-    jsons2.originPrice = dataArrs[index].originPrice
+    jsons2=util.jsonBox(dataArrs[index],true)
     jsons1[dataArrs[index].id] = jsons2
     return jsons1
   },
   additem1(dataArrs, index, arrValue) {
-    // let jsons = {}
-    let jsons2 = {}
     let jsons3 = {}
     if (this.data.storageArr.length > 0) {
       jsons3 = wx.getStorageSync('cartArr')
     }
     let jsons =this.newCartArr(dataArrs, index)
-    // jsons2.num = dataArrs[index].num
-    // jsons2.title = dataArrs[index].title
-    // jsons2.price = dataArrs[index].price
-    // jsons2.thumbnails = dataArrs[index].thumbnails
-    // jsons2.checked = true
-    // jsons2.originalPrice = dataArrs[index].originalPrice
-    // jsons[dataArrs[index].id] = jsons2
     let jsons4 = Object.assign(jsons3, jsons)
-    console.log(jsons4)
     try {
       wx.setStorageSync('cartArr', jsons4)
     } catch (e) {
@@ -244,15 +225,7 @@ Page({
       // size: this.data.size
     }).then(res => {
       if (res.data.code == 0) {
-        if (res.data.data.records.length > 0) {
-          this.setData({
-            noData: false
-          })
-        } else {
-          this.setData({
-            noData: true
-          })
-        }
+        util.judgeData(res.data.data.records.length == 0,'noData',this)
         res.data.data.records.forEach((val, index) => {
           val.num = 0
           val.originPrice = val.originPrice / 100

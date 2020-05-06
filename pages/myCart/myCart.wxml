@@ -27,14 +27,14 @@
   <view class="cartBox"></view>
   <view class="cartWrap {{hideCart?'hide':''}}">
     <view class="quanxuan" bindtap="checkAll"><view class="{{checkedAll?'checked':'circle'}}"></view> 全选</view>
-    <view class="price">￥{{price}}</view>
-    <view class="num">数量：{{allnum}}件</view>
+    <view class="price">￥{{price | 0}}</view>
+    <view class="num">数量：{{allnum | 0}}件</view>
     <view bindtap="jisuan" wx:if="{{allnum>0}}"  wx:if="{{allnum>0}}" class="confrim">去结算</view>
     <text wx:else class="confrim gray">去结算</text>
     
 
   </view>
-  <view class='nodata' wx:if="{{noData}}">
+  <view class='nodata' wx:if="{{storageArr.length==0}}">
     <image src='https://caojiantao.site:8080/c0df16ce-c760-40ac-b410-94653210fc37.png'></image>
   </view>
   </view>

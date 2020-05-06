@@ -1,0 +1,119 @@
+page{
+  font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
+  background: #eceff5;
+}
+.navWrap{
+  display: flex;
+  margin: 0 30rpx;
+}
+.nav{
+  flex: 1;
+  text-align: center;
+  line-height: 70rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 30rpx 20rpx 10rpx;
+}
+.nav.cur{
+  color: #1296db;
+}
+.coupon{
+  margin: 20rpx;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  display: flex;
+}
+.left{
+  font-size: 26rpx;
+  width: 140rpx;
+}
+.money{
+  margin-top: 24rpx;
+  font-size: 50rpx;
+}
+.right{
+  flex: 1;
+}
+.right .title{
+  font-size: 32rpx;
+}
+.tagWrap{
+  font-size: 26rpx;
+}
+.tagWrap .tag{
+  display: inline-block;
+  border: 1rpx solid #ff8547;
+  color: #ff8547;
+  padding: 4rpx 10rpx;
+  border-radius: 0 20rpx 0 20rpx;
+  margin: 12rpx 20rpx 12rpx 0;
+}
+.date{
+  margin: 16rpx 0;
+}
+.date,.about{
+  color: #999;
+  font-size: 26rpx;
+}
+.about{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 500rpx;
+  position: relative;
+}
+.block text{
+  display: block;
+  line-height: 44rpx;
+}
+.go{
+  float: right;
+  vertical-align: top;
+  margin-top: -6rpx;
+  width: 130rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1rpx solid #ff8547;
+  color: #ff8547;
+  border-radius: 30rpx;
+}
+image{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40rpx;
+  height: 40rpx;
+}
+.arrow{
+  /* top: 0;
+  right: 0;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999; */
+}
+.arrow.down{
+  /* top: 0;
+  right: 0;
+  position: absolute; */
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  -webkit-transform: translate(0,-50%) rotate(-135deg);
+  transform: translate(0,-50%) rotate(-135deg);
+}
+.arrow.up{
+  /* top: 0;
+  right: 0;
+  position: absolute; */
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid #999;
+  border-bottom: 1px solid #999;
+  -webkit-transform: translate(0,-50%) rotate(-225deg);
+  transform: translate(0,-50%) rotate(-225deg);
+}

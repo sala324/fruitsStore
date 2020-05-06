@@ -157,15 +157,7 @@ Page({
           json.price = (val.totalFee/100).toFixed(1)
           json.youhui = youhui
         })
-        if (res.data.data.records.length==0){
-          that.setData({
-            nodata:true
-          })
-        } else {
-          that.setData({
-            nodata: false
-          })
-        }
+        util.judgeData(res.data.data.records.length==0,'noData',this)
         that.setData({
           orderArr: that.data.orderArr.concat(res.data.data.records),
           totalPage: res.data.data.pages,

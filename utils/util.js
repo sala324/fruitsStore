@@ -55,6 +55,27 @@ const cunchu = n =>{
   }
 
 }
+const judgeData = (data,val,_this) =>{
+  if(data){
+    _this.setData({
+      [val]:true
+    })
+  } else {
+    _this.setData({
+      [val]:false
+    })
+  }
+}
+const jsonBox = (val,booler=val.checked) =>{
+  let jsons2={}
+  jsons2.num = val.num
+  jsons2.title = val.title
+  jsons2.price = val.price
+  jsons2.thumbnails = val.thumbnails
+  jsons2.checked = booler
+  jsons2.originPrice = val.originPrice
+  return jsons2
+}
 //获取token
 const getToken = n => {
   let hearderToken = '';
@@ -164,10 +185,12 @@ const requests = (url, data, method, hideToast) => {
   });
 }
 module.exports = {
+  jsonBox:jsonBox,
   request: request,
   requests: requests,
   getToken: getToken,
   login: login,
+  judgeData:judgeData,
   err:err,
   toasts: toasts,
   toasts2: toasts2,

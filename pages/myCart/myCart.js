@@ -7,13 +7,7 @@ Page({
   newCartArr(dataArrs,index){
     //格式化存到本地购物车的数据
     let jsons1 = {}
-    let jsons2 = {}
-    jsons2.num = dataArrs[index].num
-    jsons2.title = dataArrs[index].title
-    jsons2.price = dataArrs[index].price
-    jsons2.checked = dataArrs[index].checked
-    jsons2.thumbnails = dataArrs[index].thumbnails
-    jsons2.originPrice = dataArrs[index].originPrice
+    let jsons2=util.jsonBox(dataArrs[index],dataArrs[index].checked)
     jsons1[dataArrs[index].id] = jsons2
     return jsons1
   },
@@ -67,17 +61,11 @@ Page({
   toggleChecked(e){
     let arr=this.data.storageArr
     arr[e.currentTarget.dataset.index].checked = !arr[e.currentTarget.dataset.index].checked
-    this.setData({
-      checkedAll: true
-    })
-    arr.forEach((val,index)=>{
-      if(val.checked==false){
-        this.setData({
-          checkedAll: false
-        })
-      }
+    let checkedAll=arr.every(item=>{
+      return item.checked==true
     })
     this.setData({
+      checkedAll: checkedAll,
       storageArr:arr
     })
     let jsons=wx.getStorageSync('cartArr')
@@ -87,12 +75,19 @@ Page({
   },
   cunchu() {
     let jsons =util.cunchu()
-    this.setData({
-      storageArr: jsons.storageArr,
-      allnum:jsons.allnum,
-      checkedAll:jsons.checkedAll,
-      price:jsons.price
-    })
+    if (jsons){
+      this.setData({
+        storageArr: jsons.storageArr,
+        allnum: jsons.allnum,
+        checkedAll: jsons.checkedAll,
+        price: jsons.price
+      })
+    } else {
+      this.setData({
+        noData:true
+      })
+    }
+    
 
   },
   deleteBtn() {
@@ -123,15 +118,7 @@ Page({
   defaultAddress() {
     util.requests('/business/address/getDefaultAddress', {}).then(res => {
       if (res.data.code == 0) {
-        if (res.data.data) {
-          this.setData({
-            haveAddress: true
-          })
-        } else {
-          this.setData({
-            haveAddress: false
-          })
-        }
+        util.judgeData(res.data.data,'haveAddress',this)
       }
     })
   },
@@ -154,42 +141,16 @@ Page({
     }
 
   },
-  useDada() {
-    util.requests('/business/user/getCurrentUser', {}).then(res => {
-      if (res.data.code == 0) {
-        this.setData({
-          isLogin: true
-        })
-      } else {
-        this.setData({
-          isLogin: false
-        })
-      }
-
-    })
-  },
   checkAll() {
     this.setData({
       checkedAll: !this.data.checkedAll
     })
-    if (this.data.checkedAll){
-      this.data.storageArr.forEach((val,index)=>{
-        val.checked=true
-      })
-    } else {
-      this.data.storageArr.forEach((val, index) => {
-        val.checked = false
-      })
-    }
+    this.data.storageArr.forEach((val,index)=>{
+      val.checked=this.data.checkedAll
+    })
     let json={}
     this.data.storageArr.forEach((val,index)=>{
-      let jsons2={}
-      jsons2.num = val.num
-      jsons2.title = val.title
-      jsons2.price = val.price
-      jsons2.thumbnails = val.thumbnails
-      jsons2.checked = val.checked
-      jsons2.originPrice = val.originPrice
+      let jsons2=util.jsonBox(val,val.checked)
       json[val.id] = jsons2
     })
     wx.setStorageSync('cartArr', json)
@@ -201,7 +162,7 @@ Page({
   onShow: function () {
     if (auth.isLogin()) {
       this.defaultAddress()
-      this.useDada()
+      util.judgeData(auth.isLogin(),'isLogin',this)
     }
     this.cunchu()
   },

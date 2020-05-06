@@ -1,0 +1,75 @@
+<view class="wrap">
+  <view class="navWrap">
+    <view class="nav {{navIndex==0?'cur':''}}" data-id="0" bindtap="chooseNav">未使用</view>
+    <view class="nav {{navIndex==1?'cur':''}}" data-id="1" bindtap="chooseNav">已使用</view>
+    <view class="nav {{navIndex==2?'cur':''}}" data-id="2" bindtap="chooseNav">已过期</view>
+  </view>
+  <view class="coupon">
+    <view class="left">
+      <view class="money">￥5</view>
+      <view class="number">满50可用</view>
+    </view>
+    <view class="right">
+      <text class="title">新人通用券</text>
+      <view class="tagWrap">
+        <!-- <text class="tag">通用券</text>
+        <text class="tag">新人专享</text> -->
+        <navigator url="/pages/index/index" open-type="switchTab" wx:if="{{navIndex==0}}" class="go">去使用</navigator>
+      </view>
+      <view class="date">2020.5.1-2020.5.20</view>
+      <view class="about {{checkArr[0]?'block':''}}" data-index="0" bindtap="showAbout">
+        <text class="des">1.新人专享；</text>
+        <text class="des">2.仅在线支付使用；</text>
+        <text class="des">3.可与其他促销同享；</text>
+        <image src="../../images/icon/up.png" wx:if="{{checkArr[0]}}"></image>
+        <image src="../../images/icon/down.png" wx:else></image>
+        <!-- <view class="arrow {{checkArr[0]?'up':'down'}}"></view> -->
+      </view>
+      
+    </view>
+    
+  </view>
+  <view class="coupon">
+    <view class="left">
+      <view class="money">￥5</view>
+      <view class="number">满50可用</view>
+    </view>
+    <view class="right">
+      <text class="title">充值券</text>
+      <view class="tagWrap">
+        <!-- <text class="tag">充值券</text> -->
+        <navigator url="/pages/index/index" open-type="switchTab"  wx:if="{{navIndex==0}}" class="go">去使用</navigator>
+      </view>
+      <view class="date">2020.5.1-2020.5.20</view>
+      <view class="about {{checkArr[1]?'block':''}}" data-index="1" bindtap="showAbout">
+        <text class="des">1.充值余额专用；</text>
+        <text class="des">2.仅在线支付使用；</text>
+        <text class="des">3.不可叠加使用；</text>
+        <image src="../../images/icon/up.png" wx:if="{{checkArr[1]}}"></image>
+        <image src="../../images/icon/down.png" wx:else></image>
+        <!-- <view class="arrow {{checkArr[1]?'up':'down'}}"></view> -->
+      </view>
+    </view>
+  </view>
+  <view class="coupon">
+    <view class="left">
+      <view class="money">￥5</view>
+      <view class="number">满50可用</view>
+    </view>
+    <view class="right">
+      <text class="title">生鲜券</text>
+      <view class="tagWrap">
+        <!-- <text class="tag">生鲜券</text> -->
+        <navigator url="/pages/index/index" open-type="switchTab"  wx:if="{{navIndex==0}}" class="go">去使用</navigator>
+      </view>
+      <view class="date">2020.5.1-2020.5.20</view>
+      <view class="about {{checkArr[2]?'block':''}}" data-index="2" bindtap="showAbout">
+        <text class="des">1.全场生鲜通用；</text>
+        <text class="des">2.不可叠加使用；</text>
+        <image src="../../images/icon/up.png" wx:if="{{checkArr[2]}}"></image>
+        <image src="../../images/icon/down.png" wx:else></image>
+        <!-- <view class="arrow {{checkArr[2]?'up':'down'}}"></view> -->
+      </view>
+    </view>
+  </view>
+</view>

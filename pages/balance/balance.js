@@ -32,15 +32,7 @@ Page({
         this.setData({
           xianhuaArr: res.data.data.records
         })
-        if (res.data.data.records.length>0){
-          this.setData({
-            noData:false
-          })
-        } else {
-          this.setData({
-            noData: true
-          })
-        }
+        util.judgeData(res.data.data.records.length == 0,'noData',this)
       }
 
     })
