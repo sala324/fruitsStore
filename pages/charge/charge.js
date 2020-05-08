@@ -13,14 +13,13 @@ Page({
   quanList() {
     util.requests('/business/dictionary/getDictionaryListByCode', { code:'BUSINESS_RECHARGE_ACTIVITY'}).then(res => {
       if (res.data.code == 0) {
-        let arr=[]
-        res.data.data.forEach((val,index)=>{
-          let json={}
-          json.money = val.fee/100
-          json.money2 = val.balance / 100
-          json.id = val.id
-          json.number = val.balance
-          arr.push(json)
+        let arr=res.data.data.map(item=>{
+          return {
+            money : item.fee/100,
+            money2 : item.balance / 100,
+            id : item.id,
+            number : item.balance
+          }
         })
         this.setData({
           chargeArr: arr,

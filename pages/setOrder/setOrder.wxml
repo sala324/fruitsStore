@@ -15,7 +15,7 @@
           <view class="name">{{item.title}}</view>
           <view class="priceInfo">
             <text class="price">￥{{item.price/100}} x {{item.num}}</text>
-            <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2/100}}</text> ￥{{item.price1}}</text>
+            <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2}}</text> ￥{{item.price1}}</text>
           </view>
         </view>
       </view>

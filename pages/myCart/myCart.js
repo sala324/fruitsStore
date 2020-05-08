@@ -11,35 +11,18 @@ Page({
     jsons1[dataArrs[index].id] = jsons2
     return jsons1
   },
-  increaseItem1(dataArrs, index, dataValue) {
+  resetItem(dataArrs, index, dataValue) {
     let jsons = {}
-    let jsons3 = wx.getStorageSync('cartArr')
+    let jsons3 = {}
+    if (this.data.storageArr.length > 0) {
+      jsons3 = wx.getStorageSync('cartArr')
+    }
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       delete jsons3[ids]
     } else {
       jsons=this.newCartArr(dataArrs,index)
     }
-    let jsons4 = Object.assign(jsons3, jsons)
-    wx.setStorageSync('cartArr', jsons4)
-    this.setData({
-      [dataValue]: dataArrs
-    })
-  },
-  async increaseItem2(e) {
-    let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
-    let index = e.currentTarget.dataset.index
-    await this.increaseItem1(dataArrs, index, 'storageArr')
-    this.cunchu()
-  },
-  additem1(dataArrs, index, arrValue) {
-    let jsons = {}
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    jsons=this.newCartArr(dataArrs,index)
     let jsons4 = Object.assign(jsons3, jsons)
     try {
       wx.setStorageSync('cartArr', jsons4)
@@ -48,14 +31,14 @@ Page({
       // Do something when catch error
     }
     this.setData({
-      [arrValue]: dataArrs
+      [dataValue]: dataArrs
     })
   },
-  additem2(e) {
+  async changeItem(e){
     let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
+    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num +Number(e.currentTarget.dataset.num)
     let index = e.currentTarget.dataset.index
-    this.additem1(dataArrs, index, 'storageArr')
+    await this.resetItem(dataArrs, index, 'storageArr')
     this.cunchu()
   },
   toggleChecked(e){
@@ -145,12 +128,9 @@ Page({
     this.setData({
       checkedAll: !this.data.checkedAll
     })
-    this.data.storageArr.forEach((val,index)=>{
-      val.checked=this.data.checkedAll
-    })
     let json={}
     this.data.storageArr.forEach((val,index)=>{
-      let jsons2=util.jsonBox(val,val.checked)
+      let jsons2=util.jsonBox(val,this.data.checkedAll)
       json[val.id] = jsons2
     })
     wx.setStorageSync('cartArr', json)

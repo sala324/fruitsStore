@@ -30,10 +30,13 @@ Page({
   setToken() {
     auth.login();
   },
-  increaseItem1(dataArrs,index,dataValue){
+  resetItem(dataArrs,index,dataValue){
     let jsons = {}
     let jsons2 = {}
-    let jsons3 = wx.getStorageSync('cartArr')
+    let jsons3 = {}
+    if (this.data.storageArr.length > 0) {
+      jsons3 = wx.getStorageSync('cartArr')
+    }
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       var index2 = this.data.productArr.findIndex((value, index, arr) => {
@@ -56,51 +59,11 @@ Page({
       [dataValue]: dataArrs
     })
   },
-  increaseItem(e){
+  changeItem(e){
     let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
+    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num +Number(e.currentTarget.dataset.num)
     let index = e.currentTarget.dataset.index
-    this.increaseItem1(dataArrs, index, 'productArr')
-    this.cunchu()
-  },
-  async increaseItem2(e) {
-    let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
-    let index = e.currentTarget.dataset.index
-    await this.increaseItem1(dataArrs, index, 'storageArr')
-    this.cunchu()
-  },
-  additem1(dataArrs,index,arrValue){
-    let jsons = {}
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    let jsons2=util.jsonBox(dataArrs[index],true)
-    jsons[dataArrs[index].id] = jsons2
-    let jsons4 = Object.assign(jsons3, jsons)
-    try {
-      wx.setStorageSync('cartArr', jsons4)
-    } catch (e) {
-      return false;
-      // Do something when catch error
-    }
-    this.setData({
-      [arrValue]: dataArrs
-    })
-  },
-  additem2(e){
-    let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
-    let index = e.currentTarget.dataset.index
-    this.additem1(dataArrs, index,'storageArr')
-    this.cunchu()
-  },
-  addItem(e){
-    let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num= dataArrs[e.currentTarget.dataset.index].num+1
-    let index = e.currentTarget.dataset.index
-    this.additem1(dataArrs, index,'productArr')
+    this.resetItem(dataArrs, index, 'productArr')
     this.cunchu()
   },
   showCart1() {
@@ -153,6 +116,7 @@ Page({
       let arr5 = []
       let json=util.cunchu()//拿出本地缓存的数据
       if (json){
+        
         this.data.productArr.forEach((val, index) => {
           json.storageArr.forEach((val2, index2) => {
             if (val2.id === val.id) {//展示的当前商品列表跟购物车列表匹配
@@ -233,5 +197,13 @@ Page({
     })
     this.setToken()
     this.tabOne()
+    // let data = [{ name: 'a', number: 1 }, { name: 'b', number: 2 }, { name: 'c', number: 3 }, { name: 'd', number: 4 }];
+    // let arr = data.map(item => {
+    //   return {
+    //     label: item.name,
+    //     value: item.number
+    //   }
+    // })
+    // console.log(arr)
   }
 })

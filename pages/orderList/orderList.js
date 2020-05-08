@@ -9,11 +9,10 @@ Page({
     size:8
   },
   orderAgain(e){
-    let arr=[]
     console.log(e)
     let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList
-    arr2.forEach((val,index)=>{
-      arr.push(val.productId)
+    let arr=arr2.map(item=>{
+      return item.productId
     })
     util.requests('/business/product/getProductListByIdList', {
       productIdList: arr.join(',')
@@ -28,11 +27,10 @@ Page({
               arr2.forEach((val2, index2) => {
                 if (val.id == val2.productId) {
                   json.num = val2.number
-                  console.log(val2.number)
                 }
               })
-              json.originPrice = val.originPrice/100
-              json.price = val.price / 100
+              json.originPrice = val.originPrice
+              json.price = val.price
               json.id = val.id
               json.thumbnails = val.thumbnails
               json.title = val.title

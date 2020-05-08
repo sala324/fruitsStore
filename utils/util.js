@@ -1,23 +1,24 @@
 const app = getApp();
 const cunchu = n =>{
-  let jsons = {}
+  let jsons = {}//购物车本地缓存
   try {
     jsons = wx.getStorageSync('cartArr')
   } catch (e) {
     return false;
   }
-  delete jsons['nv_toString']
+  delete jsons['nv_toString']//删除从wx.getStorageSync中拿到的nv_toString
+  let num = 0,//购物车总数量
+      price = 0//购物车总价
+      checkedAll= false//购物车全选
+      arrs = []//购物车列表
+      youhui= 0//购物车优惠金额
   if (jsons) {
-    let arrs = []
     for (var p in jsons) {
       var json = jsons[p]
       json.id = Number(p)
       arrs.push(json)
     }
-    let num = 0
-    let price = 0
-    let checkedAll= true
-    let youhui= 0
+    checkedAll= true
     arrs.forEach((val, index) => {
       if (val.checked) {
         num += val.num
@@ -29,7 +30,7 @@ const cunchu = n =>{
         checkedAll= false
       }
     })
-    let noData=false
+    let noData=false//购物车有无数据
     if (num > 0) {
       noData = false
       wx.setTabBarBadge({
@@ -42,15 +43,15 @@ const cunchu = n =>{
         index: 1
       })
     }
-    let json4={}
-    json4.storageArr = arrs
-    json4.cartData = true
-    json4.allnum = num
-    json4.youhui = youhui
-    json4.checkedAll = checkedAll
-    json4.price = price/100
-    return json4
   }
+  let json4={}
+  json4.storageArr = arrs
+  json4.cartData = true
+  json4.allnum = num
+  json4.youhui = youhui
+  json4.checkedAll = checkedAll
+  json4.price = price/100
+  return json4
 
 }
 const judgeData = (data,val,_this) =>{

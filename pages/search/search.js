@@ -10,9 +10,6 @@ Page({
     keyWordsArr: [],
     hotWordsArr: []
   },
-  onLoad: function (options) {
-
-  },
   onReady: function () {
     this.animation = wx.createAnimation({
       duration: 600,
@@ -20,13 +17,11 @@ Page({
     })
   },
   choosebtn() {
-    console.log(5)
     let num = this.data.cartHeight
     this.animation.bottom(num).step()
     this.setData({ animation: this.animation.export() })
   },
   choosebtn2() {
-    console.log(4)
     let num = this.data.gwcHeight
     this.animation.bottom(-num).step()
     this.setData({ animation: this.animation.export() })
@@ -71,49 +66,18 @@ Page({
       allnum: json.allnum
     })
   },
-  increaseItem1(dataArrs, index, dataValue) {
+  resetItem(dataArrs, index, dataValue) {
     let jsons = {}
-    let jsons3 = wx.getStorageSync('cartArr')
+    let jsons3 = {}
+    if (this.data.storageArr.length > 0) {
+      jsons3 = wx.getStorageSync('cartArr')
+    }
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       delete jsons3[ids]
     } else {
       jsons = this.newCartArr(dataArrs, index)
     }
-    let jsons4 = Object.assign(jsons3, jsons)
-    wx.setStorageSync('cartArr', jsons4)
-    this.setData({
-      [dataValue]: dataArrs
-    })
-  },
-  increaseItem(e) {
-    let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
-    let index = e.currentTarget.dataset.index
-    
-    this.increaseItem1(dataArrs, index, 'productArr')
-    this.cunchu()
-  },
-  increaseItem2(e) {
-    let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
-    let index = e.currentTarget.dataset.index
-    this.increaseItem1(dataArrs, index, 'storageArr')
-    this.cunchu()
-  },
-  newCartArr(dataArrs, index) {
-    //格式化存到本地购物车的数据
-    let jsons1 = {}
-    jsons2=util.jsonBox(dataArrs[index],true)
-    jsons1[dataArrs[index].id] = jsons2
-    return jsons1
-  },
-  additem1(dataArrs, index, arrValue) {
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    let jsons =this.newCartArr(dataArrs, index)
     let jsons4 = Object.assign(jsons3, jsons)
     try {
       wx.setStorageSync('cartArr', jsons4)
@@ -122,14 +86,29 @@ Page({
       // Do something when catch error
     }
     this.setData({
-      [arrValue]: dataArrs
+      [dataValue]: dataArrs
     })
   },
-  addItem(e) {
+  newCartArr(dataArrs, index) {
+    //格式化存到本地购物车的数据
+    let jsons1 = {}
+    jsons2=util.jsonBox(dataArrs[index],true)
+    jsons1[dataArrs[index].id] = jsons2
+    return jsons1
+  },
+  increaseItem(e) {
     let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + 1
+    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
     let index = e.currentTarget.dataset.index
-    this.additem1(dataArrs, index, 'productArr')
+    this.resetItem(dataArrs, index, 'productArr')
+    this.cunchu()
+  },
+  changeItem(e) {
+    let dataArrs = this.data.productArr
+    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + Number(e.currentTarget.dataset.num)
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    this.resetItem(dataArrs, index, 'productArr')
     this.cunchu()
   },
   cunchu() {
