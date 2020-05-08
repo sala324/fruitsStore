@@ -18,7 +18,6 @@ Page({
   backBtn() {
     if (this.data.message) {
       this.sendMessage(this.data.message)
-      
     } else {
       wx.showToast({
         title: '请填写您的留言信息',

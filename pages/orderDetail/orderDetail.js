@@ -20,7 +20,6 @@ Page({
         showItem: length,
         showText: '收起'
       })
-      console.log(this.data.showItem)
     } else {
       this.setData({
         showItem: 3,

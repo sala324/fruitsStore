@@ -16,15 +16,7 @@ Page({
       this.setData({
         myList: res.data.data
       })
-      if (res.data.data){
-        this.setData({
-          noData:false
-        })
-      } else {
-        this.setData({
-          noData: true
-        })
-      }
+      util.judgeData(res.data.data.length ==  0, 'noData', this)
     })
   },
   onLoad: function (options) {

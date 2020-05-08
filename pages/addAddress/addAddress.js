@@ -96,11 +96,6 @@ Page({
     // let jsons={}
     let arr1 = this.data.addressList
     if (this.data.linkMan && this.data.roomNumber && this.data.mobile.length==11 && this.data.addressName && this.data.address){
-      // jsons.address = this.data.allAddress
-      // jsons.mobile = this.data.mobile
-      // jsons.linkMan = this.data.linkMan
-      // arr1.unshift(jsons)
-      // wx.setStorageSync('addressList', arr1);
       this.addAddressBtn()
       
     } else {
@@ -162,7 +157,6 @@ Page({
     this.setData({
       addressList: arr2
     })
-    console.log(arr2)
   },
   onLoad(options){
     // 实例化地图 sdk
@@ -170,15 +164,7 @@ Page({
       key: 'GU2BZ-ZCCRG-DHHQQ-ICSQJ-B5FRV-4RFBT'
     });
     if (options.reset){
-      if(options.checked=='true'){
-        this.setData({
-          checked: true
-        })
-      } else {
-        this.setData({
-          checked: false
-        })
-      }
+      util.judgeData(options.checked=='true','checked',this)
       this.setData({
         isReset: true,
         linkMan: options.linkMan,
@@ -186,8 +172,7 @@ Page({
         mobile: options.mobile,
         addressName: options.address,
         address: options.address,
-        id: options.id,
-        
+        id: options.id
       })
       wx.setNavigationBarTitle({
         title: '修改收货地址'
