@@ -150,7 +150,6 @@ Page({
       success: function (res) {
         for (let i in res.data) {
           arr2.push(res.data[i])
-          console.log(res.data[i])
         };
       }
     })

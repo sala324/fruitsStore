@@ -9,7 +9,6 @@ Page({
     util.requests('/business/address/getAddressList', {}).then(res => {
       if (res.data.code == 0) {
         util.judgeData(res.data.data.length == 0,'noData',this)
-        console.log(this.data.noData)
         this.setData({
           addressList: res.data.data
         })
