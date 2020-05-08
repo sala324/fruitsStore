@@ -1,5 +1,6 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
+const cart = require('../../utils/cart');
 const app = getApp();
 Page({
   data: {
@@ -50,7 +51,7 @@ Page({
       })
       delete jsons3[ids]
     } else {
-      jsons2=util.jsonBox(dataArrs[index],true)
+      jsons2=cart.jsonBox(dataArrs[index],true)
       jsons[dataArrs[index].id] = jsons2
     }
     let jsons4 = Object.assign(jsons3, jsons)
@@ -113,21 +114,20 @@ Page({
     }
   },
   cunchu(){
-      let arr5 = []
-      let json=util.cunchu()//拿出本地缓存的数据
+      let arr = []
+      let json=cart.cunchu()//拿出本地缓存的数据
       if (json){
-        
         this.data.productArr.forEach((val, index) => {
           json.storageArr.forEach((val2, index2) => {
             if (val2.id === val.id) {//展示的当前商品列表跟购物车列表匹配
               val.num = val2.num
             }
           })
-          arr5.push(val)
+          arr.push(val)
         })
         this.setData({
           storageArr: json.storageArr,
-          productArr: arr5
+          productArr: arr
         })
       }
       

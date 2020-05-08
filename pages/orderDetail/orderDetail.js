@@ -37,7 +37,6 @@ Page({
     }).then(res => {
       if (res.data.code == 0) {
         let num=0
-        let arrs2 = []
         if (res.data.data.orderItemList.length>0){
           
           res.data.data.orderItemList.forEach((val, index) => {
@@ -57,8 +56,8 @@ Page({
         }
         let that=this
         if (res.data.data.status == 0) {
-          aa()
-          function aa(){
+          countDown()
+          function countDown(){
             let times = res.data.data.gmtCreate.replace(/-/g, '/')
             res.data.data.end_date = Date.parse(new Date(times)) / 1000 + 30 * 60
             restTime = res.data.data.end_date - Date.parse(new Date()) / 1000
@@ -71,7 +70,6 @@ Page({
             let startMinutes = Math.floor(restTime % 86400 % 3600 / 60)
             let startSec = Math.floor(restTime % 86400 % 3600 % 60 % 60)
             sytime = startMinutes + '分钟' + startSec + '秒'
-            console.log(sytime)
             restTime = restTime - 1
             res.data.data.restTime = restTime
             res.data.data.sytime = sytime
@@ -80,7 +78,7 @@ Page({
             })
           }
           this.setData({
-            tt: setInterval(aa, 1000)
+            tt: setInterval(countDown, 1000)
           })
         }
         this.setData({
@@ -109,10 +107,7 @@ Page({
       id: that.data.id
     }, 'post').then(res => {
       if (res.data.code == 0) {
-        util.toasts('订单删除成功')
-        wx.navigateBack({
-          belta:1
-        })
+        util.dialog('订单删除成功')
       }
     })
   },

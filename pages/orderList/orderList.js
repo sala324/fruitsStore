@@ -1,5 +1,6 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
+const cart = require('../../utils/cart');
 Page({
   data: {
     nodata:false,
@@ -207,6 +208,6 @@ Page({
       orderArr:[]
     })
     auth.isLogin() && this.orderList()
-    util.cunchu()
+    cart.cunchu()
   }
 })

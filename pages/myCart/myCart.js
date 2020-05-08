@@ -1,5 +1,6 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
+const cart = require('../../utils/cart');
 Page({
   data: {
     storageArr:[]
@@ -7,7 +8,7 @@ Page({
   newCartArr(dataArrs,index){
     //格式化存到本地购物车的数据
     let jsons1 = {}
-    let jsons2=util.jsonBox(dataArrs[index],dataArrs[index].checked)
+    let jsons2=cart.jsonBox(dataArrs[index],dataArrs[index].checked)
     jsons1[dataArrs[index].id] = jsons2
     return jsons1
   },
@@ -57,7 +58,7 @@ Page({
     this.cunchu()
   },
   cunchu() {
-    let jsons =util.cunchu()
+    let jsons =cart.cunchu()
     if (jsons){
       this.setData({
         storageArr: jsons.storageArr,
@@ -130,7 +131,7 @@ Page({
     })
     let json={}
     this.data.storageArr.forEach((val,index)=>{
-      let jsons2=util.jsonBox(val,this.data.checkedAll)
+      let jsons2=cart.jsonBox(val,this.data.checkedAll)
       json[val.id] = jsons2
     })
     wx.setStorageSync('cartArr', json)

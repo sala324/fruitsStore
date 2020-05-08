@@ -1,4 +1,5 @@
 const util = require('../../utils/util');
+const cart = require('../../utils/cart');
 Page({
   data: {
     storageArr:[],
@@ -61,7 +62,7 @@ Page({
     })
   },
   gouwuche() {
-    let json=util.cunchu()
+    let json=cart.cunchu()
     this.setData({
       allnum: json.allnum
     })
@@ -92,7 +93,7 @@ Page({
   newCartArr(dataArrs, index) {
     //格式化存到本地购物车的数据
     let jsons1 = {}
-    jsons2=util.jsonBox(dataArrs[index],true)
+    jsons2=cart.jsonBox(dataArrs[index],true)
     jsons1[dataArrs[index].id] = jsons2
     return jsons1
   },
@@ -112,7 +113,7 @@ Page({
     this.cunchu()
   },
   cunchu() {
-    let jsons = util.cunchu()
+    let jsons = cart.cunchu()
     let arr5=[]
     this.data.productArr.forEach((val, index) => {
       jsons.storageArr.forEach((val2, index2) => {
@@ -205,13 +206,12 @@ Page({
     }).then(res => {
       if (res.data.code == 0) {
         util.judgeData(res.data.data.records.length == 0,'noData',this)
-        res.data.data.records.forEach((val, index) => {
-          val.num = 0
-          val.originPrice = val.originPrice / 100
-          val.price = val.price / 100
+        let arr = res.data.data.records.map(item => {
+          item.num = 0
+          return item
         })
         this.setData({
-          productArr: res.data.data.records
+          productArr: arr
         })
         this.cunchu()
       }
