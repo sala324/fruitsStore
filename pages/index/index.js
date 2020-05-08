@@ -188,8 +188,8 @@ Page({
         }
         res.data.data.records.forEach((val,index)=>{
           val.num=0
-          val.originPrice=val.originPrice/100
-          val.price = val.price/100
+          val.originPrice=val.originPrice
+          val.price = val.price
         })
         this.setData({
           productArr: this.data.productArr.concat(res.data.data.records),
@@ -217,8 +217,6 @@ Page({
       if (res.data.code == 0) {
         res.data.data.forEach((val, index) => {
           val.num = 0
-          val.originPrice = val.originPrice / 100
-          val.price = val.price / 100
         })
         this.setData({
           productArr: res.data.data

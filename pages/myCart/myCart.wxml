@@ -13,7 +13,7 @@
         <view class="itemInfo">
           <view class="itemName">{{item.title}}</view>
           <view class="itemPrice">
-            <text class="salePrice">￥{{item.price}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text> </text>
+            <text class="salePrice">￥{{item.price/100}} <text wx:if="{{item.originalPrice}}">￥{{item.originalPrice/100}}</text> </text>
             <view class="itemNumWrap">
               <view class="increase" data-id="{{item.id}}" data-index="{{index}}" bindtap="increaseItem2"></view>
               <text class="itemNum">{{item.num}}</text>
@@ -27,7 +27,7 @@
   <view class="cartBox"></view>
   <view class="cartWrap {{hideCart?'hide':''}}">
     <view class="quanxuan" bindtap="checkAll"><view class="{{checkedAll?'checked':'circle'}}"></view> 全选</view>
-    <view class="price">￥{{price | 0}}</view>
+    <view class="price">￥{{price}}</view>
     <view class="num">数量：{{allnum | 0}}件</view>
     <view bindtap="jisuan" wx:if="{{allnum>0}}"  wx:if="{{allnum>0}}" class="confrim">去结算</view>
     <text wx:else class="confrim gray">去结算</text>

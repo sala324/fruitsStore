@@ -24,7 +24,7 @@
         <view class="itemInfo">
           <view class="name">{{item.title}}</view>
           <view class="priceInfo">
-            <text class="price">￥{{item.price}} x {{item.number}}</text>
+            <text class="price">￥{{item.price/100}} x {{item.number}}</text>
             <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2}}</text> ￥{{item.price1}}</text>
           </view>
         </view>
@@ -47,7 +47,7 @@
       </view>
       <view class="priceItem">
         <text class="itemName">余额抵扣</text>
-        <text class="itemText">{{balance}}</text>
+        <text class="itemText">￥{{balance}}</text>
       </view>
     </view>
   </view>

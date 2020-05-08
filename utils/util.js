@@ -6,15 +6,13 @@ const cunchu = n =>{
   } catch (e) {
     return false;
   }
+  delete jsons['nv_toString']
   if (jsons) {
     let arrs = []
     for (var p in jsons) {
       var json = jsons[p]
       json.id = Number(p)
-      if(p!='NaN'){
-        arrs.push(json)
-      }
-      
+      arrs.push(json)
     }
     let num = 0
     let price = 0
@@ -50,7 +48,7 @@ const cunchu = n =>{
     json4.allnum = num
     json4.youhui = youhui
     json4.checkedAll = checkedAll
-    json4.price = price
+    json4.price = price/100
     return json4
   }
 

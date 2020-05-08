@@ -19,8 +19,8 @@
       <view class="productName">{{item.title}} {{item.description}}</view>
       <view class="productPrice">
         <view class="productPriceWrap">
-          <view class="salePrice">￥{{item.price}}</view>
-          <view class="originalPrice" wx:if="{{item.price<item.originPrice}}">￥{{item.originPrice}}</view>
+          <view class="salePrice">￥{{item.price/100}}</view>
+          <view class="originalPrice" wx:if="{{item.price<item.originPrice}}">￥{{item.originPrice/100}}</view>
         </view>
         <view class="productNumWrap">
           <view class="increase" bindtap="increaseItem" data-index="{{index}}" data-id="{{item.id}}" wx-if="{{item.num>0}}"></view>

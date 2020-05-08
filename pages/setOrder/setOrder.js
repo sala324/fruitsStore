@@ -86,11 +86,11 @@ Page({
     arrs.forEach((val2, index2) => {
       if(val2.checked){
         num += val2.num
-        price += val2.price * val2.num
-        val2.price1 = val2.price * val2.num
-        val2.price2 = val2.originPrice * val2.num
+        price += val2.price * val2.num /100
+        val2.price1 = val2.price * val2.num/100
+        val2.price2 = val2.originPrice * val2.num / 100
         if (val2.originPrice > val2.price) {
-          youhui += (val2.originPrice - val2.price) * val2.num
+          youhui += (val2.originPrice - val2.price) * val2.num / 100
         }
       }
       
@@ -158,7 +158,7 @@ Page({
     util.requests('/business/user/getCurrentUser', {}).then(res => {
       if (res.data.code == 0) {
         this.setData({
-          allBalance: (res.data.data.balance / 100).toFixed(1)
+          allBalance: res.data.data.balance
         })
         this.gouwuche()
       }

@@ -41,9 +41,9 @@ Page({
         if (res.data.data.orderItemList.length>0){
           
           res.data.data.orderItemList.forEach((val, index) => {
-            val.price = val.price / 100
-            val.price1 = val.price * val.number
-            val.price2 = (val.originPrice / 100) * val.number
+            val.price = val.price 
+            val.price1 = val.price * val.number/100
+            val.price2 = val.originPrice *val.number/100
             num += val.number
           })
         } else {
@@ -89,7 +89,7 @@ Page({
           orderDelivery: res.data.data.orderDelivery,
           orderArr: res.data.data.orderItemList,
           totalFee: res.data.data.totalFee/100,
-          balance: (res.data.data.balance/100).toFixed(1),
+          balance: res.data.data.balance/100,
           allnum: num
         })
       }
