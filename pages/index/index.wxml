@@ -22,11 +22,13 @@
           <view class="salePrice">￥{{item.price/100}}</view>
           <view class="originalPrice" wx:if="{{item.price<item.originPrice}}">￥{{item.originPrice/100}}</view>
         </view>
-        <view class="productNumWrap">
+        <!-- <view class="productNumWrap">
           <view class="increase" bindtap="changeItem" data-index="{{index}}" data-num="-1" data-id="{{item.id}}" wx-if="{{item.num>0}}"></view>
           <view class="number" wx-if="{{item.num>0}}">{{item.num}}</view>
           <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" data-num="1" bindtap='changeItem'></view>
-        </view>
+        </view> -->
+        <app-dialog id="dialog" productIndex="{{index}}"  productNum="{{item.num}}" bind:myevent="changeItem">
+  </app-dialog>
       </view>
     </view>
   </view>

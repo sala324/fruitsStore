@@ -38,7 +38,6 @@ Page({
       if (res.data.code == 0) {
         let num=0
         if (res.data.data.orderItemList.length>0){
-          
           res.data.data.orderItemList.forEach((val, index) => {
             val.price = val.price 
             val.price1 = val.price * val.number/100
@@ -98,7 +97,6 @@ Page({
   },
   onUnload: function () {
     let tt = this.data.tt;
-    let that = this;
     clearInterval(tt)
   },
   deleteBtn() {
@@ -156,7 +154,6 @@ Page({
     })
   },
   onLoad(options){
-    console.log(options)
     this.setData({
       id:options.id
     })

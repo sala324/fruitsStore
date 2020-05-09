@@ -37,9 +37,8 @@ Page({
   },
   async changeItem(e){
     let dataArrs = this.data.storageArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num +Number(e.currentTarget.dataset.num)
-    let index = e.currentTarget.dataset.index
-    await this.resetItem(dataArrs, index, 'storageArr')
+    dataArrs[e.detail.index].num = e.detail.num
+    await this.resetItem(dataArrs, e.detail.index, 'storageArr')
     this.cunchu()
   },
   toggleChecked(e){
@@ -71,8 +70,6 @@ Page({
         noData:true
       })
     }
-    
-
   },
   deleteBtn() {
     wx.setStorageSync('cartArr', {})
@@ -121,9 +118,7 @@ Page({
         content: '您还没默认收货地址，请在"我的—收货地址"里新增收货地址',
         showCancel: false
       })
-
     }
-
   },
   checkAll() {
     this.setData({

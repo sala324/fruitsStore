@@ -10,7 +10,6 @@ Page({
     size:8
   },
   orderAgain(e){
-    console.log(e)
     let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList
     let arr=arr2.map(item=>{
       return item.productId
@@ -54,7 +53,6 @@ Page({
     })
   },
   turnDetail(e){
-    console.log(e)
     wx.navigateTo({
       url: '/pages/orderDetail/orderDetail?status=' + e.currentTarget.dataset.status + '&id=' + e.currentTarget.dataset.id,
     })
@@ -65,15 +63,12 @@ Page({
       this.orderList()
     }
   },
-  orderTime() {
-    util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_PAY_TIMEOUT' }).then(res => {
-      if (res.data.code == 0) {
-        
-      }
+  resetList(){
+    this.setData({
+      index: 1,
+      orderArr: []
     })
-  },
-  onLoad: function (options) {
-    
+    this.orderList()
   },
   deleteBtn(id) {
     let that = this
@@ -82,11 +77,7 @@ Page({
     }, 'post').then(res => {
       if (res.data.code == 0) {
         util.toasts('订单删除成功')
-        that.setData({
-          index: 1,
-          orderArr: []
-        })
-        that.orderList()
+        that.resetList()
       }
     })
   },
@@ -108,11 +99,7 @@ Page({
     }, 'post').then(res => {
       if (res.data.code == 0) {
         util.toasts('订单取消成功')
-        that.setData({
-          index: 1,
-          orderArr: []
-        })
-        that.orderList()
+        that.resetList()
       }
     })
   },
@@ -148,7 +135,6 @@ Page({
               val2.price2 = val2.originPrice * val2.number/100
               youhui += (val2.originPrice - val2.price) * val2.number/100
             })
-            
           } else {
             num=1
           }
@@ -167,47 +153,10 @@ Page({
           isLogin:false
         })
       }
-
-    })
-  },
-  gouwuche() {
-    let jsons = {}
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      console(e)
-      return false;
-    }
-    let arrs = []
-    for (var p in jsons) {
-      var json = jsons[p]
-      json.id = Number(p)
-      arrs.push(json)
-    }
-    let num = 0
-    let price = 0
-    let youhui = 0
-    arrs.forEach((val2, index2) => {
-      num += val2.num
-      price += val2.price * val2.num
-      val2.price1 = val2.price * val2.num
-      val2.price2 = val2.originalPrice * val2.num
-      youhui += (val2.originalPrice - val2.price) * val2.num
-    })
-    this.setData({
-      price: price,
-      allnum: num,
-      hejiMoney: price,
-      orderArr: arrs,
-      youhuiprice: youhui
     })
   },
   onShow: function () {
-    this.setData({
-      index:1,
-      orderArr:[]
-    })
-    auth.isLogin() && this.orderList()
+    auth.isLogin() && this.resetList()
     cart.cunchu()
   }
 })

@@ -106,10 +106,8 @@ Page({
   },
   changeItem(e) {
     let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num + Number(e.currentTarget.dataset.num)
-    let index = e.currentTarget.dataset.index
-    console.log(index)
-    this.resetItem(dataArrs, index, 'productArr')
+    dataArrs[e.detail.index].num = e.detail.num
+    this.resetItem(dataArrs, e.detail.index, 'productArr')
     this.cunchu()
   },
   cunchu() {

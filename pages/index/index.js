@@ -12,13 +12,12 @@ Page({
     showCart:false,
     index:1,
     size:10,
-    productArr: [],
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    productArr: []
   },
   onShareAppMessage: function (res) {
     var that = this;
     return {
-      title: '来大侠管房，闲置房源秒出租，坐在家里当房东。',
+      title: '来郭鲜生。美味生鲜任您挑',
       path: '/pages/index/index',
       success: function (res) {
         console.log(成功)
@@ -62,42 +61,9 @@ Page({
   },
   changeItem(e){
     let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num +Number(e.currentTarget.dataset.num)
-    let index = e.currentTarget.dataset.index
-    this.resetItem(dataArrs, index, 'productArr')
+    dataArrs[e.detail.index].num = e.detail.num
+    this.resetItem(dataArrs, e.detail.index, 'productArr')
     this.cunchu()
-  },
-  showCart1() {
-    this.setData({
-      showCart: true
-    })
-    
-  },
-  deleteBtn1(){
-    let that=this
-    wx.showModal({
-      title: '温馨提示',
-      content: '清空购物车中所有商品？',
-      success: function (res) {
-        if (res.confirm) {
-          that.deleteBtn()
-        }
-      }
-    })
-  },
-  deleteBtn(){
-    wx.setStorageSync('cartArr', {})
-    this.data.productArr.forEach((val,index)=>{
-      val.num=0
-    })
-    this.setData({
-      storageArr:[],
-      allnum:0,
-      price:0,
-      showCart:false,
-      productArr: this.data.productArr
-    })
-    this.choosebtn2()
   },
   chooseType(e) {
     this.setData({
@@ -110,7 +76,6 @@ Page({
   onLoad(options){
     if (options.shareCode){
       wx.setStorageSync('shareCode', options.shareCode)
-      console.log(options.shareCode)
     }
   },
   cunchu(){
@@ -130,7 +95,6 @@ Page({
           productArr: arr
         })
       }
-      
   },
   loadMore() {
     if (this.data.totalPage > this.data.index) {
@@ -161,7 +125,6 @@ Page({
         })
         this.cunchu()
       }
-
     })
   },
   tabOne() {
@@ -197,13 +160,5 @@ Page({
     })
     this.setToken()
     this.tabOne()
-    // let data = [{ name: 'a', number: 1 }, { name: 'b', number: 2 }, { name: 'c', number: 3 }, { name: 'd', number: 4 }];
-    // let arr = data.map(item => {
-    //   return {
-    //     label: item.name,
-    //     value: item.number
-    //   }
-    // })
-    // console.log(arr)
   }
 })

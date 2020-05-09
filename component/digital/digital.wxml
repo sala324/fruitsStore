@@ -1,0 +1,5 @@
+<view class="productNumWrap">
+          <view class="increase" bindtap="changeItem" wx-if="{{productNum>0}}" data-num="-1" data-id="{{item.id}}" ></view>
+          <view class="number" wx-if="{{productNum>0}}">{{productNum}}</view>
+          <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" data-num="1" bindtap='changeItem'></view>
+        </view>

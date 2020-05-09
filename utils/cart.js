@@ -12,8 +12,6 @@ const cunchu = n =>{
         youhui= 0//购物车优惠金额
         checkedAll= JSON.stringify(jsons) == "{}"?false:true//购物车全选
     if (jsons) {
-        console.log(1)
-        console.log(jsons)
       for (var p in jsons) {
         var json = jsons[p]
         json.id = Number(p)
