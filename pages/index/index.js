@@ -1,7 +1,6 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
 const cart = require('../../utils/cart');
-const app = getApp();
 Page({
   data: {
     isLogin: true,
@@ -30,39 +29,10 @@ Page({
   setToken() {
     auth.login();
   },
-  resetItem(dataArrs,index,dataValue){
-    let jsons = {}
-    let jsons2 = {}
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    if (dataArrs[index].num <= 0) {
-      let ids = dataArrs[index].id
-      var index2 = this.data.productArr.findIndex((value, index, arr) => {
-        return value.id == ids
-      })
-      if (index2>=0) {
-        this.data.productArr[index2].num = 0
-      }
-      this.setData({
-        productArr: this.data.productArr
-      })
-      delete jsons3[ids]
-    } else {
-      jsons2=cart.jsonBox(dataArrs[index],true)
-      jsons[dataArrs[index].id] = jsons2
-    }
-    let jsons4 = Object.assign(jsons3, jsons)
-    wx.setStorageSync('cartArr', jsons4)
-    this.setData({
-      [dataValue]: dataArrs
-    })
-  },
   changeItem(e){
     let dataArrs = this.data.productArr
     dataArrs[e.detail.index].num = e.detail.num
-    this.resetItem(dataArrs, e.detail.index, 'productArr')
+    cart.resetItem(dataArrs, this.data.storageArr,e.detail.index, 'productArr',this)
     this.cunchu()
   },
   chooseType(e) {
@@ -152,7 +122,6 @@ Page({
       }
     })
   },
-  
   onShow: function () {
     this.setData({
       index:1,

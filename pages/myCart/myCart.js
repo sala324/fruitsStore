@@ -5,40 +5,10 @@ Page({
   data: {
     storageArr:[]
   },
-  newCartArr(dataArrs,index){
-    //格式化存到本地购物车的数据
-    let jsons1 = {}
-    let jsons2=cart.jsonBox(dataArrs[index],dataArrs[index].checked)
-    jsons1[dataArrs[index].id] = jsons2
-    return jsons1
-  },
-  resetItem(dataArrs, index, dataValue) {
-    let jsons = {}
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    if (dataArrs[index].num <= 0) {
-      let ids = dataArrs[index].id
-      delete jsons3[ids]
-    } else {
-      jsons=this.newCartArr(dataArrs,index)
-    }
-    let jsons4 = Object.assign(jsons3, jsons)
-    try {
-      wx.setStorageSync('cartArr', jsons4)
-    } catch (e) {
-      return false;
-      // Do something when catch error
-    }
-    this.setData({
-      [dataValue]: dataArrs
-    })
-  },
   async changeItem(e){
     let dataArrs = this.data.storageArr
     dataArrs[e.detail.index].num = e.detail.num
-    await this.resetItem(dataArrs, e.detail.index, 'storageArr')
+    await cart.resetItem(dataArrs, dataArrs,e.detail.index, 'storageArr',this)
     this.cunchu()
   },
   toggleChecked(e){

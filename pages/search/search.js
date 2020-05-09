@@ -11,22 +11,6 @@ Page({
     keyWordsArr: [],
     hotWordsArr: []
   },
-  onReady: function () {
-    this.animation = wx.createAnimation({
-      duration: 600,
-      timingFunction: 'ease'
-    })
-  },
-  choosebtn() {
-    let num = this.data.cartHeight
-    this.animation.bottom(num).step()
-    this.setData({ animation: this.animation.export() })
-  },
-  choosebtn2() {
-    let num = this.data.gwcHeight
-    this.animation.bottom(-num).step()
-    this.setData({ animation: this.animation.export() })
-  },
   clearWords(){
     this.setData({
       keyWords: '',
@@ -46,68 +30,10 @@ Page({
       productArr: this.data.productArr
     })
   },
-  showCart2() {
-    let showCart = this.data.showCart
-    if (this.data.allnum > 0) {
-      showCart = !showCart
-      this.setData({
-        showCart: showCart
-      })
-    }
-  },
-  hideCart() {
-    this.choosebtn2()
-    this.setData({
-      showCart: false
-    })
-  },
-  gouwuche() {
-    let json=cart.cunchu()
-    this.setData({
-      allnum: json.allnum
-    })
-  },
-  resetItem(dataArrs, index, dataValue) {
-    let jsons = {}
-    let jsons3 = {}
-    if (this.data.storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
-    if (dataArrs[index].num <= 0) {
-      let ids = dataArrs[index].id
-      delete jsons3[ids]
-    } else {
-      jsons = this.newCartArr(dataArrs, index)
-    }
-    let jsons4 = Object.assign(jsons3, jsons)
-    try {
-      wx.setStorageSync('cartArr', jsons4)
-    } catch (e) {
-      return false;
-      // Do something when catch error
-    }
-    this.setData({
-      [dataValue]: dataArrs
-    })
-  },
-  newCartArr(dataArrs, index) {
-    //格式化存到本地购物车的数据
-    let jsons1 = {}
-    jsons2=cart.jsonBox(dataArrs[index],true)
-    jsons1[dataArrs[index].id] = jsons2
-    return jsons1
-  },
-  increaseItem(e) {
-    let dataArrs = this.data.productArr
-    dataArrs[e.currentTarget.dataset.index].num = dataArrs[e.currentTarget.dataset.index].num - 1
-    let index = e.currentTarget.dataset.index
-    this.resetItem(dataArrs, index, 'productArr')
-    this.cunchu()
-  },
   changeItem(e) {
     let dataArrs = this.data.productArr
     dataArrs[e.detail.index].num = e.detail.num
-    this.resetItem(dataArrs, e.detail.index, 'productArr')
+    cart.resetItem(dataArrs, this.data.storageArr,e.detail.index, 'productArr',this)
     this.cunchu()
   },
   cunchu() {
@@ -155,10 +81,7 @@ Page({
       this.cunchu()
       this.productList()
     } else {
-      wx.showToast({
-        title: '请输入商品名称',
-        icon: 'none'
-      })
+      util.toasts('请输入商品名称')
     }
     
   },

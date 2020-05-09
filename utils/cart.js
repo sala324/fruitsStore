@@ -63,8 +63,51 @@ const cunchu = n =>{
     jsons2.originPrice = val.originPrice
     return jsons2
   }
+const  newCartArr=(dataArrs,index,dataValue)=>{
+    //格式化存到本地购物车的数据
+    let jsons1 = {}
+    let jsons2= dataValue=='productArr'?jsonBox(dataArrs[index],true):jsonBox(dataArrs[index],dataArrs[index].checked)
+    jsons1[dataArrs[index].id] = jsons2
+    return jsons1
+  }
+const  resetItem=(dataArrs,storageArr, index, dataValue,_this)=> {
+    let jsons = {}
+    let jsons3 = {}
+    if (storageArr.length > 0) {
+      jsons3 = wx.getStorageSync('cartArr')
+    }
+    if (dataArrs[index].num <= 0) {
+      let ids = dataArrs[index].id
+      if(dataValue=='productArr'){
+        var index2 = dataArrs.findIndex((value, index, arr) => {
+          return value.id == ids
+        })
+        if (index2>=0) {
+          dataArrs[index2].num = 0
+        }
+        _this.setData({
+          [dataValue]: dataArrs
+        })
+      }
+      delete jsons3[ids]
+    } else {
+      jsons=newCartArr(dataArrs,index,dataValue)
+      console.log(jsons)
+    }
+    let jsons4 = Object.assign(jsons3, jsons)
+    try {
+      wx.setStorageSync('cartArr', jsons4)
+    } catch (e) {
+      return false;
+      // Do something when catch error
+    }
+    _this.setData({
+      [dataValue]: dataArrs
+    })
+  }
   module.exports = {
     jsonBox:jsonBox,
-    cunchu: cunchu
+    cunchu: cunchu,
+    resetItem:resetItem
   }
   
