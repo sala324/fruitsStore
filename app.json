@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/chooseCoupon/chooseCoupon",
     "pages/coupon/coupon",
     "pages/share/share",
     "pages/login/login",
@@ -23,7 +24,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "三好生鲜",
+    "navigationBarTitleText": "郭鲜生",
     "navigationBarTextStyle": "black",
     "backgroundColorBottom": "#fff"
   },

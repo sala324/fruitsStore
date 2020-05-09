@@ -1,13 +1,4 @@
 <scroll-view scroll-y style='height:100vh' bindscrolltolower="loadMore" class="wrap">
-  <view class="exchangeWrap">
-    <input placeholder="请输入兑换码" value="{{code}}" bindinput="changeCode"></input>
-    <view class="exchange" bindtap="exchange">兑换</view>
-  </view>
-  <view class="navWrap">
-    <view class="nav {{navIndex==0?'cur':''}}" data-id="0" bindtap="chooseNav">未使用</view>
-    <view class="nav {{navIndex==1?'cur':''}}" data-id="1" bindtap="chooseNav">已使用</view>
-    <view class="nav {{navIndex==2?'cur':''}}" data-id="2" bindtap="chooseNav">已过期</view>
-  </view>
   <view class="coupon" wx:for="{{couponArr}}" wx:key="index">
     <view class="left">
       <view class="money" wx:if="{{item.type==0 || item.type==2}}">￥{{item.value/100}}</view>

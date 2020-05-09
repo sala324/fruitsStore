@@ -10,6 +10,12 @@ const judgeData = (data,val,_this) =>{
     })
   }
 }
+const jisuanDate=(n,hours)=>{
+  var day3 = new Date(n);
+  day3.setTime(day3.getTime()+hours*60*60*1000);
+  var s3 = day3.getFullYear()+"-" + (day3.getMonth()+1) + "-" + day3.getDate()+' '+n.substr(11,8);
+  return s3
+}
 //获取token
 const getToken = n => {
   let hearderToken = '';
@@ -39,6 +45,10 @@ const login = () => {
   wx.navigateTo({
     url: '/pages/public/login/login',
   })
+}
+const resetDate = (n) => {
+  let str = n.replace(/ 00:00:00/,'')
+  return str
 }
 //错误处理
 const err = (title) => {
@@ -127,7 +137,9 @@ module.exports = {
   err:err,
   toasts: toasts,
   toasts2: toasts2,
-  dialog: dialog
+  dialog: dialog,
+  resetDate: resetDate,
+  jisuanDate:jisuanDate
 }
 
 

@@ -4,7 +4,6 @@ Page({
     navIndex:0,
     couponArr:[],
     code:'',
-    checkArr:[false,false,false],
     index:1,
     size:5
   },

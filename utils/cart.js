@@ -1,10 +1,5 @@
 const cunchu = n =>{
-    let jsons = {}//购物车本地缓存
-    try {
-      jsons = wx.getStorageSync('cartArr')
-    } catch (e) {
-      return false;
-    }
+    let jsons = wx.getStorageSync('cartArr') || {}//购物车本地缓存
     delete jsons['nv_toString']//删除从wx.getStorageSync中拿到的nv_toString
     let num = 0,//购物车总数量
         price = 0//购物车总价
@@ -53,7 +48,7 @@ const cunchu = n =>{
     return json4
   
   }
-  const jsonBox = (val,booler=val.checked) =>{
+  const jsonBox = (val,booler) =>{
     //格式化选中产品的数据
     let jsons2={}
     jsons2.num = val.num
@@ -63,7 +58,7 @@ const cunchu = n =>{
     jsons2.checked = booler//标识该商品在购物车中有无选中状态
     jsons2.originPrice = val.originPrice
     // val.checked=booler//标识该商品在购物车中有无选中状态
-    return val
+    return jsons2
   }
 const  newCartArr=(dataArrs,index,dataValue)=>{
     //格式化存到本地购物车以对象的方式存入本地
@@ -75,10 +70,7 @@ const  newCartArr=(dataArrs,index,dataValue)=>{
 const  resetItem=(dataArrs,storageArr, index, dataValue,_this)=> {
   //dataArrs展示的产品数组,storageArr需要与之比较的本地存储, index产品的索引值, dataValue产品数组的key值,_this页面的this
     let jsons = {}
-    let jsons3 = {}
-    if (storageArr.length > 0) {
-      jsons3 = wx.getStorageSync('cartArr')
-    }
+    let jsons3 = wx.getStorageSync('cartArr') || {}
     if (dataArrs[index].num <= 0) {
       let ids = dataArrs[index].id
       if(dataValue=='productArr'){
@@ -97,12 +89,7 @@ const  resetItem=(dataArrs,storageArr, index, dataValue,_this)=> {
       console.log(jsons)
     }
     let jsons4 = Object.assign(jsons3, jsons)//Object.assign可覆盖键值相同的商品
-    try {
-      wx.setStorageSync('cartArr', jsons4)
-    } catch (e) {
-      return false;
-      // Do something when catch error
-    }
+    wx.setStorageSync('cartArr', jsons4)
     _this.setData({
       [dataValue]: dataArrs
     })
