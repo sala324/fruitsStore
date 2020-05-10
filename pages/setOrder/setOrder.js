@@ -13,7 +13,14 @@ Page({
     youhuiprice:0,
     showItem:3,
     id:'',
-    showText:'展开更多'
+    showText:'展开更多',
+    // 未使用优惠券列表(id > coupon)
+    unusedCouponMap: new Map(),
+    aviilableCouponNumber: 0,
+    // 优惠券减免金额
+    couponValue: 0,
+    // 选中的优惠券
+    checkedIdList: []
   },
   chooseAddress(){
     wx.navigateTo({
@@ -38,12 +45,6 @@ Page({
     this.setData({
       showAll: !showAll
     })
-  },
-  showCart1() {
-    this.setData({
-      showCart: true
-    })
-
   },
   defaultAddress(){
     util.requests('/business/address/getDefaultAddress', {}).then(res => {
@@ -118,6 +119,7 @@ Page({
   setOrder(){
     util.requests('/business/order/create', {
       addressId: this.data.id,
+      userCouponIdList: this.data.checkedIdList,
       orderItemList:this.data.orderArr2
     },'post').then(res => {
       if(res.data.code==0){
@@ -153,6 +155,48 @@ Page({
   },
   onLoad(){
     this.defaultAddress()
+    this.getAvailableCoupon();
+  },
+  getAvailableCoupon () {
+    // 计算购物车
+    let cartArr = wx.getStorageSync('cartArr')
+    let orderItemList = []
+    for(let productId in cartArr) {
+      let item = cartArr[productId];
+      if(!item.checked) return;
+      orderItemList.push({
+        productId: Number(productId),
+        number: Number(item.num)
+      })
+    }
+    util.requests('/business/coupon/getMyCouponList', {status: 1}).then(res => {
+      let unusedCouponList = res.data.data.records;
+      if(!unusedCouponList || unusedCouponList.length === 0) return;
+      let map = new Map();
+      unusedCouponList.forEach(item => {
+        item.checked = false;
+        map.set(item.id, item);
+      });
+      this.setData({
+        unusedCouponMap: map
+      })
+      // 获取可用优惠券
+      util.requests('/business/coupon/checkOrderCoupon', {
+        userCouponList: unusedCouponList,
+        orderItemList: orderItemList
+      }, 'post').then(res => {
+        let itemList = res.data.data.itemList;
+        let num = itemList.filter(item => item.enable).length;
+        this.setData({
+          aviilableCouponNumber: num
+        });
+      })
+    })
+  },
+  chooseCoupon() {
+    wx.navigateTo({
+      url: '/pages/chooseCoupon/chooseCoupon?checkedIdList=' + this.data.checkedIdList.join(","),
+    })
   },
   useDada() {
     util.requests('/business/user/getCurrentUser', {}).then(res => {
@@ -164,7 +208,32 @@ Page({
       }
     })
   },
+  initCouponValue() {
+    let checkedIdList = this.data.checkedIdList;
+    let couponValue = 0;
+    if (checkedIdList.length) {
+      checkedIdList.forEach(id => {
+        let coupon = this.data.unusedCouponMap.get(id);
+        if (coupon.type === 0) {
+          // 代金券
+          couponValue += coupon.value / 100;
+        } else if (coupon.type === 1) {
+          // 折扣券
+          let value = this.data.price * (100 - coupon.value)/100;
+          couponValue += Number(value.toFixed(2));
+        }
+      })
+    }
+    this.setData({
+      couponValue: couponValue
+    });
+  },
+  initOrderPrice() {
+    
+  },
   onShow: function () {
-    this.useDada()
+    this.useDada();
+    // 计算实付金额
+    this.initOrderPrice();
   }
 })

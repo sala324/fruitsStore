@@ -2,39 +2,6 @@ page{
   font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
   background: #eceff5;
 }
-.exchangeWrap{
-  display: flex;
-  margin: 20rpx 20rpx 0 50rpx;
-}
-.exchangeWrap input{
-  height: 70rpx;
-  line-height: 70rpx;
-  background: #fff;
-  flex: 1;
-  padding-left: 20rpx;
-  border-radius: 10rpx;
-}
-.exchangeWrap .exchange{
-  width: 140rpx;
-  text-align: center;
-  height: 70rpx;
-  line-height: 70rpx;
-}
-.navWrap{
-  display: flex;
-  margin: 0 30rpx;
-}
-.nav{
-  flex: 1;
-  text-align: center;
-  line-height: 70rpx;
-  background: #fff;
-  border-radius: 10rpx;
-  margin: 30rpx 20rpx 10rpx;
-}
-.nav.cur{
-  color: #1296db;
-}
 .coupon{
   margin: 20rpx;
   padding: 20rpx 30rpx;

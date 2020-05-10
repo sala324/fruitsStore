@@ -1,0 +1,80 @@
+.coupon {
+}
+
+.coupon-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.middle {
+  flex: 1;
+}
+
+.middle .title {
+  font-size: 32rpx;
+}
+
+.left{
+  font-size: 26rpx;
+  width: 150rpx;
+  text-align: center;
+}
+
+.right{
+  width: 100rpx;
+  text-align: center;
+}
+
+.money{
+  font-size: 50rpx;
+}
+
+.tagWrap{
+  font-size: 26rpx;
+}
+.tagWrap .tag{
+  display: inline-block;
+  border: 1rpx solid #ff8547;
+  color: #ff8547;
+  padding: 4rpx 10rpx;
+  border-radius: 0 20rpx 0 20rpx;
+  margin: 12rpx 20rpx 12rpx 0;
+}
+.date{
+  margin: 16rpx 0;
+}
+.date,.about{
+  color: #999;
+  font-size: 26rpx;
+}
+.block text{
+  display: block;
+  line-height: 44rpx;
+}
+.go{
+  float: right;
+  vertical-align: top;
+  margin-top: -6rpx;
+  width: 130rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border: 1rpx solid #ff8547;
+  color: #ff8547;
+  border-radius: 30rpx;
+}
+
+.about{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+}
+.about image{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40rpx;
+  height: 40rpx;
+}

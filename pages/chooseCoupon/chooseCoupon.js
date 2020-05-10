@@ -1,92 +1,105 @@
 const util = require('../../utils/util');
 Page({
   data: {
-    navIndex:0,
-    couponArr:[],
-    code:'',
-    index:1,
-    size:5
+    userCouponList: [],
+    orderItemList: [],
+    couponValue: 0
   },
-  onShow() {
-    this.setData({
-      index: 1,
-      couponArr: []
-    })
-    this.couponList()
-  },
-  loadMore() {
-    if (this.data.totalPage > this.data.index) {
-      this.data.index++
-      this.couponList()
-    }
-  },
-  exchange(){
-    if(!this.data.code){
-      util.toasts('请输入兑换码')
-    } else {
-      util.requests('/business/coupon/exchangeCoupon', {
-        exchangeCode: this.data.code
-      }, 'post').then(res => {
-        if (res.data.code == 0) {
-          util.toasts('兑换成功')
-          this.setData({
-            index: 1,
-            code: '',
-            couponArr: []
-          })
-          this.couponList()
+  onLoad(options) {
+    let checkedIdListStr = options.checkedIdList || "";
+    let checkedIdList = checkedIdListStr.split(",").filter(item => item).map(Number);
+    // 计算购物车
+    this.initCartList();
+    // 渲染优惠券列表
+    util.request('/business/coupon/getMyCouponList?status=1').then(res => {
+      let userCouponList = res.data.data.records;
+      userCouponList.forEach(userCoupon => {
+        userCoupon.checked = checkedIdList.indexOf(userCoupon.id) > -1;
+        // 格式化部分文描
+        let item = userCoupon.coupon;
+        if (item.dateType==2){
+          item.endTime = item.endTime.replace(' 00:00:00', '')
+          item.startTime = item.startTime.replace(' 00:00:00', '')
         }
+        if (item.dateType==1){
+          item.time1 = util.jisuanDate(userCoupon.gmtCreate, item.effectiveTime)
+        }
+        item.arr2 = item.description.split('\r\n')
+      });
+      this.setData({
+        userCouponList: userCouponList
+      });
+      // 计算优惠券互斥情况
+      this.checkCouponMutex();
+    })
+  },
+  initCartList(){
+    // 计算购物车
+    let cartArr = wx.getStorageSync('cartArr')
+    let orderItemList = []
+    for(let productId in cartArr) {
+      let item = cartArr[productId];
+      if(!item.checked) return;
+      orderItemList.push({
+        productId: Number(productId),
+        number: Number(item.num)
       })
-    }
-    
+    };
+    this.setData({
+      orderItemList: orderItemList
+    });
   },
-  couponList() {
-    util.request('/business/coupon/getMyCouponList', {
-      status: this.data.navIndex+1,
-      current: this.data.index,
-      size: this.data.size
-    }).then(res => {
-      if (res.data.code == 0) {
-        res.data.data.records.forEach((val,index)=>{
-          val.checked=false
-          if (val.dateType==2){
-            val.endTime = val.endTime.replace(' 00:00:00', '')
-            val.startTime = val.startTime.replace(' 00:00:00', '')
-          }
-          if (val.dateType==1){
-            val.time1 = util.jisuanDate(val.gmtCreate, val.effectiveTime)
-            console.log(util.jisuanDate(val.gmtCreate, val.effectiveTime))
-          }
-          val.arr2 = val.description.split('\r\n')
-        })
-        this.setData({
-          couponArr: this.data.couponArr.concat(res.data.data.records),
-          totalPage: res.data.data.pages
-        })
-        util.judgeData(res.data.data.records.length==0,'noData',this)
-      }
+  confirm() {
+    let pages = getCurrentPages();
+    let prePage = pages[pages.length - 2];
+    let checkedIdList = [];
+    this.data.userCouponList.filter(item => item.checked).forEach(item => checkedIdList.push(item.id));
+    prePage.setData({
+      checkedIdList: checkedIdList,
+      couponValue: this.data.couponValue
+    });
+    wx.navigateBack({
+      delta: 1
     })
   },
-  changeCode(e){
-    this.setData({
-      code:e.detail.value
+  checkCouponMutex() {
+    util.requests('/business/coupon/checkOrderCoupon', {
+      userCouponList: this.data.userCouponList,
+      orderItemList: this.data.orderItemList
+    }, 'post').then(res => {
+      let data = res.data.data;
+      let couponValue = data.couponValue;
+      // 优惠总金额
+      this.setData({
+        couponValue: couponValue
+      });
+      // 互斥优惠券设置
+      let list = this.data.userCouponList;
+      let map = new Map();
+      list.forEach(item => {
+        item.tips = null;
+        map.set(item.id, item);
+      });
+      let itemList = data.itemList;
+      itemList.forEach(item => {
+        if (item.enable) return;
+        map.get(item.id)["tips"] = item.tips;
+      })
+      this.setData({
+        userCouponList: list
+      });
     })
   },
-  chooseNav(e){
+  switchChecked(e) {
+    let detail = e.detail;
+    let list = this.data.userCouponList;
+    list.filter(item => item.id === detail.id).forEach(item => item.checked = detail.checked);
     this.setData({
-      navIndex: Number(e.currentTarget.dataset.id)
-    })
-    this.setData({
-      index:1,
-      couponArr:[]
-    })
-    this.couponList()
+      userCouponList: list
+    });
+    this.checkCouponMutex();
   },
   showAbout(e){
-    let arr = this.data.couponArr
-    arr[e.currentTarget.dataset.index].checked = !arr[e.currentTarget.dataset.index].checked
-    this.setData({
-      couponArr:arr
-    })
+    // 切换描述
   },
 })

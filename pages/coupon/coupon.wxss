@@ -35,7 +35,7 @@ page{
 .nav.cur{
   color: #1296db;
 }
-.coupon{
+.coupon-wrapper{
   margin: 20rpx;
   padding: 20rpx 30rpx;
   background: #fff;

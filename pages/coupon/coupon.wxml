@@ -8,31 +8,8 @@
     <view class="nav {{navIndex==1?'cur':''}}" data-id="1" bindtap="chooseNav">已使用</view>
     <view class="nav {{navIndex==2?'cur':''}}" data-id="2" bindtap="chooseNav">已过期</view>
   </view>
-  <view class="coupon" wx:for="{{couponArr}}" wx:key="index">
-    <view class="left">
-      <view class="money" wx:if="{{item.type==0 || item.type==2}}">￥{{item.value/100}}</view>
-      <view class="money" wx:if="{{item.type==1}}">{{item.value/10}}折</view>
-      <view class="number" wx:if="{{item.threshold}}">满{{item.threshold/100}}元可用</view>
-    </view>
-    <view class="right">
-      <text class="title">{{item.title}}</text>
-      <view class="tagWrap">
-        <!-- <text class="tag">通用券</text>
-        <text class="tag">新人专享</text> -->
-        <navigator url="/pages/index/index" open-type="switchTab" wx:if="{{navIndex==0}}" class="go">去使用</navigator>
-      </view>
-      <view class="date" wx:if="{{item.dateType==2}}">{{item.startTime }}至{{item.endTime}}</view>
-      <view class="date" wx:elif="{{item.dateType==1}}">过期时间:{{item.time1}}</view>
-      <view class="date" wx:else>长期有效</view>
-      <view class="about {{item.checked?'block':''}}" data-index="{{index}}" bindtap="showAbout">
-        <text class="des" wx:for="{{item.arr2}}" wx:for-item="cell" wx:for-index="term" wx:key="term">{{cell}}</text>
-        <image src="../../images/icon/up.png" wx:if="{{item.checked}}"></image>
-        <image src="../../images/icon/down.png" wx:else></image>
-        <!-- <view class="arrow {{checkArr[0]?'up':'down'}}"></view> -->
-      </view>
-      
-    </view>
-    
+  <view class="coupon-wrapper" wx:for="{{userCouponList}}" wx:key="index">
+    <coupon userCoupon="{{item}}" type="{{navIndex==0?'1':''}}" style="width:100%" />
   </view>
   <view class='nodata' wx:if="{{noData}}">
     <image src='https://caojiantao.site:8080/c0df16ce-c760-40ac-b410-94653210fc37.png'></image>

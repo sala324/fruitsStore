@@ -2,7 +2,7 @@ const util = require('../../utils/util');
 Page({
   data: {
     navIndex:0,
-    couponArr:[],
+    userCouponList:[],
     code:'',
     checkArr:[false,false,false],
     index:1,
@@ -11,7 +11,7 @@ Page({
   onShow() {
     this.setData({
       index: 1,
-      couponArr: []
+      userCouponList: []
     })
     this.couponList()
   },
@@ -48,23 +48,24 @@ Page({
       size: this.data.size
     }).then(res => {
       if (res.data.code == 0) {
-        res.data.data.records.forEach((val,index)=>{
-          val.checked=false
-          if (val.dateType==2){
-            val.endTime = val.endTime.replace(' 00:00:00', '')
-            val.startTime = val.startTime.replace(' 00:00:00', '')
+        let userCouponList = res.data.data.records;
+        userCouponList.forEach(userCoupon => {
+          // 格式化部分文描
+          let item = userCoupon.coupon;
+          if (item.dateType==2){
+            item.endTime = item.endTime.replace(' 00:00:00', '')
+            item.startTime = item.startTime.replace(' 00:00:00', '')
           }
-          if (val.dateType==1){
-            val.time1 = util.jisuanDate(val.gmtCreate, val.effectiveTime)
-            console.log(util.jisuanDate(val.gmtCreate, val.effectiveTime))
+          if (item.dateType==1){
+            item.time1 = util.jisuanDate(userCoupon.gmtCreate, item.effectiveTime)
           }
-          val.arr2 = val.description.split('\r\n')
-        })
+          item.arr2 = item.description.split('\r\n')
+        });
         this.setData({
-          couponArr: this.data.couponArr.concat(res.data.data.records),
+          userCouponList: this.data.userCouponList.concat(userCouponList),
           totalPage: res.data.data.pages
         })
-        util.judgeData(res.data.data.records.length==0,'noData',this)
+        util.judgeData(this.data.userCouponList.length==0,'noData',this)
       }
     })
   },
@@ -79,15 +80,8 @@ Page({
     })
     this.setData({
       index:1,
-      couponArr:[]
+      userCouponList:[]
     })
     this.couponList()
-  },
-  showAbout(e){
-    let arr = this.data.couponArr
-    arr[e.currentTarget.dataset.index].checked = !arr[e.currentTarget.dataset.index].checked
-    this.setData({
-      couponArr:arr
-    })
   },
 })

@@ -1,0 +1,32 @@
+<view class="coupon">
+  <view class="coupon-info">
+    <view class="left">
+      <view class="money" wx:if="{{userCoupon.coupon.type==0 || userCoupon.coupon.type==2}}">￥{{userCoupon.coupon.value/100}}</view>
+      <view class="money" wx:if="{{userCoupon.coupon.type==1}}">{{userCoupon.coupon.value/10}}折</view>
+      <view class="threshold" wx:if="{{userCoupon.coupon.threshold}}">满{{userCoupon.coupon.threshold/100}}可用</view>
+      <view class="threshold" wx:else>无金额门槛</view>
+    </view>
+    <view class="middle">
+      <text class="title">{{userCoupon.coupon.title}}</text>
+      <view class="date" wx:if="{{userCoupon.coupon.dateType==2}}">{{userCoupon.coupon.startTime }}至{{userCoupon.coupon.endTime}}</view>
+      <view class="date" wx:elif="{{userCoupon.coupon.dateType==1}}">有效期:{{userCoupon.coupon.time1}}</view>
+      <view class="date" wx:else>长期有效</view>
+      <view class="about {{expand?'block':''}}" bindtap="switchExpand">
+        <text class="des" wx:for="{{userCoupon.coupon.arr2}}" wx:for-item="cell" wx:for-index="term" wx:key="cell">{{cell}}</text>
+        <image src="../../images/icon/up.png" wx:if="{{expand}}"></image>
+        <image src="../../images/icon/down.png" wx:else></image>
+    </view>
+    </view>
+    <view class="right">
+      <view class="tagWrap" wx:if="{{type==='1'}}">
+        <navigator url="/pages/index/index" open-type="switchTab" class="go">去使用</navigator>
+      </view>
+      <checkbox-group wx:if="{{type==='2'}}" bindchange="checkboxChange" data-index="{{index}}">
+        <checkbox data-index="{{index}}" value="{{userCoupon.id}}" checked="{{userCoupon.checked}}" disabled="{{userCoupon.tips}}"/>
+      </checkbox-group>
+    </view>
+  </view>
+  <view class="coupon-tips" wx:if="{{userCoupon.tips}}">
+    {{userCoupon.tips}}
+  </view>
+</view>

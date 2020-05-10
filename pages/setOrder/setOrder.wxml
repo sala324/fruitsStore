@@ -37,6 +37,12 @@
         <text class="itemText">￥0</text>
       </view>
       <view class="priceItem">
+        <text class="itemName">优惠券</text>
+        <text class="itemText" wx:if="{{!couponValue && !aviilableCouponNumber}}">无可用优惠券</text>
+        <text class="itemText" wx:elif="{{couponValue}}" bindtap="chooseCoupon">-￥{{couponValue / 100}} ></text>
+        <text class="itemText" wx:else bindtap="chooseCoupon">{{aviilableCouponNumber}}个可用 ></text>
+      </view>
+      <view class="priceItem">
         <text class="itemName">余额抵扣</text>
         <text class="itemText">￥{{dikou}}</text>
       </view>
