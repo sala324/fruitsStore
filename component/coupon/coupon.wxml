@@ -1,8 +1,8 @@
 <view class="coupon">
   <view class="coupon-info {{!userCoupon.enable?'disable':''}}">
     <view class="left">
-      <view class="money" wx:if="{{userCoupon.coupon.type==0 || userCoupon.coupon.type==2}}">￥{{userCoupon.coupon.value/100}}</view>
-      <view class="money" wx:if="{{userCoupon.coupon.type==1}}">{{userCoupon.coupon.value/10}}折</view>
+      <view class="money" wx:if="{{userCoupon.coupon.type==0 || userCoupon.coupon.type==2}}">￥<text>{{userCoupon.coupon.value/100}}</text></view>
+      <view class="money" wx:if="{{userCoupon.coupon.type==1}}"><text>{{userCoupon.coupon.value/10}}</text>折</view>
       <view class="threshold" wx:if="{{userCoupon.coupon.threshold}}">满{{userCoupon.coupon.threshold/100}}可用</view>
       <view class="threshold" wx:else>无金额门槛</view>
     </view>

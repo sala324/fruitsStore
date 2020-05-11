@@ -12,9 +12,12 @@
 }
 
 .middle .title {
-  font-size: 32rpx;
+  font-size: 30rpx;
+  font-weight: bold;
 }
-
+.disable .middle .title{
+  color: #999;
+}
 .left{
   font-size: 26rpx;
   width: 150rpx;
@@ -27,9 +30,16 @@
 }
 
 .money{
-  font-size: 50rpx;
+  color:red;
+  vertical:top;
 }
-
+.disable .money{
+  color:#999;
+}
+.money text{
+  font-size: 50rpx;
+  vertical:top;
+}
 .tagWrap{
   font-size: 26rpx;
 }

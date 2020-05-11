@@ -57,7 +57,7 @@ Page({
           }
           item.arr2 = item.description.split('\r\n');
           if (item.dateType==1) {
-            item.time1 = util.jisuanDate(userCoupon.gmtCreate, item.effectiveTime);
+            item.time1 = util.jisuanDate(userCoupon.gmtCreate.replace(/-/g, '/'), item.effectiveTime);
           } 
           if (this.data.navIndex ==0) return userCoupon.enable = true;
         });

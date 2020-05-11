@@ -51,7 +51,7 @@
       </view>
       <view class="priceItem">
         <text class="itemName">余额抵扣</text>
-        <text class="itemText">￥{{orderInfo.balance/100}}</text>
+        <text class="itemText">-￥{{orderInfo.balance/100}}</text>
       </view>
     </view>
   </view>

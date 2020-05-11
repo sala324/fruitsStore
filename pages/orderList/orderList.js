@@ -10,9 +10,7 @@ Page({
     size:8
   },
   orderAgain(e){
-    let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList.map(item=>{
-      return item.productId
-    })
+    let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList
     let arr=arr2.map(item=>{
       return item.productId
     })

@@ -56,11 +56,9 @@ Page({
   },
   confirm() {
     let pages = getCurrentPages(),
-        prePage = pages[pages.length - 2],
-        checkedIdList = [];
-    this.data.userCouponList.filter(item => item.checked).forEach(item => checkedIdList.push(item.id));
+        prePage = pages[pages.length - 2]
     prePage.setData({
-      checkedIdList: checkedIdList,
+      checkedIdList: this.data.checkedIdList,
       couponValue: this.data.couponValue,
     });
     wx.navigateBack({
@@ -68,13 +66,15 @@ Page({
     })
   },
   checkCouponMutex() {
-    util.requests('/business/coupon/checkOrderCoupon', {
+    util.request('/business/coupon/checkOrderCoupon', {
       userCouponList: this.data.userCouponList,
       orderItemList: this.data.orderItemList
     }, 'post').then(res => {
       let data = res.data.data;
       let couponValue = data.couponValue;
       // 优惠总金额
+      
+        
       this.setData({
         couponValue: couponValue
       });
@@ -91,8 +91,11 @@ Page({
         if (item.enable) return;
         map.get(item.id)["tips"] = item.tips;
       })
+      checkedIdList = [];
+      list.filter(item => item.checked).forEach(item => checkedIdList.push(item.id));
       this.setData({
-        userCouponList: list
+        userCouponList: list,
+        checkedIdList: checkedIdList,
       });
     })
   },

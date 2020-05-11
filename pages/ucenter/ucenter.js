@@ -16,9 +16,10 @@ Page({
       this.setData({
         userData: res.data.data,
         shareCode: res.data.data.shareCode,
-        balance: (res.data.data.balance/100).toFixed(1)
+        balance: res.data.data.balance/100
       })
       wx.setStorageSync('userId', res.data.data.id);
+      app.globalData.balance = res.data.data.balance / 100
     })
   },
   onShow: function () {

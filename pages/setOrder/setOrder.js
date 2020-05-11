@@ -103,12 +103,15 @@ Page({
     }
     this.setData({
       dikou: dikou,
+      dikou1: dikou,
       price: price,
       allnum: num,
       hejiMoney: price3,
+      hejiMoney1: price3,
       orderArr: arrs,
       orderArr2:arrs2,
-      youhuiprice: youhui
+      youhuiprice: youhui,
+      youhuiprice1: youhui
     })
   },
   setOrder(){
@@ -190,8 +193,9 @@ Page({
     })
   },
   chooseCoupon() {
+    this.setData
     wx.navigateTo({
-      url: '/pages/chooseCoupon/chooseCoupon?checkedIdList=' + this.data.checkedIdList.join(",") + '&dikou=' + this.data.dikou + '&youhui=' + this.data.youhuiprice + '&hejiMoney=' + this.data.hejiMoney,
+      url: '/pages/chooseCoupon/chooseCoupon?checkedIdList=' + this.data.checkedIdList.join(","),
     })
   },
   useDada() {
@@ -225,9 +229,9 @@ Page({
     });
   },
   initOrderPrice() {
-    hejiMoney = this.data.hejiMoney - this.data.couponValue > 0 ? this.data.hejiMoney - this.data.couponValue : 0,
-    dikou = this.data.hejiMoney - this.data.couponValue > 0 ? this.data.dikou : this.data.dikou + this.data.hejiMoney - this.data.couponValue,
-    youhui = this.data.youhui + this.data.couponValue;
+    hejiMoney = this.data.hejiMoney1 - this.data.couponValue > 0 ? this.data.hejiMoney1 - this.data.couponValue : 0,
+    dikou = this.data.hejiMoney1 - this.data.couponValue > 0 ? this.data.dikou1 : this.data.dikou1 + this.data.hejiMoney1 - this.data.couponValue,
+      youhui = this.data.youhuiprice1 + this.data.couponValue;
    this.setData({
       hejiMoney: hejiMoney,
       dikou: dikou,

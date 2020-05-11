@@ -4,7 +4,7 @@ page{
 }
 .exchangeWrap{
   display: flex;
-  margin: 20rpx 20rpx 0 50rpx;
+  margin: 20rpx 20rpx 0;
 }
 .exchangeWrap input{
   height: 70rpx;
@@ -22,7 +22,7 @@ page{
 }
 .navWrap{
   display: flex;
-  margin: 0 30rpx;
+  margin: 0 20rpx;
 }
 .nav{
   flex: 1;
@@ -30,10 +30,13 @@ page{
   line-height: 70rpx;
   background: #fff;
   border-radius: 10rpx;
-  margin: 30rpx 20rpx 10rpx;
+  margin: 30rpx 60rpx 10rpx 0;
 }
 .nav.cur{
   color: #1296db;
+}
+.nav:nth-child(3){
+  margin-right: 0;
 }
 .coupon-wrapper{
   margin: 20rpx;

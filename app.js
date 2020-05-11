@@ -8,9 +8,7 @@ App({
     // urlHost: 'http://static.dxiahome.com',//测试服
     // pdfHost: 'https://static.dxiahome.com',//测试服
     // otherHost: 'https://other.dxiahome.com',//测试服
-    pointArr:[],
-    pointImg:[],
-    navHeight:0
+    balance:0
   },
   onLaunch: function (options) {
     let me = this;

@@ -16,7 +16,7 @@
   <navigator url="/pages/balance/balance" class='item reset'>
     <image src="../../images/icon/yue.png"></image>
     <text class='title'>我的余额</text>
-    <text wx:if="{{balance>0}}">{{balance}}</text>
+    <text wx:if="{{balance>0}}">￥{{balance}}</text>
     <text class="go"></text>
   </navigator>
   <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
