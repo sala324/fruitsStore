@@ -73,8 +73,6 @@ Page({
       let data = res.data.data;
       let couponValue = data.couponValue;
       // 优惠总金额
-      
-        
       this.setData({
         couponValue: couponValue
       });

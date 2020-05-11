@@ -12,13 +12,11 @@ const cunchu = n =>{
       json.id = Number(p)
       arrs.push(json)
     }
-    arrs.forEach((val, index) => {
+    arrs.forEach(val => {
       if (val.checked) {
         num += val.num
         price += val.price * val.num
-        if (val.originPrice > val.price) {
-          youhui += (val.originPrice - val.price) * val.num
-        }
+        if (val.originPrice > val.price) return youhui += (val.originPrice - val.price) * val.num
       } else {
         checkedAll= false
       }
@@ -82,7 +80,6 @@ const  resetItem=(dataArrs,storageArr, index, dataValue,_this)=> {
       delete jsons3[ids]
     } else {
       jsons=newCartArr(dataArrs,index,dataValue)
-      console.log(jsons)
     }
     let jsons4 = Object.assign(jsons3, jsons)//Object.assign可覆盖键值相同的商品
     wx.setStorageSync('cartArr', jsons4)

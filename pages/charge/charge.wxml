@@ -6,6 +6,5 @@
     </view>
     <view class="num"> <image src="../../images/icon/yue.png"></image></view>
   </view>
-  <!-- <navigator url="/pages/rechargeSuccess/rechargeSuccess" open-type="reLaunch" class="btn">充值</navigator> -->
   <view bindtap="charge" class="btn">充值</view>
 </view>
