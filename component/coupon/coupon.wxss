@@ -33,16 +33,11 @@
 .tagWrap{
   font-size: 26rpx;
 }
-.tagWrap .tag{
-  display: inline-block;
-  border: 1rpx solid #ff8547;
-  color: #ff8547;
-  padding: 4rpx 10rpx;
-  border-radius: 0 20rpx 0 20rpx;
-  margin: 12rpx 20rpx 12rpx 0;
-}
 .date{
   margin: 16rpx 0;
+}
+.disable{
+  color: #999;
 }
 .date,.about{
   color: #999;
@@ -77,4 +72,17 @@
   top: 0;
   width: 40rpx;
   height: 40rpx;
+}
+.coupon-tips{
+  margin-top: 16rpx;
+  border-top: 1rpx dotted #ddd;
+  font-size: 26rpx;
+  padding-top: 16rpx;
+  color: #333;
+}
+.coupon-tips image{
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin-right: 12rpx;
 }

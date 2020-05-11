@@ -15,7 +15,7 @@
           <view class="name">{{item.title}}</view>
           <view class="priceInfo">
             <text class="price">￥{{item.price/100}} x {{item.num}}</text>
-            <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2}}</text> ￥{{item.price1}}</text>
+            <text class="price2"><text wx:if="{{item.price2>item.price1}}">￥{{item.price2/100}}</text> ￥{{item.price1/100}}</text>
           </view>
         </view>
       </view>
@@ -25,7 +25,7 @@
     <view class="priceBox">
       <view class="priceItem">
         <text class="itemName">商品金额</text>
-        <text class="itemText">￥{{price}}</text>
+        <text class="itemText">￥{{price/100}}</text>
       </view>
       <view class="priceItem">
         <text class="itemName">包装费</text>
@@ -44,14 +44,14 @@
       </view>
       <view class="priceItem">
         <text class="itemName">余额抵扣</text>
-        <text class="itemText">￥{{dikou}}</text>
+        <text class="itemText">￥{{dikou/100}}</text>
       </view>
     </view>
   </view>
   <view class="bottomBox"></view>
   <view class="btnwrap">
-    <text class="price">实付￥{{hejiMoney}}</text>
-    <text class="youhuiPrice"><text wx:if="{{youhuiprice>0}}">已优惠￥{{youhuiprice}}</text></text>
+    <text class="price">实付￥{{hejiMoney/100}}</text>
+    <text class="youhuiPrice"><text wx:if="{{youhuiprice>0}}">已优惠￥{{youhuiprice/100}}</text></text>
     <view class="btn1" bindtap="setOrder">提交订单</view>
     <!-- <navigator class="btn1" open-type="reLaunch" url="/pages/paySuccess/paySuccess">提交订单</navigator> -->
   </view>

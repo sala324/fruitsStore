@@ -5,6 +5,10 @@ Component({
       value: "1"
     },
     userCoupon: Object,
+    checkLogn:{
+      type: Boolean,
+      value: false
+    },
     expand: {
       type: Boolean,
       value: false

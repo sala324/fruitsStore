@@ -1,5 +1,5 @@
 <view class="coupon">
-  <view class="coupon-info">
+  <view class="coupon-info {{!userCoupon.enable?'disable':''}}">
     <view class="left">
       <view class="money" wx:if="{{userCoupon.coupon.type==0 || userCoupon.coupon.type==2}}">￥{{userCoupon.coupon.value/100}}</view>
       <view class="money" wx:if="{{userCoupon.coupon.type==1}}">{{userCoupon.coupon.value/10}}折</view>
@@ -22,11 +22,11 @@
         <navigator url="/pages/index/index" open-type="switchTab" class="go">去使用</navigator>
       </view>
       <checkbox-group wx:if="{{type==='2'}}" bindchange="checkboxChange" data-index="{{index}}">
-        <checkbox data-index="{{index}}" value="{{userCoupon.id}}" checked="{{userCoupon.checked}}" disabled="{{userCoupon.tips}}"/>
+        <checkbox color="#1296db" data-index="{{index}}" value="{{userCoupon.id}}" checked="{{userCoupon.checked}}" disabled="{{userCoupon.tips}}"/>
       </checkbox-group>
     </view>
   </view>
   <view class="coupon-tips" wx:if="{{userCoupon.tips}}">
-    {{userCoupon.tips}}
+    <image src="../../images/icon/tan.png"></image>{{userCoupon.tips}}
   </view>
 </view>

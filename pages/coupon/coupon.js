@@ -39,7 +39,6 @@ Page({
         }
       })
     }
-    
   },
   couponList() {
     util.request('/business/coupon/getMyCouponList', {
@@ -56,10 +55,11 @@ Page({
             item.endTime = item.endTime.replace(' 00:00:00', '')
             item.startTime = item.startTime.replace(' 00:00:00', '')
           }
-          if (item.dateType==1){
-            item.time1 = util.jisuanDate(userCoupon.gmtCreate, item.effectiveTime)
-          }
-          item.arr2 = item.description.split('\r\n')
+          item.arr2 = item.description.split('\r\n');
+          if (item.dateType==1) {
+            item.time1 = util.jisuanDate(userCoupon.gmtCreate, item.effectiveTime);
+          } 
+          if (this.data.navIndex ==0) return userCoupon.enable = true;
         });
         this.setData({
           userCouponList: this.data.userCouponList.concat(userCouponList),

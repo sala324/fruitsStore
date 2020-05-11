@@ -10,7 +10,9 @@ Page({
     size:8
   },
   orderAgain(e){
-    let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList
+    let arr2 = this.data.orderArr[e.currentTarget.dataset.index].orderItemList.map(item=>{
+      return item.productId
+    })
     let arr=arr2.map(item=>{
       return item.productId
     })
@@ -20,11 +22,11 @@ Page({
       if (res.data.code == 0) {
         if (res.data.data.length == arr2.length){
           let jsonIn2 = {}
-          res.data.data.forEach((val, index) => {
+          res.data.data.forEach(val => {
             let json = {}
             let json2 = {}
             if (val.status == 0) {
-              arr2.forEach((val2, index2) => {
+              arr2.forEach(val2 => {
                 if (val.id == val2.productId) {
                   json.num = val2.number
                 }
@@ -130,16 +132,12 @@ Page({
           if (val.orderItemList){
             val.orderItemList.forEach((val2, index2) => {
               num += val2.number
-              price += val2.price * val2.number/100
-              val2.price1 = val2.price * val2.number/100
-              val2.price2 = val2.originPrice * val2.number/100
-              youhui += (val2.originPrice - val2.price) * val2.number/100
             })
           } else {
             num=1
           }
           json.num = num
-          json.price = (val.totalFee/100).toFixed(1)
+          json.price = val.totalFee - val.couponFee
           json.youhui = youhui
         })
         util.judgeData(res.data.data.records.length==0,'noData',this)

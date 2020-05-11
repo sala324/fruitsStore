@@ -84,19 +84,15 @@ Page({
     let num = 0
     let price = 0
     let youhui=0
-    arrs.forEach((val2, index2) => {
-      if(val2.checked){
-        num += val2.num
-        price += val2.price * val2.num /100
-        val2.price1 = val2.price * val2.num/100
-        val2.price2 = val2.originPrice * val2.num / 100
-        if (val2.originPrice > val2.price) {
-          youhui += (val2.originPrice - val2.price) * val2.num / 100
-        }
+    arrs.filter(item => item.checked).forEach(item => {
+      num += item.num
+      price += item.price * item.num
+      item.price1 = item.price * item.num
+      item.price2 = item.originPrice * item.num
+      if (item.originPrice > item.price) {
+        youhui += (item.originPrice - item.price) * item.num
       }
-      
     })
-    price = price.toFixed(1)
     let price3 = 0
     let dikou = 0
     if (this.data.allBalance-price>=0){
@@ -105,7 +101,6 @@ Page({
       price3 = price - this.data.allBalance
       dikou = this.data.allBalance
     }
-
     this.setData({
       dikou: dikou,
       price: price,
@@ -154,6 +149,7 @@ Page({
     })
   },
   onLoad(){
+    this.useDada();
     this.defaultAddress()
     this.getAvailableCoupon();
   },
@@ -163,7 +159,7 @@ Page({
     let orderItemList = []
     for(let productId in cartArr) {
       let item = cartArr[productId];
-      if(!item.checked) return;
+      if(!item.checked) continue;
       orderItemList.push({
         productId: Number(productId),
         number: Number(item.num)
@@ -195,7 +191,7 @@ Page({
   },
   chooseCoupon() {
     wx.navigateTo({
-      url: '/pages/chooseCoupon/chooseCoupon?checkedIdList=' + this.data.checkedIdList.join(","),
+      url: '/pages/chooseCoupon/chooseCoupon?checkedIdList=' + this.data.checkedIdList.join(",") + '&dikou=' + this.data.dikou + '&youhui=' + this.data.youhuiprice + '&hejiMoney=' + this.data.hejiMoney,
     })
   },
   useDada() {
@@ -229,10 +225,17 @@ Page({
     });
   },
   initOrderPrice() {
-    
+    hejiMoney = this.data.hejiMoney - this.data.couponValue > 0 ? this.data.hejiMoney - this.data.couponValue : 0,
+    dikou = this.data.hejiMoney - this.data.couponValue > 0 ? this.data.dikou : this.data.dikou + this.data.hejiMoney - this.data.couponValue,
+    youhui = this.data.youhui + this.data.couponValue;
+   this.setData({
+      hejiMoney: hejiMoney,
+      dikou: dikou,
+      youhuiprice: youhui,
+    });
   },
   onShow: function () {
-    this.useDada();
+    
     // 计算实付金额
     this.initOrderPrice();
   }

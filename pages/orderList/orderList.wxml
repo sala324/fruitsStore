@@ -14,7 +14,7 @@
           <image src="../../images/icon/more.png" class="more" wx:if="{{item.orderItemList.length>4}}"></image>
         </view>
         <view class="orderInfo">
-          <view class="price">￥{{item.price}}</view>
+          <view class="price">￥{{item.price/100}}</view>
           <view class="num">共{{item.num}}件</view>
           
         </view>

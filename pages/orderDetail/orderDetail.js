@@ -85,8 +85,6 @@ Page({
           status: res.data.data.status,
           orderDelivery: res.data.data.orderDelivery,
           orderArr: res.data.data.orderItemList,
-          totalFee: res.data.data.totalFee/100,
-          balance: res.data.data.balance/100,
           allnum: num
         })
       }

@@ -1,22 +1,22 @@
 <view class="confirmOrder">
   <view class="topBox"></view>
   <view class="addressWrap">
-    <view class="state" wx:if="{{status==1}}">已支付</view>
-    <view class="state" wx:if="{{status==0}}">待支付</view>
-    <view class="state" wx:if="{{status==-1}}">已取消</view>
-    <view class="orderInfo" wx:if="{{status==1}}">订单号：1335654651231215</view>
-    <view class="orderInfo" wx:if="{{status==0}}">剩余支付时间：{{sytime}}</view>
+    <view class="state" wx:if="{{orderInfo.status==1}}">已支付</view>
+    <view class="state" wx:if="{{orderInfo.status==0}}">待支付</view>
+    <view class="state" wx:if="{{orderInfo.status==-1}}">已取消</view>
+    <view class="orderInfo" wx:if="{{orderInfo.status==1}}">订单号：1335654651231215</view>
+    <view class="orderInfo" wx:if="{{orderInfo.status==0}}">剩余支付时间：{{sytime}}</view>
     
-    <view class="payWrap" wx:if="{{status=='0'}}">
+    <view class="payWrap" wx:if="{{orderInfo.status=='0'}}">
       <view class="cancel" bindtap="cancelOrder">取消订单</view>
       <view class="pay" bindtap="payOrder">去支付</view>
     </view>
-    <view class="payWrap" wx:if="{{status==-1}}">
+    <view class="payWrap" wx:if="{{orderInfo.status==-1}}">
       <view class="cancel" bindtap="deleteOrder">删除订单</view>
     </view>
   </view>
-  <view class="unpayBox" wx:if="{{status==0}}"></view>
-  <view class="quxiaoBox" wx:if="{{status==-1}}"></view>
+  <view class="unpayBox" wx:if="{{orderInfo.status==0}}"></view>
+  <view class="quxiaoBox" wx:if="{{orderInfo.status==-1}}"></view>
   <view class="wrap">
     <view class="orderBox {{showAll?'showAll':''}}">
       <view class="orderItem" wx:for="{{orderArr}}" wx:key="index" wx:if="{{index<showItem}}">
@@ -35,7 +35,7 @@
     <view class="priceBox">
       <view class="priceItem">
         <text class="itemName">商品总价</text>
-        <text class="itemText">￥{{totalFee}}</text>
+        <text class="itemText">￥{{orderInfo.totalFee/100}}</text>
       </view>
       <view class="priceItem">
         <text class="itemName">包装费</text>
@@ -45,9 +45,13 @@
         <text class="itemName">配送费</text>
         <text class="itemText">￥0</text>
       </view>
+      <view class="priceItem" wx:if="{{orderInfo.couponFee>1}}">
+        <text class="itemName">优惠券</text>
+        <text class="itemText">-￥{{orderInfo.couponFee/100}}</text>
+      </view>
       <view class="priceItem">
         <text class="itemName">余额抵扣</text>
-        <text class="itemText">￥{{balance}}</text>
+        <text class="itemText">￥{{orderInfo.balance/100}}</text>
       </view>
     </view>
   </view>

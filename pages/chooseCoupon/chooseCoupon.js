@@ -8,6 +8,11 @@ Page({
   onLoad(options) {
     let checkedIdListStr = options.checkedIdList || "";
     let checkedIdList = checkedIdListStr.split(",").filter(item => item).map(Number);
+    this.setData({
+      youhui:Number(options.youhui),
+      hejiMoney: Number(options.hejiMoney),
+      dikou: Number(options.dikou),
+    })
     // 计算购物车
     this.initCartList();
     // 渲染优惠券列表
@@ -39,7 +44,7 @@ Page({
     let orderItemList = []
     for(let productId in cartArr) {
       let item = cartArr[productId];
-      if(!item.checked) return;
+      if(!item.checked) continue;
       orderItemList.push({
         productId: Number(productId),
         number: Number(item.num)
@@ -50,13 +55,13 @@ Page({
     });
   },
   confirm() {
-    let pages = getCurrentPages();
-    let prePage = pages[pages.length - 2];
-    let checkedIdList = [];
+    let pages = getCurrentPages(),
+        prePage = pages[pages.length - 2],
+        checkedIdList = [];
     this.data.userCouponList.filter(item => item.checked).forEach(item => checkedIdList.push(item.id));
     prePage.setData({
       checkedIdList: checkedIdList,
-      couponValue: this.data.couponValue
+      couponValue: this.data.couponValue,
     });
     wx.navigateBack({
       delta: 1
@@ -82,6 +87,7 @@ Page({
       });
       let itemList = data.itemList;
       itemList.forEach(item => {
+        map.get(item.id)["enable"] = item.enable;
         if (item.enable) return;
         map.get(item.id)["tips"] = item.tips;
       })

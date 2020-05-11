@@ -6,59 +6,55 @@ const cunchu = n =>{
         arrs = []//购物车列表
         youhui= 0//购物车优惠金额
         checkedAll= JSON.stringify(jsons) == "{}"?false:true//购物车全选
-    if (jsons) {
-      for (var p in jsons) {
-        var json = jsons[p]
-        json.id = Number(p)
-        arrs.push(json)
-      }
-      
-      arrs.forEach((val, index) => {
-        if (val.checked) {
-          num += val.num
-          price += val.price * val.num
-          if (val.originPrice > val.price) {
-            youhui += (val.originPrice - val.price) * val.num
-          }
-        } else {
-          checkedAll= false
-        }
-      })
-      let noData=false//购物车有无数据
-      if (num > 0) {
-        noData = false
-        wx.setTabBarBadge({
-          index: 1,
-          text: num + ''
-        })
-      } else {
-        noData =true
-        wx.removeTabBarBadge({
-          index: 1
-        })
-      }
+   
+    for (var p in jsons) {
+      var json = jsons[p]
+      json.id = Number(p)
+      arrs.push(json)
     }
-    let json4={}
-    json4.storageArr = arrs
-    json4.cartData = true
-    json4.allnum = num
-    json4.youhui = youhui
-    json4.checkedAll = checkedAll
-    json4.price = price/100
-    return json4
-  
+    arrs.forEach((val, index) => {
+      if (val.checked) {
+        num += val.num
+        price += val.price * val.num
+        if (val.originPrice > val.price) {
+          youhui += (val.originPrice - val.price) * val.num
+        }
+      } else {
+        checkedAll= false
+      }
+    })
+    let noData=false//购物车有无数据
+    if (num > 0) {
+      noData = false
+      wx.setTabBarBadge({
+        index: 1,
+        text: num + ''
+      })
+    } else {
+      noData =true
+      wx.removeTabBarBadge({
+        index: 1
+      })
+    }
+    return {
+      storageArr : arrs,
+      cartData : true,
+      allnum : num,
+      youhui : youhui,
+      checkedAll : checkedAll,
+      price : price/100
+    }
   }
   const jsonBox = (val,booler) =>{
     //格式化选中产品的数据
-    let jsons2={}
-    jsons2.num = val.num
-    jsons2.title = val.title
-    jsons2.price = val.price
-    jsons2.thumbnails = val.thumbnails
-    jsons2.checked = booler//标识该商品在购物车中有无选中状态
-    jsons2.originPrice = val.originPrice
-    // val.checked=booler//标识该商品在购物车中有无选中状态
-    return jsons2
+    return {
+      num : val.num,
+      title : val.title,
+      price : val.price,
+      thumbnails : val.thumbnails,
+      checked : booler,//标识该商品在购物车中有无选中状态
+      originPrice : val.originPrice
+    }
   }
 const  newCartArr=(dataArrs,index,dataValue)=>{
     //格式化存到本地购物车以对象的方式存入本地
