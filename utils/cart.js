@@ -2,9 +2,9 @@ const cunchu = n =>{
     let jsons = wx.getStorageSync('cartArr') || {}//购物车本地缓存
     delete jsons['nv_toString']//删除从wx.getStorageSync中拿到的nv_toString
     let num = 0,//购物车总数量
-        price = 0//购物车总价
-        arrs = []//购物车列表
-        youhui= 0//购物车优惠金额
+        price = 0,//购物车总价
+        arrs = [],//购物车列表
+        youhui= 0,//购物车优惠金额
         checkedAll= JSON.stringify(jsons) == "{}"?false:true//购物车全选
    
     for (var p in jsons) {

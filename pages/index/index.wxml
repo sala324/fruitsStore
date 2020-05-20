@@ -4,11 +4,21 @@
       <image src="../../images/icon/search.png"></image>
       <text class="searchText">商家商品</text>
     </navigator>
-    <view class="navWrap">
-      <view class="nav {{id==0?'active':''}}"  bindtap="tabOne" data-id="0"><text>推荐</text></view>
-      <view class="nav {{id==3?'active':''}}" data-id="3" bindtap="chooseType"><text>生鲜</text></view>
-      <view class="nav {{id==5?'active':''}}" data-id="5" bindtap="chooseType"><text>果蔬</text></view>
-    </view>
+    <swiper autoplay="true" interval="3000">
+        <swiper-item>
+          <navigator url="/pages/charge/charge">
+            <image src="../../images/icon/2.png" class="slide-image"/>
+          </navigator>
+        </swiper-item>
+        <swiper-item>
+          <image src="../../images/icon/1.png" class="slide-image" width="375" height="150"/>
+        </swiper-item>
+    </swiper>
+  </view>
+  <view class="navWrap" style="height:100vh" >
+    <view class="nav {{id==0?'active':''}}"  bindtap="tabOne" data-id="0">推荐</view>
+    <view class="nav {{id==3?'active':''}}" data-id="3" bindtap="chooseType">生鲜</view>
+    <view class="nav {{id==5?'active':''}}" data-id="5" bindtap="chooseType">果蔬</view>
   </view>
   <view class="topBox"></view>
   <view class="productWrap">
@@ -16,20 +26,18 @@
       <view class="productImgWrap">
         <image src="{{item.thumbnails}}"></image>
       </view>
-      <view class="productName">{{item.title}} {{item.description}}</view>
+      <view class="productItemRight">
+        <view class="productName">{{item.title}} {{item.description}}</view>
       <view class="productPrice">
         <view class="productPriceWrap">
           <view class="salePrice">￥{{item.price/100}}</view>
           <view class="originalPrice" wx:if="{{item.price<item.originPrice}}">￥{{item.originPrice/100}}</view>
         </view>
-        <!-- <view class="productNumWrap">
-          <view class="increase" bindtap="changeItem" data-index="{{index}}" data-num="-1" data-id="{{item.id}}" wx-if="{{item.num>0}}"></view>
-          <view class="number" wx-if="{{item.num>0}}">{{item.num}}</view>
-          <view class="productAdd" data-id="{{item.id}}" data-index="{{index}}" data-num="1" bindtap='changeItem'></view>
-        </view> -->
         <app-dialog id="dialog" productIndex="{{index}}"  productNum="{{item.num}}" bind:myevent="changeItem">
   </app-dialog>
       </view>
+      </view>
+      
     </view>
   </view>
   

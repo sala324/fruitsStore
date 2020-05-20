@@ -1,6 +1,7 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
 const cart = require('../../utils/cart');
+import { aa } from '../../utils/testClass';
 Page({
   data: {
     isLogin: true,
@@ -97,8 +98,16 @@ Page({
       }
     })
   },
+  test2(){
+    return new Promise(resolve=>{
+      setTimeout(()=>{
+        console.log('异步函数2')
+        resolve('test2')
+      },3000)
+    })
+  },
   tabOne() {
-    util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_RECOMMEND_PRODUCT' }).then(res => {
+  return util.request('/business/dictionary/getDictionaryListByCode', { code: 'BUSINESS_RECOMMEND_PRODUCT' }).then(res => {
       if (res.data.code == 0) {
         this.setData({
           id:0
@@ -121,7 +130,7 @@ Page({
         this.cunchu()
       }
     })
-  },
+  }, 
   onShow: function () {
     this.setData({
       index:1,

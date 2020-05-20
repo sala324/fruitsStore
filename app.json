@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/share/share",
+    "pages/charge/charge",
     "pages/chooseCoupon/chooseCoupon",
     "pages/coupon/coupon",
-    "pages/share/share",
     "pages/login/login",
     "pages/orderList/orderList",
     "pages/balance/balance",
@@ -13,7 +14,6 @@
     "pages/addAddress/addAddress",
     "pages/message/message",
     "pages/offlinePayment/offlinePayment",
-    "pages/charge/charge",
     "pages/xiaofeiList/xiaofeiList",
     "pages/orderDetail/orderDetail",
     "pages/paySuccess/paySuccess",

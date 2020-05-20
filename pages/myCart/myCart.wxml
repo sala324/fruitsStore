@@ -6,8 +6,9 @@
     <view class="itemWrap">
       <view class="gouwucheItem" wx:for="{{storageArr}}" wx:key="index" wx:if="{{item.title}}">
         <view class="checkWrap" data-id="{{item.id}}" data-index="{{index}}" bindtap="toggleChecked">
-          <view class="checked" wx:if="{{item.checked}}"></view>
-          <view class="circle circle2" wx:else></view>
+          <!-- <view class="checked" wx:if="{{item.checked}}"></view>
+          <view class="circle circle2" wx:else></view> -->
+          <checkbox  checked="{{item.checked}}"></checkbox>
         </view>
         <image src="{{item.thumbnails}}"></image>
         <view class="itemInfo">
@@ -23,7 +24,7 @@
   </view>
   <view class="cartBox"></view>
   <view class="cartWrap {{hideCart?'hide':''}}">
-    <view class="quanxuan" bindtap="checkAll"><view class="{{checkedAll?'checked':'circle'}}"></view> 全选</view>
+    <view class="quanxuan" bindtap="checkAll"><checkbox  checked="{{checkedAll}}"></checkbox> 全选</view>
     <view class="price">￥{{price}}</view>
     <view class="num">数量：{{allnum | 0}}件</view>
     <view bindtap="jisuan" wx:if="{{allnum>0}}"  wx:if="{{allnum>0}}" class="confrim">去结算</view>

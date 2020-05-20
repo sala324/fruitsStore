@@ -228,7 +228,7 @@ Page({
     });
   },
   initOrderPrice() {
-    hejiMoney = this.data.hejiMoney1 - this.data.couponValue > 0 ? this.data.hejiMoney1 - this.data.couponValue : 0,
+    let hejiMoney = this.data.hejiMoney1 - this.data.couponValue > 0 ? this.data.hejiMoney1 - this.data.couponValue : 0,
     dikou = this.data.hejiMoney1 - this.data.couponValue > 0 ? this.data.dikou1 : this.data.dikou1 + this.data.hejiMoney1 - this.data.couponValue,
       youhui = this.data.youhuiprice1 + this.data.couponValue;
    this.setData({

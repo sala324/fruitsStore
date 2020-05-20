@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "充值"
+  "navigationBarTitleText": "充值",
+  "navigationBarBackgroundColor": "#1296db",
+  "navigationBarTextStyle": "white"
 }

@@ -5,7 +5,7 @@
 	},
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -19,10 +19,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.11.0",
 	"appid": "wx0d5c9babffee85f6",
 	"projectname": "%E5%AD%94%E6%98%8E%E5%AD%A6%E8%BD%A6",
 	"isGameTourist": false,

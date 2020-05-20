@@ -2,13 +2,13 @@
 
 page{
   font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
-  background: #eceff5;
 }
 .navWrap{
-  /* position: -webkit-sticky;
-  position: sticky;
-  top: -1rpx; */
-  margin:0 20rpx;
+  position: fixed;
+  border-top: 40rpx solid #fff;
+  left: 0;
+  top: 420rpx;
+  width: 120rpx;
   height: 90rpx;
   line-height: 90rpx;
   background: #eceff5;
@@ -16,19 +16,19 @@ page{
 .nav{
   height: 90rpx;
   line-height: 90rpx;
-  display: inline-block;
-  
-}
-.nav text{
-  display: inline-block;
-  font-size: 30rpx;
-  line-height: 30rpx;
-  height: 30rpx;
-  padding: 0 30rpx;
-  border-right: 1rpx solid #999;
+  display: block;
+  text-align: center;
 }
 .nav.active{
   color: #1296db;
+  background: #fff;
+}
+swiper{
+  margin-bottom: 20rpx;
+}
+swiper-item,swiper-item image{
+  width: 750rpx;
+  height: 300rpx;
 }
 .scrollWrap{
   margin-top: 20rpx;
@@ -44,34 +44,32 @@ page{
   text-align: center;
   background: #1296db;
   color: #fff;
-  border-radius: 10rpx;
 }
 .navItem:last-child{
   margin-right:0rpx;
 }
 .productWrap{
-  margin:0 20rpx;
-  width: 710rpx;
+  margin:20rpx 0 0 120rpx;
+  /* width: 590rpx; */
   overflow: hidden;
-  border-radius: 20rpx;
   font-size: 0;
+  background: #fff;
 }
 .productWrap .productItem{
-  display: inline-block;
-  width: 345rpx;
-  padding: 20rpx;
+  display: flex;
+  margin: 20rpx 20rpx 14rpx;
   box-sizing: border-box;
-  vertical-align: top;
+  border-bottom: 1rpx solid #ccc;
   background: #fff;
-  margin-bottom: 20rpx;
-  border-radius: 10rpx;
+  /* margin-top: 10rpx; */
 }
-.productWrap .productItem:nth-child(2n){
+.productItemRight{
+  flex: 1;
   margin-left: 20rpx;
 }
 .productWrap .productItem .productImgWrap,.productWrap .productItem .productImgWrap image{
-  width: 300rpx;
-  height: 300rpx;
+  width: 160rpx;
+  height: 160rpx;
 }
 .productName{
   font-size: 30rpx;
@@ -100,11 +98,13 @@ page{
 }
 .productPrice .productPriceWrap .salePrice{
   color: red;
-  font-size: 40rpx;
+  font-size: 32rpx;
+  display: inline-block;
 }
 .productPrice .productPriceWrap .originalPrice{
   color: #aaa;
-  font-size: 30rpx;
+  font-size: 26rpx;
+  display: inline-block;
   text-decoration-line: line-through;
 }
 .itemNum{
@@ -125,12 +125,12 @@ page{
   background: #fff;
   height: 70rpx;
   line-height: 70rpx;
-  margin: 20rpx 20rpx 0;
+  margin: 20rpx;
   border-radius: 20rpx;
   text-align: center;
 }
 .topBox{
-  height: 206rpx;
+  height: 420rpx;
 }
 .searchWrap image{
   width: 50rpx;

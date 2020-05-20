@@ -1,35 +1,30 @@
+page{
+  background: #eceff5;
+}
 .cardWrap{
-  padding: 30rpx;
+  margin: 30rpx;
+  /* padding: 30rpx; */
+  
 }
 .cardItem{
-  border: 1rpx solid #1296db;
+  background: #fff;
+  /* border: 1rpx solid #1296db; */
   border-radius: 20rpx;
   color: #1296db;
-  padding: 30rpx;
+  padding:45rpx 20rpx;
   margin-bottom: 30rpx;
-  text-align: right;
-}
-.checked{
-  width: 40rpx;
-  height: 40rpx;
-  position: absolute;
-  margin: -20rpx;
+  display: flex;
 }
 .money{
-  text-align: left;
+  flex: 1;
+  display: flex;
 }
-.money text{
-  font-size: 60rpx;
-  text-align: left;
+.money .num1{
+  font-size: 32rpx;
+  color: #333;
+  flex: 1;
 }
-.num{
+.money .num2{
   height: 40rpx;
   font-size: 40rpx;
-  
-  text-align: right;
-}
-.num image{
-  width: 120rpx;
-  height: 120rpx;
-  margin: -60rpx 40rpx 0 0;
 }

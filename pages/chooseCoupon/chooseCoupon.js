@@ -89,7 +89,7 @@ Page({
         if (item.enable) return;
         map.get(item.id)["tips"] = item.tips;
       })
-      checkedIdList = [];
+      let checkedIdList = [];
       list.filter(item => item.checked).forEach(item => checkedIdList.push(item.id));
       this.setData({
         userCouponList: list,

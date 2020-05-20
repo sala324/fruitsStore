@@ -1,7 +1,8 @@
 const util = require('../../utils/util');
 Page({
   data: {
-    noData: false
+    noData: false,
+    myListArr:[]
   },
   commonList() {
     util.requests('/business/invite-award/getRecentList', {}).then(res => {
@@ -13,10 +14,14 @@ Page({
   },
   myList() {
     util.requests('/business/invite-award/getInviteeList', {}).then(res => {
-      this.setData({
-        myList: res.data.data
-      })
-      util.judgeData(res.data.data.length ==  0, 'noData', this)
+      if (res.data.data && res.data.data.length>0){
+        this.setData({
+          myListArr: res.data.data
+        })
+        util.judgeData(false, 'noData', this)
+      } else {
+        util.judgeData(true, 'noData', this)
+      }
     })
   },
   onLoad: function (options) {

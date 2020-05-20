@@ -1,10 +1,11 @@
 <view class="cardWrap">
   <view class="cardItem" wx:for="{{chargeArr}}" wx:key="index" bindtap="chooseItem" data-id="{{item.id}}" data-index="{{index}}">
-    <image src="../../images/icon/check2.png" wx:if="{{navIndex==index}}" class="checked"></image>
+    <!-- <image src="../../images/icon/check2.png" class="checked"></image> -->
+    <checkbox  checked="{{navIndex==index}}"></checkbox>
     <view class="money">
-      <text>￥{{item.money}}</text> 变<text>￥{{item.money2}}</text>
+      <text class="num1">{{item.money2}}购物币</text><text class="num2">￥{{item.money}}</text>
     </view>
-    <view class="num"> <image src="../../images/icon/yue.png"></image></view>
+   
   </view>
   <view bindtap="charge" class="btn">充值</view>
 </view>
