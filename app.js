@@ -17,13 +17,6 @@ App({
       // 请求完新版本信息的回调
       console.log(res.hasUpdate)
     })
-    wx.getSystemInfo({
-      success: res => {
-      //导航高度
-      
-      this.globalData.navHeight = res.statusBarHeight+46;
-      }
-     })
     updateManager.onUpdateReady(function () {
       wx.showModal({ 
         title: '更新提示',

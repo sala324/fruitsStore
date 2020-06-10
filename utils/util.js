@@ -120,7 +120,7 @@ const requests = (url, data, method, hideToast) => {
         
       },
       fail(res) {
-        reject(res);
+        toasts('网络超时请稍后再试')
       },
       complete: function () {
 

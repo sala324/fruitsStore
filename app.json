@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/voice/voice",
     "pages/share/share",
     "pages/charge/charge",
     "pages/chooseCoupon/chooseCoupon",
@@ -27,6 +28,9 @@
     "navigationBarTitleText": "郭鲜生",
     "navigationBarTextStyle": "black",
     "backgroundColorBottom": "#fff"
+  },
+  "networkTimeout": {
+    "request": 20000
   },
   "tabBar": {
     "color": "#666666",
@@ -60,6 +64,12 @@
         "text": "我的"
       }
     ]
+  },
+  "plugins": {
+    "QCloudAIVoice": {
+      "version": "1.2.0",
+      "provider": "wx3e17776051baf153"
+    }
   },
   "permission": {
     "scope.userLocation": {

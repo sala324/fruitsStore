@@ -14,3 +14,7 @@ class aa {
   };
 };
 export {aa}
+export let bcd=1
+export function incCounter() {
+  bcd++;
+}

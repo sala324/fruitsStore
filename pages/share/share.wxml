@@ -24,7 +24,7 @@
       <text class="date">2020-5-3</text>
     </view> -->
     <view class='nodata' wx:if="{{noData}}">
-      <image src='https://caojiantao.site:8080/c0df16ce-c760-40ac-b410-94653210fc37.png'></image>
+      <image src='../../images/icon/nomessage.png'></image>
     </view>
   </view>
   <view class="bottomBox"></view>

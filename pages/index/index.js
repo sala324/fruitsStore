@@ -1,7 +1,6 @@
 const util = require('../../utils/util');
 const auth = require('../../utils/auth');
 const cart = require('../../utils/cart');
-import { aa } from '../../utils/testClass';
 Page({
   data: {
     isLogin: true,
@@ -12,7 +11,8 @@ Page({
     showCart:false,
     index:1,
     size:10,
-    productArr: []
+    productArr: [],
+    text:123
   },
   onShareAppMessage: function (res) {
     var that = this;

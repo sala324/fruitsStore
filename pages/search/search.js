@@ -1,5 +1,9 @@
 const util = require('../../utils/util');
 const cart = require('../../utils/cart');
+let plugin = requirePlugin("QCloudAIVoice");
+var mod = require('../../utils/test2');
+let manager = plugin.getRecordRecognitionManager()
+plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
 Page({
   data: {
     storageArr:[],
@@ -142,6 +146,44 @@ Page({
   turnCart(){
     wx.switchTab({
       url: '/pages/myCart/myCart',
+    })
+  },
+  recordingStart(){
+    let that=this
+    manager.start({duration:30000, engine_model_type: '16k_0'});
+    manager.onRecognize((res) => {
+      if (res.result) {
+        that.setData({
+          keyWords: res.result.replace('。','')
+        })
+        that.searchBtn()
+      } else if (res.errMsg) {
+      }
+    })
+  },
+  recordingStop() {
+    manager.stop()
+    
+  },
+  onLoad(options){
+    manager.onStart((res) => {
+          console.log('recorder start', res.msg);
+    })
+    manager.onStop((res) => {
+          console.log('recorder stop', res.tempFilePath);
+    })
+    manager.onError((res) => {
+          console.log('recorder error', res.errMsg);
+    })
+    manager.onRecognize((res) => {
+      if (res.result) {
+        that.setData({
+          text: res.result
+        })
+        console.log("current result", res.result)
+      } else if (res.errMsg) {
+        console.log("recognize error", res.errMsg)
+      }
     })
   },
   onShow: function () {
