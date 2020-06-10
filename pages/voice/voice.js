@@ -9,7 +9,7 @@ plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2
 
 Page({
   data: {
-    text:12344
+    text:12344333333
   },
   recordingStart(){
     let that=this
