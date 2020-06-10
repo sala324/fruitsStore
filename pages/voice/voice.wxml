@@ -6,7 +6,7 @@ bindtouchend="recordingStop"
     开始录音谷歌
   </button>
   <!-- <button bindtap="recordingStop">
-    结束
+    结束额鹅鹅鹅
   </button> -->
   <view class="luyin">{{text}}</view>
   
