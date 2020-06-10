@@ -3,7 +3,7 @@
 bindlongpress="recordingStart"
 bindtouchend="recordingStop"
 >
-    开始录音谷歌
+    开始录音谷歌eee
   </button>
   <!-- <button bindtap="recordingStop">
     结束
