@@ -19,11 +19,11 @@
     <text wx:if="{{balance>0}}">￥{{balance}}</text>
     <text class="go"></text>
   </navigator>
-  <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
+  <!-- <navigator url="/pages/offlinePayment/offlinePayment" class='item usersata'>
     <image src="../../images/icon/pay.png"></image>
     <text class='title'>线下付款</text>
     <text class="go"></text>
-  </navigator>
+  </navigator> -->
   <navigator url="/pages/coupon/coupon" class='item reset'>
     <image src="../../images/icon/quan2.png"></image>
     <text class='title'>优惠券</text>

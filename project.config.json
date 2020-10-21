@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -27,7 +27,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.0",
-	"appid": "wx0d5c9babffee85f6",
+	"appid": "wx48261553cc5a71b2",
 	"projectname": "%E5%AD%94%E6%98%8E%E5%AD%A6%E8%BD%A6",
 	"isGameTourist": false,
 	"simulatorType": "wechat",

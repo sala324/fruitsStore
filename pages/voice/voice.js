@@ -2,8 +2,8 @@
 
 const util = require('../../utils/util');
 import { aa,bcd,incCounter } from '../../utils/testClass';
-let plugin = requirePlugin("QCloudAIVoice");
 var mod = require('../../utils/test2');
+let plugin = requirePlugin("QCloudAIVoice");
 let manager = plugin.getRecordRecognitionManager()
 plugin.setQCloudSecret(1302214974, 'AKIDvafTyD2uf9O5Wdie4C2gYDYhbFdN799s', 'e2A2eHdttbMrFNE8lIYquze3BNek59xO', true); 
 
