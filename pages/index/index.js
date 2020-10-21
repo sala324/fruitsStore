@@ -128,6 +128,7 @@ Page({
           productArr: res.data.data
         })
         this.cunchu()
+        console.log(456+'测试pdd分支')
       }
     })
   }, 
