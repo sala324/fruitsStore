@@ -133,7 +133,8 @@ Page({
     })
   }, 
   onShow: function () {
-    console.log(123+'测试pdd2分支')
+    console.log(123+'测试cls2分支')
+    console.log(123+'测试cls1分支')
     this.setData({
       index:1,
       productArr:[]
