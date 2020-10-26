@@ -138,5 +138,6 @@ Page({
     })
     this.setToken()
     this.tabOne()
+    console.log(123)
   }
 })
