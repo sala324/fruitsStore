@@ -138,6 +138,6 @@ Page({
     })
     this.setToken()
     this.tabOne()
-    console.log('cln')
+    console.log('cln2222')
   }
 })
