@@ -137,9 +137,10 @@ Page({
       productArr:[]
     })
     console.log('eret')
+    console.log('eret32435')
 
     this.setToken()
     this.tabOne()
-    console.log(123444)
+    console.log(123444346474575686586785678675)
   }
 })
