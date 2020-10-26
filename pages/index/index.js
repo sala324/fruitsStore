@@ -139,6 +139,5 @@ Page({
     console.log('master')
     this.setToken()
     this.tabOne()
-    console.log('cln')
   }
 })

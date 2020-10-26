@@ -8,8 +8,6 @@ Page({
     auth.register(e.detail.encryptedData, e.detail.iv, () => wx.switchTab({url: '/pages/ucenter/ucenter'}));
   },
   onLoad: function (options) {
-    console.log('cln')
-    console.log('cln2')
   },
 
   /**
