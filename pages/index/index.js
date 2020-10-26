@@ -143,5 +143,6 @@ Page({
     })
     this.setToken()
     this.tabOne()
+    console.log('cln2222')
   }
 })
