@@ -136,6 +136,7 @@ Page({
       index:1,
       productArr:[]
     })
+    console.log('master')
     this.setToken()
     this.tabOne()
   }
