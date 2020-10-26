@@ -52,7 +52,8 @@
   <view class="btnwrap">
     <text class="price">实付￥{{hejiMoney/100}}</text>
     <text class="youhuiPrice"><text wx:if="{{youhuiprice>0}}">已优惠￥{{youhuiprice/100}}</text></text>
-    <view class="btn1" bindtap="setOrder">提交订单</view>
+    <!-- <view class="btn1" bindtap="setOrder">提交订单</view> -->
+    <view class="btn1 gray" style="background:#aaa">提交订单</view>
     <!-- <navigator class="btn1" open-type="reLaunch" url="/pages/paySuccess/paySuccess">提交订单</navigator> -->
   </view>
 </view>

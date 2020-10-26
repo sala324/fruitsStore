@@ -3,7 +3,8 @@
     <view class="title">
       <text class="title1">我的余额</text>
       
-      <navigator url="/pages/charge/charge" class="chargeBtn">去充值 ></navigator></view>
+      <!-- <navigator url="/pages/charge/charge" class="chargeBtn">去充值 ></navigator> -->
+      </view>
     <view class="num">￥{{balance}}</view>
   </view>
 </view>
