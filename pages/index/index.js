@@ -113,7 +113,6 @@ Page({
           id:0
         })
         this.orderAgain(res.data.data)
-        console.log('cls')
       }
     })
   },
@@ -133,16 +132,11 @@ Page({
     })
   }, 
   onShow: function () {
-    console.log(123+'测试cls222分支')
-    console.log(123+'测试cls2221分支')
-    console.log('cls222')
-
     this.setData({
       index:1,
       productArr:[]
     })
     this.setToken()
     this.tabOne()
-    console.log('cln2222')
   }
 })
