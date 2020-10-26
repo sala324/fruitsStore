@@ -133,9 +133,9 @@ Page({
     })
   }, 
   onShow: function () {
-    console.log(123+'测试cls2分支')
-    console.log(123+'测试cls1分支')
-    console.log('cls')
+    console.log(123+'测试cls222分支')
+    console.log(123+'测试cls2221分支')
+    console.log('cls222')
 
     this.setData({
       index:1,
@@ -143,6 +143,5 @@ Page({
     })
     this.setToken()
     this.tabOne()
-    console.log('cln')
   }
 })
