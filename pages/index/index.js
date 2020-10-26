@@ -136,8 +136,10 @@ Page({
       index:1,
       productArr:[]
     })
+    console.log('eret')
+
     this.setToken()
     this.tabOne()
-    console.log(123)
+    console.log(123444)
   }
 })
