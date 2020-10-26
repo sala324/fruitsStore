@@ -9,6 +9,7 @@ Page({
   },
   onLoad: function (options) {
     console.log('cln')
+    console.log('cln2')
   },
 
   /**
