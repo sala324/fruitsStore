@@ -137,7 +137,7 @@ Page({
       productArr:[]
     })
     console.log('eret')
-
+    console.log('eqjkgkjbgjksbgkjab')
     this.setToken()
     this.tabOne()
     console.log(123444)
